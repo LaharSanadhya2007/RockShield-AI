@@ -22,17 +22,15 @@
         <!-- UPLOAD SECTION -->
         <section>
             <h2>Upload Image</h2>
-<input type="file" id="imageInput" accept="image/*">
+<form id="uploadForm" enctype="multipart/form-data">
+    <input type="file" id="imageInput" name="image" accept="image/*">
 
-<img id="previewImg" style="display:none; width:100%; margin-top:15px; border-radius:8px;">
+    <img id="previewImg" style="display:none; width:100%; margin-top:15px; border-radius:8px;">
 
-<button>Analyze</button>
-        </section>
+    <button type="submit">Analyze</button>
+</form>
 
-        <!-- RESULT SECTION -->
-        <section>
-            <h2>Result</h2>
-            <p>No analysis yet</p>
+<p id="resultText">No analysis yet</p>
         </section>
 
     </main>
