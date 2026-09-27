@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RockShield AI</title>
+
+   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <h1>RockShield AI</h1>
+        <p>AI-Based Crack Detection & Risk Prediction</p>
+    </header>
+
+    <!-- MAIN SECTION -->
+    <main>
+
+        <!-- UPLOAD SECTION -->
+        <section>
+            <h2>Upload Image</h2>
+<input type="file" id="imageInput" accept="image/*">
+
+<img id="previewImg" style="display:none; width:100%; margin-top:15px; border-radius:8px;">
+
+<button>Analyze</button>
+        </section>
+
+        <!-- RESULT SECTION -->
+        <section>
+            <h2>Result</h2>
+            <p>No analysis yet</p>
+        </section>
+
+    </main>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
