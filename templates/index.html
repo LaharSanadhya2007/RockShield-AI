@@ -1,40 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RockShield AI</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RockShield AI | Structural crack detection</title>
+  <meta name="description" content="Upload a photo of a wall, beam, slope or road surface and RockShield AI checks it for structural cracks.">
 
-   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- If your files live in Flask's /static folder, change these two paths to:
+       href="{{ url_for('static', filename='style.css') }}"
+       src="{{ url_for('static', filename='script.js') }}" -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-
 <body>
 
-    <!-- HEADER -->
-    <header>
-        <h1>RockShield AI</h1>
-        <p>AI-Based Crack Detection & Risk Prediction</p>
-    </header>
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a class="brand" href="#top" aria-label="RockShield AI home">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M16 2 4 6.5v9.2c0 7.2 4.9 12.2 12 14.3 7.1-2.1 12-7.1 12-14.3V6.5L16 2Z" fill="#15803d"/>
+          <path d="M17.5 7 13 14.5l4 1.5-3.5 8.5" fill="none" stroke="#facc15" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>
+          <strong>RockShield AI</strong>
+          <small>Structural Crack Detection System</small>
+        </span>
+      </a>
+      <nav class="nav-links" aria-label="Main">
+        <a href="#analyze">Analyze</a>
+        <a href="#how">How it works</a>
+        <a href="#uses">Where it helps</a>
+      </nav>
+    </div>
+  </header>
 
-    <!-- MAIN SECTION -->
-    <main>
+  <main id="top">
 
-        <!-- UPLOAD SECTION -->
-        <section>
-            <h2>Upload Image</h2>
-<form id="uploadForm" enctype="multipart/form-data">
-    <input type="file" id="imageInput" name="image" accept="image/*">
+    <!-- HERO + ANALYZER -->
+    <section class="hero">
+      <svg class="hero-crack" viewBox="0 0 1200 140" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 96 L140 88 L210 104 L330 70 L392 92 L520 58 L590 84 L700 46 L760 72 L880 40 L950 66 L1080 30 L1200 52"
+              fill="none" stroke="#facc15" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+              vector-effect="non-scaling-stroke" pathLength="1"/>
+      </svg>
 
-    <img id="previewImg" style="display:none; width:100%; margin-top:15px; border-radius:8px;">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <h1>Find the crack before it becomes a failure.</h1>
+          <p class="lead">
+            Upload a photo of a wall, beam, rock slope or road surface. RockShield AI checks it
+            for structural cracks and tells you how urgent the damage looks.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-inline" href="#analyze">Inspect a photo</a>
+            <a class="text-link" href="#how">See how it works</a>
+          </div>
+        </div>
 
-    <button type="submit">Analyze</button>
-</form>
+        <div class="analyzer" id="analyze">
+          <div class="analyzer-head">
+            <h2>Inspect an image</h2>
+            <span class="pill" id="statusPill">Ready</span>
+          </div>
 
-<p id="resultText">No analysis yet</p>
-        </section>
+          <label class="dropzone" id="dropzone" for="fileInput">
+            <input type="file" id="fileInput" name="image" class="sr-only" accept="image/png,image/jpeg,image/webp">
+            <svg viewBox="0 0 48 48" aria-hidden="true">
+              <rect x="6" y="10" width="36" height="28" rx="5" fill="none" stroke="currentColor" stroke-width="2.4"/>
+              <circle cx="17" cy="20" r="3" fill="currentColor"/>
+              <path d="m8 35 10-9 7 6 6-5 9 8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <strong>Drop a photo here, or browse</strong>
+            <span>JPG, PNG or WebP, up to 10 MB. Keep the crack in frame and in good light.</span>
+          </label>
 
-    </main>
-<script src="{{ url_for('static', filename='script.js') }}"></script>
+          <div class="viewport" id="viewport" hidden>
+            <img id="previewImg" alt="Photo selected for inspection">
+            <div class="scanline" aria-hidden="true"></div>
+          </div>
 
+          <div class="actions">
+            <button type="button" id="analyzeBtn" class="btn btn-primary" disabled>Analyze image</button>
+            <button type="button" id="clearBtn" class="btn btn-ghost" hidden>Choose another</button>
+          </div>
+
+          <div class="result" id="result" hidden aria-live="polite">
+            <div class="verdict">
+              <span class="verdict-dot" aria-hidden="true"></span>
+              <p id="resultText"></p>
+            </div>
+
+            <div class="meters">
+              <div class="meter">
+                <div class="meter-label"><span>Confidence</span><b id="confVal">--</b></div>
+                <div class="bar"><i id="confBar"></i></div>
+              </div>
+              <div class="meter">
+                <div class="meter-label"><span>Severity</span><b id="sevVal">--</b></div>
+                <div class="scale" id="sevScale"><i></i><i></i><i></i></div>
+              </div>
+            </div>
+
+            <p class="advice" id="adviceText"></p>
+            <p class="note" id="noteText" hidden></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="block" id="how">
+      <div class="container">
+        <h2 class="block-title">From photo to verdict in three steps</h2>
+        <ol class="steps">
+          <li>
+            <span class="step-num">1</span>
+            <h3>Upload a photo</h3>
+            <p>Shoot close to the surface in daylight, with the crack clearly in frame.</p>
+          </li>
+          <li>
+            <span class="step-num">2</span>
+            <h3>The model scans it</h3>
+            <p>An image model checks the photo for cracks and scores how sure it is.</p>
+          </li>
+          <li>
+            <span class="step-num">3</span>
+            <h3>Read the result</h3>
+            <p>You get a clear verdict, a severity level and a suggested next step.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- USE CASES -->
+    <section class="block block-tint" id="uses">
+      <div class="container">
+        <h2 class="block-title">Built for structures people depend on</h2>
+        <ul class="uses">
+          <li>
+            <h3>Bridges and flyovers</h3>
+            <p>Screen decks, piers and abutments between scheduled inspections.</p>
+          </li>
+          <li>
+            <h3>Tunnels and mine roadways</h3>
+            <p>Check linings and rock faces where access is slow and risky.</p>
+          </li>
+          <li>
+            <h3>Rock slopes and cuttings</h3>
+            <p>Track new fractures along highways and rail lines before a slide.</p>
+          </li>
+          <li>
+            <h3>Buildings and boundary walls</h3>
+            <p>Give owners and municipal teams a quick first opinion on wall damage.</p>
+          </li>
+        </ul>
+
+        <p class="disclaimer">
+          RockShield AI is a screening aid. A qualified structural engineer should confirm any
+          crack marked moderate or severe before repair decisions are made.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <strong>RockShield AI</strong>
+      <span>Developed by Lahar Sanadhya</span>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>

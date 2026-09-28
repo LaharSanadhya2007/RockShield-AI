@@ -1,0 +1,4 @@
+dataset/
+model.h5
+__pycache__/
+*.pyc
