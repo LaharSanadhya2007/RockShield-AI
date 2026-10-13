@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROCKSHIELD AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+   <body>
+
+    <main class="splash-screen">
+
+        <div class="splash-content">
+
+         <div class="splash-logo">
+    <img
+        src="{{ url_for('static', filename='images/rockshield-logo.png') }}"
+        alt="ROCKSHIELD AI logo"
+    >
+</div>
+
+            <h1 class="brand-name">
+                ROCKSHIELD <span>AI</span>
+            </h1>
+
+            <p class="brand-description">
+                Rockfall Risk & Crack Detection System
+            </p>
+            <p class="team-name">
+    An <span>AEGIS</span> Project
+</p>
+
+            <p class="tagline">
+                Detect Early. Assess Smarter. Protect Better.
+            </p>
+
+            <p class="tagline-hindi">
+                समय पर पहचान। बेहतर आकलन। अधिक सुरक्षा।
+            </p>
+
+            <div class="loading-area">
+                <div class="loading-track">
+                    <div class="loading-bar"></div>
+                </div>
+
+                <p>Initializing inspection system...</p>
+            </div>
+
+        </div>
+
+    </main>
+    <!-- ========================================
+     First-Time Welcome Screen
+========================================= -->
+
+<section class="welcome-screen">
+
+    <div class="welcome-container">
+
+        <div class="welcome-logo">
+            <img
+                src="{{ url_for('static', filename='images/rockshield-logo.png') }}"
+                alt="ROCKSHIELD AI logo"
+            >
+        </div>
+
+        <p class="welcome-brand">
+            ROCKSHIELD <span>AI</span>
+        </p>
+
+        <h2>Welcome to ROCKSHIELD AI</h2>
+
+        <p class="welcome-description">
+            A rockfall risk and crack detection system designed to support
+            safer and smarter site inspections.
+        </p>
+
+        <div class="welcome-divider"></div>
+
+        <p class="language-label">
+            Choose your preferred language
+        </p>
+
+        <p class="language-label-hindi">
+            अपनी पसंदीदा भाषा चुनें
+        </p>
+
+        <div class="welcome-language-options">
+
+            <button
+                class="welcome-language-btn selected"
+                type="button"
+                data-language="en"
+            >
+                <span class="language-symbol">EN</span>
+
+                <span>
+                    <strong>English</strong>
+                    <small>Continue in English</small>
+                </span>
+            </button>
+
+
+            <button
+                class="welcome-language-btn"
+                type="button"
+                data-language="hi"
+            >
+                <span class="language-symbol">हि</span>
+
+                <span>
+                    <strong>हिन्दी</strong>
+                    <small>हिन्दी में जारी रखें</small>
+                </span>
+            </button>
+
+        </div>
+
+
+        <button class="continue-btn" type="button">
+            Continue
+        </button>
+
+
+        <p class="welcome-note">
+            You can change the language anytime from the dashboard.
+        </p>
+
+    </div>
+
+</section>
+<!-- ========================================
+     First-Time Tutorial
+========================================= -->
+
+<section class="tutorial-screen">
+
+    <div class="tutorial-container">
+
+        <!-- Tutorial Header -->
+        <div class="tutorial-header">
+
+            <div class="tutorial-brand">
+                <img
+                    src="{{ url_for('static', filename='images/rockshield-logo.png') }}"
+                    alt="ROCKSHIELD AI logo"
+                >
+
+                <span>
+                    ROCKSHIELD <strong>AI</strong>
+                </span>
+            </div>
+
+            <button class="tutorial-skip" type="button">
+                Skip
+            </button>
+
+        </div>
+
+
+        <!-- Progress Indicator -->
+        <div class="tutorial-progress">
+
+            <span class="progress-dot active"></span>
+            <span class="progress-dot"></span>
+            <span class="progress-dot"></span>
+            <span class="progress-dot"></span>
+
+        </div>
+
+
+        <!-- Tutorial Content -->
+
+        <div class="tutorial-content">
+
+            <!-- Step 1 -->
+            <div class="tutorial-step active" data-step="1">
+
+                <div class="tutorial-number">
+                    01
+                </div>
+
+                <p class="tutorial-label">
+                    SITE INSPECTION
+                </p>
+
+                <h2>Start a New Inspection</h2>
+
+                <p>
+                    Enter basic site information such as the site name,
+                    location and inspection notes before beginning your
+                    assessment.
+                </p>
+
+            </div>
+
+
+            <!-- Step 2 -->
+            <div class="tutorial-step" data-step="2">
+
+                <div class="tutorial-number">
+                    02
+                </div>
+
+                <p class="tutorial-label">
+                    IMAGE CAPTURE
+                </p>
+
+                <h2>Capture or Upload</h2>
+
+                <p>
+                    Use your device camera to capture a rock surface or
+                    upload an existing image from your device for analysis.
+                </p>
+
+            </div>
+
+
+            <!-- Step 3 -->
+            <div class="tutorial-step" data-step="3">
+
+                <div class="tutorial-number">
+                    03
+                </div>
+
+                <p class="tutorial-label">
+                    ANALYSIS
+                </p>
+
+                <h2>Analyze the Rock Surface</h2>
+
+                <p>
+                    ROCKSHIELD AI examines the image for possible cracks,
+                    highlights detected regions and supports severity and
+                    rockfall risk assessment.
+                </p>
+
+            </div>
+
+
+            <!-- Step 4 -->
+            <div class="tutorial-step" data-step="4">
+
+                <div class="tutorial-number">
+                    04
+                </div>
+
+                <p class="tutorial-label">
+                    RESULTS & RECORDS
+                </p>
+
+                <h2>Review, Save & Report</h2>
+
+                <p>
+                    Review the inspection results and safety recommendations,
+                    save the inspection to your history and generate a report
+                    when required.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Tutorial Navigation -->
+
+        <div class="tutorial-navigation">
+
+            <button
+                class="tutorial-back"
+                type="button"
+                disabled
+            >
+                Back
+            </button>
+
+            <p class="tutorial-step-count">
+                Step <span>1</span> of 4
+            </p>
+
+            <button
+                class="tutorial-next"
+                type="button"
+            >
+                Next
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</body>
+</html>

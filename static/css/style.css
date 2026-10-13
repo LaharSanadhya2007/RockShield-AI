@@ -1,0 +1,1046 @@
+/* ========================================
+   ROCKSHIELD AI
+   Global Design System
+======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --background: #F7F7F2;
+    --surface: #FFFFFF;
+
+    --primary: #24483A;
+    --primary-dark: #19352B;
+    --sage: #7C9A82;
+
+    --accent: #D6A84B;
+
+    --text-primary: #202622;
+    --text-secondary: #68716B;
+
+    --border: #DDE2DC;
+}
+
+
+/* ========================================
+   Base
+======================================== */
+
+body {
+    min-height: 100vh;
+
+    background: var(--background);
+    color: var(--text-primary);
+
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+
+/* ========================================
+   Splash Screen
+======================================== */
+
+.splash-screen {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 32px;
+
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            rgba(124, 154, 130, 0.12),
+            transparent 32%
+        ),
+        var(--background);
+}
+
+
+.splash-content {
+    width: 100%;
+    max-width: 520px;
+
+    text-align: center;
+}
+
+
+/* ========================================
+   ROCKSHIELD Logo
+======================================== */
+
+.splash-logo {
+    width: 100px;
+    height: 100px;
+
+    margin: 0 auto 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.splash-logo img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+    object-fit: contain;
+
+    filter: drop-shadow(
+        0 14px 22px rgba(36, 72, 58, 0.14)
+    );
+}
+
+
+/* ========================================
+   Branding
+======================================== */
+
+.brand-name {
+    color: var(--primary);
+
+    font-size: clamp(34px, 5vw, 48px);
+    font-weight: 750;
+
+    letter-spacing: 2px;
+    line-height: 1.1;
+}
+
+
+.brand-name span {
+    color: var(--accent);
+}
+
+
+.brand-description {
+    margin-top: 12px;
+
+    color: var(--text-secondary);
+
+    font-size: 14px;
+    font-weight: 500;
+
+    letter-spacing: 0.8px;
+}
+
+
+/* ========================================
+   AEGIS Team Identity
+======================================== */
+
+.team-name {
+    margin-top: 10px;
+
+    color: var(--text-secondary);
+
+    font-size: 11px;
+    font-weight: 600;
+
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+}
+
+
+.team-name span {
+    color: var(--primary);
+
+    font-weight: 750;
+    letter-spacing: 2px;
+}
+
+
+/* ========================================
+   Tagline
+======================================== */
+
+.tagline {
+    margin-top: 26px;
+
+    color: var(--text-primary);
+
+    font-size: 17px;
+    font-weight: 600;
+
+    line-height: 1.6;
+}
+
+
+.tagline-hindi {
+    margin-top: 5px;
+
+    color: var(--text-secondary);
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+/* ========================================
+   Loading
+======================================== */
+
+.loading-area {
+    width: 220px;
+
+    margin: 46px auto 0;
+}
+
+
+.loading-track {
+    width: 100%;
+    height: 3px;
+
+    overflow: hidden;
+
+    background: var(--border);
+
+    border-radius: 10px;
+}
+
+
+.loading-bar {
+    width: 0;
+    height: 100%;
+
+    background: var(--accent);
+    border-radius: inherit;
+
+    animation: loadingProgress 2.2s ease-in-out forwards;
+}
+
+
+.loading-area p {
+    margin-top: 14px;
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+    font-weight: 500;
+
+    letter-spacing: 0.4px;
+}
+/* ========================================
+   First-Time Welcome Screen
+======================================== */
+
+.welcome-screen {
+    min-height: 100vh;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    padding: 32px;
+
+    background:
+        radial-gradient(
+            circle at 50% 28%,
+            rgba(124, 154, 130, 0.10),
+            transparent 34%
+        ),
+        var(--background);
+}
+
+
+.welcome-container {
+    width: 100%;
+    max-width: 460px;
+
+    text-align: center;
+}
+
+
+/* Welcome Logo */
+
+.welcome-logo {
+    width: 72px;
+    height: 72px;
+
+    margin: 0 auto 12px;
+}
+
+
+.welcome-logo img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+    object-fit: contain;
+}
+
+
+/* ROCKSHIELD Branding */
+
+.welcome-brand {
+    color: var(--primary);
+
+    font-size: 14px;
+    font-weight: 750;
+
+    letter-spacing: 1.5px;
+}
+
+
+.welcome-brand span {
+    color: var(--accent);
+}
+
+
+/* Welcome Content */
+
+.welcome-container h2 {
+    margin-top: 28px;
+
+    color: var(--text-primary);
+
+    font-size: 28px;
+    font-weight: 700;
+
+    line-height: 1.25;
+}
+
+
+.welcome-description {
+    max-width: 390px;
+
+    margin: 12px auto 0;
+
+    color: var(--text-secondary);
+
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+
+.welcome-divider {
+    width: 42px;
+    height: 2px;
+
+    margin: 24px auto;
+
+    background: var(--accent);
+
+    border-radius: 10px;
+}
+
+
+/* Language Heading */
+
+.language-label {
+    color: var(--text-primary);
+
+    font-size: 14px;
+    font-weight: 650;
+}
+
+
+.language-label-hindi {
+    margin-top: 4px;
+
+    color: var(--text-secondary);
+
+    font-size: 13px;
+}
+
+
+/* Language Options */
+
+.welcome-language-options {
+    margin-top: 18px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 12px;
+}
+
+
+.welcome-language-btn {
+    min-height: 78px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 14px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    color: var(--text-primary);
+
+    font-family: inherit;
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.welcome-language-btn:hover {
+    border-color: var(--sage);
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 22px rgba(36, 72, 58, 0.08);
+}
+
+
+/* Selected Language */
+
+.welcome-language-btn.selected {
+    border-color: var(--primary);
+
+    background: rgba(124, 154, 130, 0.08);
+
+    box-shadow:
+        0 0 0 1px rgba(36, 72, 58, 0.08);
+}
+
+
+.language-symbol {
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(124, 154, 130, 0.13);
+
+    border-radius: 9px;
+
+    color: var(--primary);
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+.welcome-language-btn > span:last-child {
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+
+.welcome-language-btn strong {
+    font-size: 14px;
+    font-weight: 650;
+}
+
+
+.welcome-language-btn small {
+    color: var(--text-secondary);
+
+    font-size: 11px;
+}
+
+
+/* Continue Button */
+
+.continue-btn {
+    width: 100%;
+
+    margin-top: 20px;
+    padding: 13px 20px;
+
+    background: var(--primary);
+
+    border: none;
+    border-radius: 10px;
+
+    color: #FFFFFF;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 650;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.continue-btn:hover {
+    background: var(--primary-dark);
+
+    transform: translateY(-1px);
+}
+
+
+/* Bottom Note */
+
+.welcome-note {
+    margin-top: 14px;
+
+    color: var(--text-secondary);
+
+    font-size: 11px;
+    line-height: 1.5;
+}
+/* ========================================
+   First-Time Tutorial
+======================================== */
+
+.tutorial-screen {
+    min-height: 100vh;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    padding: 32px;
+
+    background:
+        radial-gradient(
+            circle at 50% 25%,
+            rgba(124, 154, 130, 0.10),
+            transparent 35%
+        ),
+        var(--background);
+}
+
+
+.tutorial-container {
+    width: 100%;
+    max-width: 620px;
+}
+
+
+/* ========================================
+   Tutorial Header
+======================================== */
+
+.tutorial-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 34px;
+}
+
+
+.tutorial-brand {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    color: var(--primary);
+
+    font-size: 13px;
+    font-weight: 750;
+
+    letter-spacing: 1.2px;
+}
+
+
+.tutorial-brand img {
+    width: 38px;
+    height: 38px;
+
+    object-fit: contain;
+}
+
+
+.tutorial-brand strong {
+    color: var(--accent);
+}
+
+
+.tutorial-skip {
+    padding: 8px 12px;
+
+    background: transparent;
+
+    border: none;
+
+    color: var(--text-secondary);
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+.tutorial-skip:hover {
+    color: var(--primary);
+}
+
+
+/* ========================================
+   Tutorial Progress
+======================================== */
+
+.tutorial-progress {
+    display: flex;
+
+    gap: 7px;
+
+    margin-bottom: 48px;
+}
+
+
+.progress-dot {
+    width: 28px;
+    height: 4px;
+
+    background: var(--border);
+
+    border-radius: 10px;
+
+    transition:
+        width 0.3s ease,
+        background 0.3s ease;
+}
+
+
+.progress-dot.active {
+    width: 46px;
+
+    background: var(--accent);
+}
+
+
+/* ========================================
+   Tutorial Content
+======================================== */
+
+.tutorial-content {
+    min-height: 245px;
+}
+
+
+.tutorial-step {
+    display: none;
+}
+
+
+.tutorial-step.active {
+    display: block;
+
+    animation: tutorialContentEntrance 0.4s ease-out;
+}
+
+
+.tutorial-number {
+    margin-bottom: 16px;
+
+    color: var(--accent);
+
+    font-size: 46px;
+    font-weight: 750;
+
+    line-height: 1;
+}
+
+
+.tutorial-label {
+    margin-bottom: 8px;
+
+    color: var(--primary);
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 1.8px;
+}
+
+
+.tutorial-step h2 {
+    max-width: 500px;
+
+    color: var(--text-primary);
+
+    font-size: clamp(28px, 4vw, 38px);
+    font-weight: 700;
+
+    line-height: 1.2;
+}
+
+
+.tutorial-step > p:last-child {
+    max-width: 520px;
+
+    margin-top: 16px;
+
+    color: var(--text-secondary);
+
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+
+/* ========================================
+   Tutorial Navigation
+======================================== */
+
+.tutorial-navigation {
+    display: grid;
+    grid-template-columns: 110px 1fr 110px;
+
+    align-items: center;
+
+    gap: 18px;
+
+    padding-top: 28px;
+
+    border-top: 1px solid var(--border);
+}
+
+
+.tutorial-back,
+.tutorial-next {
+    min-height: 42px;
+
+    padding: 10px 18px;
+
+    border-radius: 9px;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 650;
+
+    cursor: pointer;
+}
+
+
+.tutorial-back {
+    background: transparent;
+
+    border: 1px solid var(--border);
+
+    color: var(--text-primary);
+}
+
+
+.tutorial-back:disabled {
+    color: var(--text-secondary);
+
+    cursor: not-allowed;
+
+    opacity: 0.45;
+}
+
+
+.tutorial-next {
+    background: var(--primary);
+
+    border: 1px solid var(--primary);
+
+    color: #FFFFFF;
+}
+
+
+.tutorial-next:hover {
+    background: var(--primary-dark);
+}
+
+
+.tutorial-step-count {
+    color: var(--text-secondary);
+
+    font-size: 12px;
+
+    text-align: center;
+}
+
+
+/* ========================================
+   Tutorial Animation
+======================================== */
+
+@keyframes tutorialContentEntrance {
+
+    from {
+        opacity: 0;
+        transform: translateX(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+}
+/* ========================================
+   Splash Animations
+======================================== */
+
+.splash-logo {
+    opacity: 0;
+    transform: translateY(-12px) scale(0.92);
+
+    animation: logoEntrance 0.7s ease-out forwards;
+}
+
+.brand-name {
+    opacity: 0;
+    transform: translateY(10px);
+
+    animation: contentEntrance 0.6s ease-out 0.25s forwards;
+}
+
+.brand-description,
+.team-name {
+    opacity: 0;
+    transform: translateY(8px);
+
+    animation: contentEntrance 0.6s ease-out 0.45s forwards;
+}
+
+.tagline,
+.tagline-hindi {
+    opacity: 0;
+    transform: translateY(8px);
+
+    animation: contentEntrance 0.6s ease-out 0.7s forwards;
+}
+
+.loading-area {
+    opacity: 0;
+
+    animation: fadeIn 0.5s ease-out 0.95s forwards;
+}
+
+
+/* Logo entrance */
+
+@keyframes logoEntrance {
+
+    from {
+        opacity: 0;
+        transform: translateY(-12px) scale(0.92);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+/* Text entrance */
+
+@keyframes contentEntrance {
+
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* Loading area entrance */
+
+@keyframes fadeIn {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+
+/* Loading progress */
+
+@keyframes loadingProgress {
+
+    0% {
+        width: 0;
+    }
+
+    35% {
+        width: 32%;
+    }
+
+    70% {
+        width: 72%;
+    }
+
+    100% {
+        width: 100%;
+    }
+
+}
+/* Splash Exit */
+
+.splash-exit {
+    opacity: 0;
+    transform: scale(0.985);
+
+    transition:
+        opacity 0.5s ease,
+        transform 0.5s ease;
+}
+
+
+/* Show Language Screen */
+
+.language-screen.language-visible {
+    display: flex;
+
+    animation: languageEntrance 0.6s ease-out forwards;
+}
+
+
+@keyframes languageEntrance {
+
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+/* ========================================
+   Screen Transitions
+======================================== */
+
+.splash-exit {
+    opacity: 0;
+    transform: scale(0.985);
+
+    transition:
+        opacity 0.5s ease,
+        transform 0.5s ease;
+}
+
+
+.welcome-screen.welcome-visible {
+    display: flex;
+
+    animation: welcomeEntrance 0.6s ease-out forwards;
+}
+.tutorial-screen.tutorial-visible {
+    display: flex;
+
+    animation: tutorialEntrance 0.5s ease-out forwards;
+}
+
+
+@keyframes tutorialEntrance {
+
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+@keyframes welcomeEntrance {
+
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+/* ========================================
+   Mobile
+======================================== */
+
+@media (max-width: 600px) {
+
+    .splash-screen {
+        padding: 24px;
+    }
+
+
+    .splash-logo {
+        width: 90px;
+        height: 90px;
+    }
+
+
+    .brand-name {
+        letter-spacing: 1.4px;
+    }
+
+
+    .tagline {
+        font-size: 15px;
+    }
+
+        .tutorial-screen {
+        padding: 24px;
+    }
+
+    .tutorial-header {
+        margin-bottom: 28px;
+    }
+
+    .tutorial-progress {
+        margin-bottom: 38px;
+    }
+
+    .tutorial-content {
+        min-height: 280px;
+    }
+
+    .tutorial-navigation {
+        grid-template-columns: 90px 1fr 90px;
+
+        gap: 10px;
+    }
+
+    .tutorial-number {
+        font-size: 40px;
+    }
+
+    .tutorial-step > p:last-child {
+        font-size: 14px;
+    }
+}
