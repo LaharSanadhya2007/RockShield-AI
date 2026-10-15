@@ -1,298 +1,1592 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>ROCKSHIELD AI</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
 </head>
 
+
 <body>
-   <body>
+
+
+    <!-- ========================================
+         Splash Screen
+    ========================================= -->
 
     <main class="splash-screen">
 
         <div class="splash-content">
 
-         <div class="splash-logo">
-    <img
-        src="{{ url_for('static', filename='images/rockshield-logo.png') }}"
-        alt="ROCKSHIELD AI logo"
-    >
-</div>
+            <!-- Logo -->
+            <div class="splash-logo">
+                <img
+                    src="{{ url_for('static', filename='images/rockshield-logo.png') }}"
+                    alt="ROCKSHIELD AI logo"
+                >
+            </div>
 
+
+            <!-- Brand -->
             <h1 class="brand-name">
                 ROCKSHIELD <span>AI</span>
             </h1>
 
+
+            <!-- Product Description -->
             <p class="brand-description">
                 Rockfall Risk & Crack Detection System
             </p>
-            <p class="team-name">
-    An <span>AEGIS</span> Project
-</p>
 
+
+            <!-- Team Identity -->
+            <p class="team-name">
+                An <span>AEGIS</span> Project
+            </p>
+
+
+            <!-- Tagline -->
             <p class="tagline">
                 Detect Early. Assess Smarter. Protect Better.
             </p>
+
 
             <p class="tagline-hindi">
                 समय पर पहचान। बेहतर आकलन। अधिक सुरक्षा।
             </p>
 
+
+            <!-- Loading -->
             <div class="loading-area">
+
                 <div class="loading-track">
                     <div class="loading-bar"></div>
                 </div>
 
-                <p>Initializing inspection system...</p>
+                <p>
+                    Initializing inspection system...
+                </p>
+
             </div>
 
         </div>
 
     </main>
+
+
+
     <!-- ========================================
-     First-Time Welcome Screen
+         First-Time Welcome Screen
+    ========================================= -->
+
+    <section class="welcome-screen">
+
+
+        <!-- ========================================
+             LEFT SIDE
+             Rock-Slope Image
+        ========================================= -->
+
+        <div class="welcome-visual">
+
+            <img
+                src="{{ url_for('static', filename='images/rock-slope-inspection.jpg') }}"
+                alt="Rock slope inspection site"
+                class="welcome-background-image"
+            >
+
+
+            <!-- Image Overlay -->
+            <div class="welcome-image-overlay"></div>
+
+
+            <!-- Content Over Image -->
+            <div class="welcome-visual-content">
+
+
+                <!-- Small Product Badge -->
+                <div class="visual-badge">
+                    ROCKSHIELD AI
+                </div>
+
+
+                <!-- Main Image Text -->
+                <div class="visual-text">
+
+                    <p class="visual-eyebrow">
+                        AI-ASSISTED SITE INSPECTION
+                    </p>
+
+
+                    <h2>
+                        Safer rock-slope
+                        inspections start here.
+                    </h2>
+
+
+                    <p>
+                        Detect visible surface cracks, assess severity,
+                        and support better-informed site safety decisions.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ========================================
+             RIGHT SIDE
+             Welcome + Language Selection
+        ========================================= -->
+
+        <div class="welcome-panel">
+
+
+            <div class="welcome-container">
+
+
+                <!-- Logo -->
+                <div class="welcome-logo">
+
+                    <img
+                        src="{{ url_for('static', filename='images/rockshield-logo.png') }}"
+                        alt="ROCKSHIELD AI logo"
+                    >
+
+                </div>
+
+
+                <!-- Brand -->
+                <p class="welcome-brand">
+                    ROCKSHIELD <span>AI</span>
+                </p>
+
+
+                <!-- Main Heading -->
+                <h1>
+                    Welcome to ROCKSHIELD AI
+                </h1>
+
+
+                <!-- Description -->
+                <p class="welcome-description">
+
+                    A rockfall risk and crack detection system designed
+                    to support safer and smarter site inspections.
+
+                </p>
+
+
+                <!-- Accent Divider -->
+                <div class="welcome-divider"></div>
+
+
+
+                <!-- ========================================
+                     Language Heading
+                ========================================= -->
+
+                <div class="language-heading">
+
+                    <p class="language-label">
+                        Choose your preferred language
+                    </p>
+
+
+                    <p class="language-label-hindi">
+                        अपनी पसंदीदा भाषा चुनें
+                    </p>
+
+                </div>
+
+
+
+                <!-- ========================================
+                     Language Options
+                ========================================= -->
+
+                <div class="welcome-language-options">
+
+
+                    <!-- English -->
+                    <button
+                        class="welcome-language-btn selected"
+                        type="button"
+                        data-language="en"
+                    >
+
+                        <span class="language-symbol">
+                            EN
+                        </span>
+
+
+                        <span class="language-content">
+
+                            <strong>
+                                English
+                            </strong>
+
+                            <small>
+                                Continue in English
+                            </small>
+
+                        </span>
+
+                    </button>
+
+
+
+                    <!-- Hindi -->
+                    <button
+                        class="welcome-language-btn"
+                        type="button"
+                        data-language="hi"
+                    >
+
+                        <span class="language-symbol">
+                            हि
+                        </span>
+
+
+                        <span class="language-content">
+
+                            <strong>
+                                हिन्दी
+                            </strong>
+
+                            <small>
+                                हिन्दी में जारी रखें
+                            </small>
+
+                        </span>
+
+                    </button>
+
+
+                </div>
+
+
+
+                <!-- ========================================
+                     Continue Button
+                ========================================= -->
+
+                <button
+                    class="continue-btn"
+                    type="button"
+                >
+
+                    <span>
+                        Continue
+                    </span>
+
+                    <span class="continue-arrow">
+                        →
+                    </span>
+
+                </button>
+
+
+
+                <!-- Bottom Note -->
+                <p class="welcome-note">
+
+                    You can change the language anytime
+                    from the dashboard.
+
+                </p>
+
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+    <!-- ========================================
+     ROCKSHIELD AI Dashboard
 ========================================= -->
 
-<section class="welcome-screen">
+<section class="dashboard-screen">
 
-    <div class="welcome-container">
+    <!-- ========================================
+         Top Navigation
+    ========================================= -->
 
-        <div class="welcome-logo">
+    <header class="dashboard-header">
+
+        <div class="dashboard-brand">
+
             <img
                 src="{{ url_for('static', filename='images/rockshield-logo.png') }}"
                 alt="ROCKSHIELD AI logo"
             >
-        </div>
 
-        <p class="welcome-brand">
-            ROCKSHIELD <span>AI</span>
-        </p>
+            <div class="dashboard-brand-text">
 
-        <h2>Welcome to ROCKSHIELD AI</h2>
+                <h2>
+                    ROCKSHIELD <span>AI</span>
+                </h2>
 
-        <p class="welcome-description">
-            A rockfall risk and crack detection system designed to support
-            safer and smarter site inspections.
-        </p>
+                <p>
+                    AN AEGIS PROJECT
+                </p>
 
-        <div class="welcome-divider"></div>
-
-        <p class="language-label">
-            Choose your preferred language
-        </p>
-
-        <p class="language-label-hindi">
-            अपनी पसंदीदा भाषा चुनें
-        </p>
-
-        <div class="welcome-language-options">
-
-            <button
-                class="welcome-language-btn selected"
-                type="button"
-                data-language="en"
-            >
-                <span class="language-symbol">EN</span>
-
-                <span>
-                    <strong>English</strong>
-                    <small>Continue in English</small>
-                </span>
-            </button>
-
-
-            <button
-                class="welcome-language-btn"
-                type="button"
-                data-language="hi"
-            >
-                <span class="language-symbol">हि</span>
-
-                <span>
-                    <strong>हिन्दी</strong>
-                    <small>हिन्दी में जारी रखें</small>
-                </span>
-            </button>
+            </div>
 
         </div>
 
 
-        <button class="continue-btn" type="button">
-            Continue
-        </button>
+        <div class="dashboard-header-actions">
+
+            <!-- Connectivity Status -->
+            <div class="connection-status">
+
+                <span class="connection-dot"></span>
+
+                <span>
+                    System Ready
+                </span>
+
+            </div>
 
 
-        <p class="welcome-note">
-            You can change the language anytime from the dashboard.
-        </p>
+            <!-- Language Switch -->
+            <div class="dashboard-language">
 
-    </div>
+                <button
+                    class="dashboard-language-btn active"
+                    type="button"
+                    data-language="en"
+                >
+                    EN
+                </button>
+
+                <span></span>
+
+                <button
+                    class="dashboard-language-btn"
+                    type="button"
+                    data-language="hi"
+                >
+                    हिन्दी
+                </button>
+
+            </div>
+
+
+            <!-- Help -->
+            <button
+                class="dashboard-help-btn"
+                type="button"
+            >
+                Help
+            </button>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ========================================
+         Dashboard Main Content
+    ========================================= -->
+
+    <main class="dashboard-main">
+
+
+        <!-- ========================================
+             Welcome / Hero Area
+        ========================================= -->
+
+        <section class="dashboard-hero">
+
+            <div class="dashboard-hero-content">
+
+                <p class="dashboard-eyebrow">
+                    ROCK-SLOPE INSPECTION SYSTEM
+                </p>
+
+                <h1>
+                    Inspect. Assess.
+                    <span>Act Earlier.</span>
+                </h1>
+
+                <p class="dashboard-hero-description">
+
+                    Start a site inspection to analyze visible
+                    rock-surface cracks, assess their severity,
+                    and estimate potential rockfall risk.
+
+                </p>
+
+
+                <div class="dashboard-hero-actions">
+
+                    <button
+                        class="new-inspection-btn"
+                        type="button"
+                    >
+                        <span class="new-inspection-plus">
+                            +
+                        </span>
+
+                        <span>
+                            New Inspection
+                        </span>
+                    </button>
+
+
+                    <button
+                        class="view-history-btn"
+                        type="button"
+                    >
+                        View Inspection History
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Product Status Card -->
+            <aside class="system-card">
+
+                <p class="system-card-label">
+                    INSPECTION SYSTEM
+                </p>
+
+                <div class="system-status-row">
+
+                    <span class="system-status-icon">
+                        ✓
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Ready for Inspection
+                        </strong>
+
+                        <p>
+                            Core inspection tools are available.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="system-card-divider"></div>
+
+
+                <div class="system-detail">
+
+                    <span>
+                        Analysis
+                    </span>
+
+                    <strong>
+                        Local AI
+                    </strong>
+
+                </div>
+
+
+                <div class="system-detail">
+
+                    <span>
+                        Connectivity
+                    </span>
+
+                    <strong>
+                        Online
+                    </strong>
+
+                </div>
+
+
+                <div class="system-detail">
+
+                    <span>
+                        Language
+                    </span>
+
+                    <strong>
+                        English
+                    </strong>
+
+                </div>
+
+            </aside>
+
+        </section>
+
+
+
+        <!-- ========================================
+             Inspection Workflow
+        ========================================= -->
+
+        <section class="workflow-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="section-eyebrow">
+                        HOW IT WORKS
+                    </p>
+
+                    <h2>
+                        From site image to safety insight
+                    </h2>
+
+                </div>
+
+                <p>
+
+                    A simple inspection workflow designed
+                    for quick field assessment.
+
+                </p>
+
+            </div>
+
+
+            <div class="workflow-grid">
+
+
+                <!-- Step 1 -->
+                <article class="workflow-card">
+
+                    <span class="workflow-number">
+                        01
+                    </span>
+
+                    <h3>
+                        Site Details
+                    </h3>
+
+                    <p>
+                        Record the inspection location and
+                        essential site information.
+                    </p>
+
+                </article>
+
+
+                <!-- Step 2 -->
+                <article class="workflow-card">
+
+                    <span class="workflow-number">
+                        02
+                    </span>
+
+                    <h3>
+                        Capture Surface
+                    </h3>
+
+                    <p>
+                        Capture a rock-surface image or upload
+                        an existing site photograph.
+                    </p>
+
+                </article>
+
+
+                <!-- Step 3 -->
+                <article class="workflow-card">
+
+                    <span class="workflow-number">
+                        03
+                    </span>
+
+                    <h3>
+                        AI Analysis
+                    </h3>
+
+                    <p>
+                        Detect visible crack regions and analyze
+                        image-derived characteristics.
+                    </p>
+
+                </article>
+
+
+                <!-- Step 4 -->
+                <article class="workflow-card">
+
+                    <span class="workflow-number">
+                        04
+                    </span>
+
+                    <h3>
+                        Risk Assessment
+                    </h3>
+
+                    <p>
+                        Review estimated severity, rockfall risk
+                        and recommended safety actions.
+                    </p>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ========================================
+             Safety Notice
+        ========================================= -->
+
+        <div class="dashboard-safety-note">
+
+            <span class="safety-note-icon">
+                i
+            </span>
+
+            <p>
+                <strong>Decision-support tool:</strong>
+                ROCKSHIELD AI provides image-based assessment
+                support and does not replace professional
+                geological or structural inspection.
+            </p>
+
+        </div>
+
+
+    </main>
 
 </section>
 <!-- ========================================
-     First-Time Tutorial
+     New Inspection — Site Details
 ========================================= -->
 
-<section class="tutorial-screen">
+<section class="inspection-screen">
 
-    <div class="tutorial-container">
+    <!-- ========================================
+         Inspection Header
+    ========================================= -->
 
-        <!-- Tutorial Header -->
-        <div class="tutorial-header">
+    <header class="inspection-header">
 
-            <div class="tutorial-brand">
-                <img
-                    src="{{ url_for('static', filename='images/rockshield-logo.png') }}"
-                    alt="ROCKSHIELD AI logo"
-                >
+        <div class="inspection-header-brand">
 
-                <span>
-                    ROCKSHIELD <strong>AI</strong>
-                </span>
-            </div>
+            <img
+                src="{{ url_for('static', filename='images/rockshield-logo.png') }}"
+                alt="ROCKSHIELD AI logo"
+            >
 
-            <button class="tutorial-skip" type="button">
-                Skip
-            </button>
-
-        </div>
-
-
-        <!-- Progress Indicator -->
-        <div class="tutorial-progress">
-
-            <span class="progress-dot active"></span>
-            <span class="progress-dot"></span>
-            <span class="progress-dot"></span>
-            <span class="progress-dot"></span>
-
-        </div>
-
-
-        <!-- Tutorial Content -->
-
-        <div class="tutorial-content">
-
-            <!-- Step 1 -->
-            <div class="tutorial-step active" data-step="1">
-
-                <div class="tutorial-number">
-                    01
-                </div>
-
-                <p class="tutorial-label">
-                    SITE INSPECTION
-                </p>
-
-                <h2>Start a New Inspection</h2>
+            <div>
+                <h2>
+                    ROCKSHIELD <span>AI</span>
+                </h2>
 
                 <p>
-                    Enter basic site information such as the site name,
-                    location and inspection notes before beginning your
-                    assessment.
+                    NEW INSPECTION
                 </p>
+            </div>
+
+        </div>
+
+
+        <button
+            class="inspection-close-btn"
+            type="button"
+            aria-label="Close inspection"
+        >
+            ×
+        </button>
+
+    </header>
+
+
+
+    <!-- ========================================
+         Main Inspection Workspace
+    ========================================= -->
+
+    <main class="inspection-main">
+
+
+        <!-- Back Button -->
+
+        <button
+            class="back-dashboard-btn"
+            type="button"
+        >
+            ← Back to Dashboard
+        </button>
+
+
+
+        <!-- ========================================
+             Page Heading
+        ========================================= -->
+
+        <div class="inspection-title-area">
+
+            <p class="inspection-eyebrow">
+                NEW SITE INSPECTION
+            </p>
+
+            <h1>
+                Start an Inspection
+            </h1>
+
+            <p>
+                Enter the basic site information before
+                capturing or uploading the rock-surface image.
+            </p>
+
+        </div>
+
+
+
+        <!-- ========================================
+             Inspection Progress
+        ========================================= -->
+
+        <div class="inspection-progress">
+
+
+            <!-- Step 1 -->
+
+            <div class="inspection-progress-step active">
+
+                <div class="progress-step-number">
+                    1
+                </div>
+
+                <div>
+                    <strong>
+                        Site Details
+                    </strong>
+
+                    <span>
+                        Inspection information
+                    </span>
+                </div>
 
             </div>
+
+
+            <div class="progress-line"></div>
 
 
             <!-- Step 2 -->
-            <div class="tutorial-step" data-step="2">
 
-                <div class="tutorial-number">
-                    02
+            <div class="inspection-progress-step">
+
+                <div class="progress-step-number">
+                    2
                 </div>
 
-                <p class="tutorial-label">
-                    IMAGE CAPTURE
-                </p>
+                <div>
+                    <strong>
+                        Image Capture
+                    </strong>
 
-                <h2>Capture or Upload</h2>
-
-                <p>
-                    Use your device camera to capture a rock surface or
-                    upload an existing image from your device for analysis.
-                </p>
+                    <span>
+                        Camera or upload
+                    </span>
+                </div>
 
             </div>
+
+
+            <div class="progress-line"></div>
 
 
             <!-- Step 3 -->
-            <div class="tutorial-step" data-step="3">
 
-                <div class="tutorial-number">
-                    03
+            <div class="inspection-progress-step">
+
+                <div class="progress-step-number">
+                    3
                 </div>
 
-                <p class="tutorial-label">
-                    ANALYSIS
-                </p>
+                <div>
+                    <strong>
+                        Analysis
+                    </strong>
 
-                <h2>Analyze the Rock Surface</h2>
-
-                <p>
-                    ROCKSHIELD AI examines the image for possible cracks,
-                    highlights detected regions and supports severity and
-                    rockfall risk assessment.
-                </p>
+                    <span>
+                        Crack detection
+                    </span>
+                </div>
 
             </div>
+
+
+            <div class="progress-line"></div>
 
 
             <!-- Step 4 -->
-            <div class="tutorial-step" data-step="4">
 
-                <div class="tutorial-number">
-                    04
+            <div class="inspection-progress-step">
+
+                <div class="progress-step-number">
+                    4
                 </div>
 
-                <p class="tutorial-label">
-                    RESULTS & RECORDS
-                </p>
+                <div>
+                    <strong>
+                        Results
+                    </strong>
 
-                <h2>Review, Save & Report</h2>
-
-                <p>
-                    Review the inspection results and safety recommendations,
-                    save the inspection to your history and generate a report
-                    when required.
-                </p>
+                    <span>
+                        Risk assessment
+                    </span>
+                </div>
 
             </div>
 
         </div>
 
 
-        <!-- Tutorial Navigation -->
 
-        <div class="tutorial-navigation">
+        <!-- ========================================
+             Site Details Form
+        ========================================= -->
 
-            <button
-                class="tutorial-back"
-                type="button"
-                disabled
+        <section class="site-details-card">
+
+            <div class="site-details-heading">
+
+                <div>
+
+                    <p class="form-section-number">
+                        01
+                    </p>
+
+                    <h2>
+                        Site Details
+                    </h2>
+
+                </div>
+
+
+                <p>
+                    Fields marked with * are required.
+                </p>
+
+            </div>
+
+
+
+            <form
+                class="site-details-form"
+                id="siteDetailsForm"
             >
-                Back
-            </button>
 
-            <p class="tutorial-step-count">
-                Step <span>1</span> of 4
+
+                <!-- Inspection Name -->
+
+                <div class="form-group form-group-full">
+
+                    <label for="inspectionName">
+                        Inspection Name
+                        <span>*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="inspectionName"
+                        name="inspection_name"
+                        placeholder="e.g. North Quarry Slope - Section A"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- Location + Date -->
+
+                <div class="form-row">
+
+
+                    <div class="form-group">
+
+                        <label for="siteLocation">
+                            Location
+                            <span>*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="siteLocation"
+                            name="site_location"
+                            placeholder="Enter site location"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="inspectionDate">
+                            Inspection Date
+                            <span>*</span>
+                        </label>
+
+                        <input
+                            type="date"
+                            id="inspectionDate"
+                            name="inspection_date"
+                            required
+                        >
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- Inspector -->
+
+                <div class="form-group form-group-full">
+
+                    <label for="inspectorName">
+                        Inspector Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="inspectorName"
+                        name="inspector_name"
+                        placeholder="Enter inspector name"
+                    >
+
+                </div>
+
+
+
+                <!-- Notes -->
+
+                <div class="form-group form-group-full">
+
+                    <label for="siteNotes">
+                        Site Notes / Observations
+                    </label>
+
+                    <textarea
+                        id="siteNotes"
+                        name="site_notes"
+                        rows="5"
+                        placeholder="Add any visible site conditions, observations or inspection notes..."
+                    ></textarea>
+
+                    <small>
+                        Optional — add any information that may
+                        be useful while reviewing the inspection.
+                    </small>
+
+                </div>
+
+
+
+                <!-- ========================================
+                     Form Actions
+                ========================================= -->
+
+                <div class="site-form-actions">
+
+                    <button
+                        class="cancel-inspection-btn"
+                        type="button"
+                    >
+                        Cancel
+                    </button>
+
+
+                    <button
+                        class="continue-capture-btn"
+                        type="submit"
+                    >
+                        Continue to Image Capture
+
+                        <span>
+                            →
+                        </span>
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </section>
+
+
+
+        <!-- ========================================
+             Inspection Notice
+        ========================================= -->
+
+        <div class="inspection-info-note">
+
+            <span>
+                i
+            </span>
+
+            <p>
+                Site information is used to organize your
+                inspection record and provide context for
+                the generated assessment report.
             </p>
-
-            <button
-                class="tutorial-next"
-                type="button"
-            >
-                Next
-            </button>
 
         </div>
 
-    </div>
+
+    </main>
 
 </section>
-<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+<!-- ========================================
+     New Inspection — Image Capture
+========================================= -->
+
+<section class="capture-screen">
+
+    <!-- Header -->
+    <header class="inspection-header">
+
+        <div class="inspection-header-brand">
+
+            <img
+                src="{{ url_for('static', filename='images/rockshield-logo.png') }}"
+                alt="ROCKSHIELD AI logo"
+            >
+
+            <div>
+                <h2>
+                    ROCKSHIELD <span>AI</span>
+                </h2>
+
+                <p>NEW INSPECTION</p>
+            </div>
+
+        </div>
+
+        <button
+            class="capture-close-btn"
+            type="button"
+            aria-label="Close inspection"
+        >
+            ×
+        </button>
+
+    </header>
+
+
+    <main class="capture-main">
+
+        <!-- Back -->
+        <button
+            class="back-site-details-btn"
+            type="button"
+        >
+            ← Back to Site Details
+        </button>
+
+
+        <!-- Page Heading -->
+        <div class="capture-title-area">
+
+            <p class="inspection-eyebrow">
+                ROCK-SURFACE IMAGE
+            </p>
+
+            <h1>
+                Capture the Site
+            </h1>
+
+            <p>
+                Capture a clear photograph of the rock surface
+                or upload an existing site image for analysis.
+            </p>
+
+        </div>
+
+
+        <!-- ========================================
+             Progress
+        ========================================= -->
+
+        <div class="inspection-progress">
+
+            <!-- Completed -->
+            <div class="inspection-progress-step completed">
+
+                <div class="progress-step-number">
+                    ✓
+                </div>
+
+                <div>
+                    <strong>Site Details</strong>
+                    <span>Completed</span>
+                </div>
+
+            </div>
+
+
+            <div class="progress-line completed"></div>
+
+
+            <!-- Active -->
+            <div class="inspection-progress-step active">
+
+                <div class="progress-step-number">
+                    2
+                </div>
+
+                <div>
+                    <strong>Image Capture</strong>
+                    <span>Camera or upload</span>
+                </div>
+
+            </div>
+
+
+            <div class="progress-line"></div>
+
+
+            <div class="inspection-progress-step">
+
+                <div class="progress-step-number">
+                    3
+                </div>
+
+                <div>
+                    <strong>Analysis</strong>
+                    <span>Crack detection</span>
+                </div>
+
+            </div>
+
+
+            <div class="progress-line"></div>
+
+
+            <div class="inspection-progress-step">
+
+                <div class="progress-step-number">
+                    4
+                </div>
+
+                <div>
+                    <strong>Results</strong>
+                    <span>Risk assessment</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ========================================
+             Image Workspace
+        ========================================= -->
+
+        <section class="capture-card">
+
+            <div class="capture-card-heading">
+
+                <div>
+
+                    <p class="form-section-number">
+                        02
+                    </p>
+
+                    <h2>
+                        Rock-Surface Image
+                    </h2>
+
+                </div>
+
+                <p>
+                    JPG, JPEG, PNG or WEBP · Maximum 10 MB
+                </p>
+
+            </div>
+
+
+            <!-- ========================================
+                 Capture Options
+            ========================================= -->
+
+            <div class="capture-options">
+
+
+                <!-- Camera -->
+
+                <button
+                    class="capture-option-card camera-option"
+                    type="button"
+                >
+
+                    <div class="capture-option-icon">
+                        ◉
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Use Camera
+                        </h3>
+
+                        <p>
+                            Capture a new photograph
+                            directly from this device.
+                        </p>
+
+                    </div>
+
+                </button>
+
+
+                <!-- Upload -->
+
+                <button
+                    class="capture-option-card upload-option"
+                    type="button"
+                >
+
+                    <div class="capture-option-icon">
+                        ↑
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Upload Image
+                        </h3>
+
+                        <p>
+                            Select an existing rock-surface
+                            photograph from your device.
+                        </p>
+
+                    </div>
+
+                </button>
+
+            </div>
+
+
+            <!-- Hidden File Input -->
+
+            <input
+                type="file"
+                id="rockImageInput"
+                accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"
+                hidden
+            >
+            <!-- ========================================
+     Camera Workspace
+     Hidden until "Use Camera" is selected
+========================================= -->
+
+<div class="camera-workspace">
+
+    <div class="camera-header">
+
+        <div>
+            <p class="preview-label">
+                LIVE CAMERA
+            </p>
+
+            <h3>
+                Capture Rock Surface
+            </h3>
+        </div>
+
+        <button
+            class="close-camera-btn"
+            type="button"
+        >
+            Close Camera
+        </button>
+
+    </div>
+
+
+    <!-- Live Camera -->
+
+    <div class="camera-view">
+
+        <video
+            id="cameraVideo"
+            autoplay
+            playsinline
+        ></video>
+
+
+        <!-- Captured Photo -->
+
+        <canvas
+            id="cameraCanvas"
+            hidden
+        ></canvas>
+
+        <img
+            id="capturedPhotoPreview"
+            alt="Captured rock surface"
+        >
+
+    </div>
+
+
+    <!-- Camera Message -->
+
+    <p
+        class="camera-status"
+        id="cameraStatus"
+    >
+        Position the rock surface clearly inside the frame.
+    </p>
+
+
+    <!-- Live Camera Controls -->
+
+    <div class="camera-live-actions">
+
+        <button
+            class="capture-photo-btn"
+            type="button"
+        >
+            Capture Photo
+        </button>
+
+    </div>
+
+
+    <!-- Captured Photo Controls -->
+
+    <div class="camera-review-actions">
+
+        <button
+            class="retake-photo-btn"
+            type="button"
+        >
+            Retake
+        </button>
+
+        <button
+            class="use-photo-btn"
+            type="button"
+        >
+            Use Photo
+        </button>
+
+    </div>
+
+</div>
+
+
+            <!-- ========================================
+                 Upload Area
+            ========================================= -->
+
+            <div class="image-dropzone">
+
+                <div class="dropzone-icon">
+                    ↑
+                </div>
+
+                <h3>
+                    Select a rock-surface image
+                </h3>
+
+                <p>
+                    Choose Upload Image above or drag and
+                    drop a supported image here.
+                </p>
+
+                <span>
+                    Use a clear, well-lit image with the
+                    rock surface visible.
+                </span>
+
+            </div>
+
+
+            <!-- ========================================
+                 Image Preview
+                 Hidden until an image is selected
+            ========================================= -->
+
+            <div class="image-preview-area">
+
+                <div class="preview-image-wrapper">
+
+                    <img
+                        id="rockImagePreview"
+                        src=""
+                        alt="Selected rock surface preview"
+                    >
+
+                </div>
+
+
+                <div class="preview-details">
+
+                    <div>
+
+                        <p class="preview-label">
+                            SELECTED IMAGE
+                        </p>
+
+                        <h3 id="previewFileName">
+                            rock-surface.jpg
+                        </h3>
+
+                        <p id="previewFileInfo">
+                            Ready for quality check
+                        </p>
+
+                    </div>
+
+
+                    <div class="preview-actions">
+
+                        <button
+                            class="replace-image-btn"
+                            type="button"
+                        >
+                            Replace
+                        </button>
+
+                        <button
+                            class="remove-image-btn"
+                            type="button"
+                        >
+                            Remove
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ========================================
+                 Image Guidance
+            ========================================= -->
+
+            <div class="image-guidance">
+
+                <p class="image-guidance-title">
+                    For better analysis
+                </p>
+
+                <div class="guidance-grid">
+
+                    <div>
+                        <span>✓</span>
+                        Keep the rock surface in focus
+                    </div>
+
+                    <div>
+                        <span>✓</span>
+                        Use adequate lighting
+                    </div>
+
+                    <div>
+                        <span>✓</span>
+                        Avoid excessive blur or glare
+                    </div>
+
+                    <div>
+                        <span>✓</span>
+                        Capture visible cracks clearly
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ========================================
+                 Actions
+            ========================================= -->
+
+            <div class="capture-form-actions">
+
+                <button
+                    class="capture-back-btn"
+                    type="button"
+                >
+                    Back
+                </button>
+
+
+                <button
+                    class="continue-analysis-btn"
+                    type="button"
+                    disabled
+                >
+                    Continue to Analysis
+
+                    <span>→</span>
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- Notice -->
+
+        <div class="inspection-info-note">
+
+            <span>i</span>
+
+            <p>
+                Camera access will only be requested when
+                you choose <strong>Use Camera</strong>.
+                Uploaded images remain part of the current
+                inspection workflow.
+            </p>
+
+        </div>
+
+    </main>
+
+</section>
+
+
+    <!-- ========================================
+         JavaScript
+    ========================================= -->
+
+    <script
+        src="{{ url_for('static', filename='js/script.js') }}"
+    ></script>
+
+
 </body>
-</body>
+
 </html>
