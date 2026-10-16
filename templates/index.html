@@ -1576,6 +1576,397 @@
     </main>
 
 </section>
+<!-- ========================================
+     Image Quality Check Screen
+========================================= -->
+
+<section class="quality-screen">
+
+    <!-- Header -->
+    <header class="inspection-header">
+
+        <div class="inspection-header-brand">
+
+            <img
+                src="{{ url_for('static', filename='images/rockshield-logo.png') }}"
+                alt="ROCKSHIELD AI logo"
+            >
+
+            <div>
+                <h2>
+                    ROCKSHIELD <span>AI</span>
+                </h2>
+
+                <p>IMAGE QUALITY CHECK</p>
+            </div>
+
+        </div>
+
+        <button
+            class="quality-close-btn"
+            type="button"
+            aria-label="Close inspection"
+        >
+            ×
+        </button>
+
+    </header>
+
+
+    <main class="quality-main">
+
+        <!-- Back -->
+        <button
+            class="back-capture-btn"
+            type="button"
+        >
+            ← Back to Image Capture
+        </button>
+
+
+        <!-- Page Heading -->
+        <div class="quality-title-area">
+
+            <p class="inspection-eyebrow">
+                PRE-ANALYSIS CHECK
+            </p>
+
+            <h1>
+                Image Quality Assessment
+            </h1>
+
+            <p>
+                ROCKSHIELD checks the selected image for
+                resolution, lighting and sharpness before
+                crack analysis begins.
+            </p>
+
+        </div>
+
+
+        <!-- ========================================
+             Progress
+        ========================================= -->
+
+        <div class="inspection-progress">
+
+            <div class="inspection-progress-step completed">
+
+                <div class="progress-step-number">
+                    ✓
+                </div>
+
+                <div>
+                    <strong>Site Details</strong>
+                    <span>Completed</span>
+                </div>
+
+            </div>
+
+
+            <div class="progress-line completed"></div>
+
+
+            <div class="inspection-progress-step completed">
+
+                <div class="progress-step-number">
+                    ✓
+                </div>
+
+                <div>
+                    <strong>Image Capture</strong>
+                    <span>Image selected</span>
+                </div>
+
+            </div>
+
+
+            <div class="progress-line"></div>
+
+
+            <div class="inspection-progress-step active">
+
+                <div class="progress-step-number">
+                    3
+                </div>
+
+                <div>
+                    <strong>Quality Check</strong>
+                    <span>Pre-analysis</span>
+                </div>
+
+            </div>
+
+
+            <div class="progress-line"></div>
+
+
+            <div class="inspection-progress-step">
+
+                <div class="progress-step-number">
+                    4
+                </div>
+
+                <div>
+                    <strong>Analysis</strong>
+                    <span>Crack & risk assessment</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ========================================
+             Quality Result Card
+        ========================================= -->
+
+        <section class="quality-card">
+
+            <!-- Overall Result -->
+
+            <div class="quality-overview">
+
+                <div class="quality-status-icon">
+                    ✓
+                </div>
+
+
+                <div class="quality-status-content">
+
+                    <p class="quality-status-label">
+                        IMAGE QUALITY
+                    </p>
+
+                    <h2 id="qualityStatus">
+                        GOOD
+                    </h2>
+
+                    <p id="qualityStatusMessage">
+                        This image is suitable for further analysis.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- ========================================
+                 Individual Checks
+            ========================================= -->
+
+            <div class="quality-checks">
+
+
+                <!-- Resolution -->
+
+                <div
+                    class="quality-check-item"
+                    id="resolutionCheck"
+                >
+
+                    <div class="quality-check-icon">
+                        ✓
+                    </div>
+
+
+                    <div class="quality-check-content">
+
+                        <div class="quality-check-heading">
+
+                            <h3>
+                                Resolution
+                            </h3>
+
+                            <span class="quality-check-state">
+                                Passed
+                            </span>
+
+                        </div>
+
+
+                        <p
+                            class="quality-metric"
+                            id="resolutionMetric"
+                        >
+                            1920 × 1080
+                        </p>
+
+
+                        <p
+                            class="quality-description"
+                            id="resolutionDescription"
+                        >
+                            Image resolution is sufficient
+                            for analysis.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Lighting -->
+
+                <div
+                    class="quality-check-item"
+                    id="brightnessCheck"
+                >
+
+                    <div class="quality-check-icon">
+                        ✓
+                    </div>
+
+
+                    <div class="quality-check-content">
+
+                        <div class="quality-check-heading">
+
+                            <h3>
+                                Lighting
+                            </h3>
+
+                            <span class="quality-check-state">
+                                Passed
+                            </span>
+
+                        </div>
+
+
+                        <p
+                            class="quality-metric"
+                            id="brightnessMetric"
+                        >
+                            Brightness: 120.00
+                        </p>
+
+
+                        <p
+                            class="quality-description"
+                            id="brightnessDescription"
+                        >
+                            Lighting level is suitable for
+                            surface inspection.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Sharpness -->
+
+                <div
+                    class="quality-check-item"
+                    id="sharpnessCheck"
+                >
+
+                    <div class="quality-check-icon">
+                        ✓
+                    </div>
+
+
+                    <div class="quality-check-content">
+
+                        <div class="quality-check-heading">
+
+                            <h3>
+                                Sharpness
+                            </h3>
+
+                            <span class="quality-check-state">
+                                Passed
+                            </span>
+
+                        </div>
+
+
+                        <p
+                            class="quality-metric"
+                            id="sharpnessMetric"
+                        >
+                            Sharpness score: 180.00
+                        </p>
+
+
+                        <p
+                            class="quality-description"
+                            id="sharpnessDescription"
+                        >
+                            Surface details are sufficiently
+                            clear for analysis.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ========================================
+                 Quality Advice
+            ========================================= -->
+
+            <div class="quality-advice">
+
+                <span>i</span>
+
+                <p id="qualityAdviceText">
+                    Image quality checks help reduce unreliable
+                    analysis caused by low resolution, poor
+                    lighting or excessive blur.
+                </p>
+
+            </div>
+
+
+            <!-- ========================================
+                 Actions
+            ========================================= -->
+
+            <div class="quality-actions">
+
+                <button
+                    class="choose-another-image-btn"
+                    type="button"
+                >
+                    ← Choose Another Image
+                </button>
+
+
+                <button
+                    class="start-analysis-btn"
+                    type="button"
+                >
+                    Start AI Analysis
+
+                    <span>→</span>
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- Decision Support Notice -->
+
+        <div class="inspection-info-note">
+
+            <span>i</span>
+
+            <p>
+                Image-quality assessment is a preliminary
+                technical check. Passing these checks does not
+                guarantee crack-detection accuracy or confirm
+                rock-slope safety.
+            </p>
+
+        </div>
+
+    </main>
+
+</section>
 
 
     <!-- ========================================

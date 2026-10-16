@@ -3632,3 +3632,551 @@ body {
     }
 
 }
+/* ========================================
+   IMAGE QUALITY CHECK SCREEN
+======================================== */
+
+.quality-screen {
+    min-height: 100vh;
+    display: none;
+    background: var(--background);
+}
+
+.quality-screen.quality-visible {
+    display: block;
+    animation: qualityEntrance 0.45s ease-out forwards;
+}
+
+@keyframes qualityEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ========================================
+   Quality Main
+======================================== */
+
+.quality-main {
+    width: min(1100px, calc(100% - 64px));
+    margin: 0 auto;
+    padding: 38px 0 55px;
+}
+
+.back-capture-btn {
+    padding: 0;
+
+    background: transparent;
+    border: none;
+
+    color: var(--text-secondary);
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: color 0.2s ease;
+}
+
+.back-capture-btn:hover {
+    color: var(--primary);
+}
+
+
+/* ========================================
+   Quality Heading
+======================================== */
+
+.quality-title-area {
+    margin-top: 33px;
+}
+
+.quality-title-area h1 {
+    color: var(--text-primary);
+
+    font-size: clamp(34px, 4vw, 46px);
+    font-weight: 700;
+
+    line-height: 1.1;
+    letter-spacing: -1px;
+}
+
+.quality-title-area > p:last-child {
+    max-width: 650px;
+
+    margin-top: 12px;
+
+    color: var(--text-secondary);
+
+    font-size: 14px;
+    line-height: 1.65;
+}
+
+
+/* ========================================
+   Quality Card
+======================================== */
+
+.quality-card {
+    padding: 34px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+    border-radius: 14px;
+
+    box-shadow:
+        0 12px 35px rgba(32, 38, 34, 0.04);
+}
+
+
+/* ========================================
+   Overall Quality Result
+======================================== */
+
+.quality-overview {
+    display: flex;
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 23px;
+
+    background: rgba(124, 154, 130, 0.07);
+
+    border: 1px solid rgba(124, 154, 130, 0.20);
+    border-radius: 11px;
+}
+
+.quality-status-icon {
+    width: 56px;
+    height: 56px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--primary);
+
+    border-radius: 50%;
+
+    color: #FFFFFF;
+
+    font-size: 23px;
+    font-weight: 700;
+}
+
+.quality-status-label {
+    margin-bottom: 4px;
+
+    color: var(--text-secondary);
+
+    font-size: 9px;
+    font-weight: 750;
+
+    letter-spacing: 1.6px;
+}
+
+.quality-status-content h2 {
+    color: var(--primary);
+
+    font-size: 25px;
+    font-weight: 750;
+}
+
+.quality-status-content > p:last-child {
+    margin-top: 4px;
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+}
+
+
+/* ========================================
+   Individual Quality Checks
+======================================== */
+
+.quality-checks {
+    margin-top: 22px;
+
+    border: 1px solid var(--border);
+    border-radius: 11px;
+
+    overflow: hidden;
+}
+
+.quality-check-item {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 16px;
+
+    padding: 21px 22px;
+
+    background: #FCFCF9;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.quality-check-item:last-child {
+    border-bottom: none;
+}
+
+.quality-check-icon {
+    width: 34px;
+    height: 34px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(124, 154, 130, 0.12);
+
+    border-radius: 50%;
+
+    color: var(--primary);
+
+    font-size: 13px;
+    font-weight: 750;
+}
+
+.quality-check-content {
+    width: 100%;
+}
+
+.quality-check-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+.quality-check-heading h3 {
+    color: var(--text-primary);
+
+    font-size: 14px;
+    font-weight: 680;
+}
+
+.quality-check-state {
+    padding: 5px 9px;
+
+    background: rgba(124, 154, 130, 0.10);
+
+    border-radius: 20px;
+
+    color: var(--primary);
+
+    font-size: 9px;
+    font-weight: 700;
+}
+
+.quality-metric {
+    margin-top: 7px;
+
+    color: var(--text-primary);
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.quality-description {
+    margin-top: 4px;
+
+    color: var(--text-secondary);
+
+    font-size: 11px;
+    line-height: 1.55;
+}
+
+
+/* ========================================
+   Failed / Warning Check States
+   JS will apply these later
+======================================== */
+
+.quality-check-item.check-warning
+.quality-check-icon {
+    background: rgba(214, 168, 75, 0.14);
+    color: #A77719;
+}
+
+.quality-check-item.check-warning
+.quality-check-state {
+    background: rgba(214, 168, 75, 0.12);
+    color: #946A18;
+}
+
+.quality-check-item.check-failed
+.quality-check-icon {
+    background: rgba(154, 77, 66, 0.10);
+    color: #9A4D42;
+}
+
+.quality-check-item.check-failed
+.quality-check-state {
+    background: rgba(154, 77, 66, 0.08);
+    color: #9A4D42;
+}
+
+
+/* ========================================
+   Overall Acceptable State
+======================================== */
+
+.quality-overview.quality-acceptable {
+    background: rgba(214, 168, 75, 0.08);
+
+    border-color: rgba(214, 168, 75, 0.25);
+}
+
+.quality-overview.quality-acceptable
+.quality-status-icon {
+    background: var(--accent);
+}
+
+.quality-overview.quality-acceptable
+.quality-status-content h2 {
+    color: #946A18;
+}
+
+
+/* ========================================
+   Overall Poor State
+======================================== */
+
+.quality-overview.quality-poor {
+    background: rgba(154, 77, 66, 0.06);
+
+    border-color: rgba(154, 77, 66, 0.20);
+}
+
+.quality-overview.quality-poor
+.quality-status-icon {
+    background: #9A4D42;
+}
+
+.quality-overview.quality-poor
+.quality-status-content h2 {
+    color: #9A4D42;
+}
+
+
+/* ========================================
+   Quality Advice
+======================================== */
+
+.quality-advice {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 11px;
+
+    margin-top: 20px;
+
+    padding: 15px 17px;
+
+    background: rgba(214, 168, 75, 0.06);
+
+    border: 1px solid rgba(214, 168, 75, 0.18);
+    border-radius: 9px;
+}
+
+.quality-advice > span {
+    width: 21px;
+    height: 21px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(214, 168, 75, 0.45);
+    border-radius: 50%;
+
+    color: #946A18;
+
+    font-size: 10px;
+    font-weight: 750;
+}
+
+.quality-advice p {
+    color: var(--text-secondary);
+
+    font-size: 10px;
+    line-height: 1.6;
+}
+
+
+/* ========================================
+   Quality Actions
+======================================== */
+
+.quality-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 11px;
+
+    margin-top: 23px;
+    padding-top: 23px;
+
+    border-top: 1px solid var(--border);
+}
+
+.choose-another-image-btn,
+.start-analysis-btn {
+    min-height: 45px;
+
+    padding: 11px 18px;
+
+    border-radius: 8px;
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 650;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.choose-another-image-btn {
+    background: transparent;
+
+    border: 1px solid var(--border);
+
+    color: var(--text-primary);
+}
+
+.choose-another-image-btn:hover {
+    background: var(--background);
+    border-color: var(--sage);
+}
+
+.start-analysis-btn {
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    background: var(--primary);
+
+    border: 1px solid var(--primary);
+
+    color: #FFFFFF;
+}
+
+.start-analysis-btn:hover {
+    transform: translateY(-1px);
+
+    background: var(--primary-dark);
+
+    box-shadow:
+        0 8px 18px rgba(36, 72, 58, 0.13);
+}
+
+.start-analysis-btn span {
+    font-size: 17px;
+}
+
+.start-analysis-btn:disabled {
+    background: #AEB8B1;
+    border-color: #AEB8B1;
+
+    opacity: 0.7;
+
+    cursor: not-allowed;
+
+    transform: none;
+    box-shadow: none;
+}
+
+
+/* ========================================
+   Quality Screen Responsive
+======================================== */
+
+@media (max-width: 850px) {
+
+    .quality-main {
+        width: calc(100% - 40px);
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .quality-main {
+        width: calc(100% - 32px);
+
+        padding-top: 28px;
+    }
+
+    .quality-title-area {
+        margin-top: 26px;
+    }
+
+    .quality-title-area h1 {
+        font-size: 34px;
+    }
+
+    .quality-card {
+        padding: 22px 18px;
+    }
+
+    .quality-overview {
+        align-items: flex-start;
+
+        padding: 18px;
+    }
+
+    .quality-status-icon {
+        width: 45px;
+        height: 45px;
+
+        font-size: 18px;
+    }
+
+    .quality-check-item {
+        padding: 18px 16px;
+    }
+
+    .quality-check-heading {
+        align-items: flex-start;
+    }
+
+    .quality-actions {
+        align-items: stretch;
+        flex-direction: column-reverse;
+    }
+
+    .choose-another-image-btn,
+    .start-analysis-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+}
