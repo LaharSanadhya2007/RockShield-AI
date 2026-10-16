@@ -100,6 +100,66 @@ const cameraLiveActions =
 
 const cameraReviewActions =
     document.querySelector(".camera-review-actions");
+    /* ========================================
+   Image Quality Screen Elements
+======================================== */
+
+const qualityScreen =
+    document.querySelector(".quality-screen");
+
+const qualityOverview =
+    document.querySelector(".quality-overview");
+
+const qualityStatus =
+    document.querySelector("#qualityStatus");
+
+const qualityStatusMessage =
+    document.querySelector("#qualityStatusMessage");
+
+const qualityStatusIcon =
+    document.querySelector(".quality-status-icon");
+
+const resolutionCheck =
+    document.querySelector("#resolutionCheck");
+
+const brightnessCheck =
+    document.querySelector("#brightnessCheck");
+
+const sharpnessCheck =
+    document.querySelector("#sharpnessCheck");
+
+const resolutionMetric =
+    document.querySelector("#resolutionMetric");
+
+const brightnessMetric =
+    document.querySelector("#brightnessMetric");
+
+const sharpnessMetric =
+    document.querySelector("#sharpnessMetric");
+
+const resolutionDescription =
+    document.querySelector("#resolutionDescription");
+
+const brightnessDescription =
+    document.querySelector("#brightnessDescription");
+
+const sharpnessDescription =
+    document.querySelector("#sharpnessDescription");
+
+const qualityAdviceText =
+    document.querySelector("#qualityAdviceText");
+
+const backCaptureButton =
+    document.querySelector(".back-capture-btn");
+
+const chooseAnotherImageButton =
+    document.querySelector(".choose-another-image-btn");
+
+const startAnalysisButton =
+    document.querySelector(".start-analysis-btn");
+
+const qualityCloseButton =
+    document.querySelector(".quality-close-btn");
 
 let cameraStream = null;
 
@@ -953,10 +1013,7 @@ continueAnalysisButton.addEventListener(
             );
 
 
-            alert(
-                "Image quality check completed: " +
-                result.quality
-            );
+            displayQualityResult(result);
 
         }
 
@@ -983,6 +1040,333 @@ continueAnalysisButton.addEventListener(
                 false;
 
         }
+
+    }
+);
+/* ========================================
+   Display Image Quality Result
+======================================== */
+
+function displayQualityResult(result) {
+
+    const quality = result.quality;
+
+    const metrics = result.metrics;
+
+    const checks = result.checks;
+
+
+    /* =====================================
+       Real OpenCV Metrics
+    ===================================== */
+
+    resolutionMetric.textContent =
+        metrics.width +
+        " × " +
+        metrics.height;
+
+    brightnessMetric.textContent =
+        "Brightness: " +
+        Number(metrics.brightness).toFixed(2);
+
+    sharpnessMetric.textContent =
+        "Sharpness score: " +
+        Number(metrics.sharpness).toFixed(2);
+
+
+    /* =====================================
+       Reset Previous States
+    ===================================== */
+
+    qualityOverview.classList.remove(
+        "quality-acceptable",
+        "quality-poor"
+    );
+
+    resetQualityCheck(resolutionCheck);
+    resetQualityCheck(brightnessCheck);
+    resetQualityCheck(sharpnessCheck);
+
+
+    /* =====================================
+       Resolution
+    ===================================== */
+
+    updateQualityCheck(
+        resolutionCheck,
+        checks.resolution,
+        resolutionDescription,
+        "Image resolution is sufficient for analysis.",
+        "Image resolution is below the recommended minimum."
+    );
+
+
+    /* =====================================
+       Brightness
+    ===================================== */
+
+    updateQualityCheck(
+        brightnessCheck,
+        checks.brightness,
+        brightnessDescription,
+        "Lighting level is suitable for surface inspection.",
+        getBrightnessWarning(metrics.brightness)
+    );
+
+
+    /* =====================================
+       Sharpness
+    ===================================== */
+
+    updateQualityCheck(
+        sharpnessCheck,
+        checks.sharpness,
+        sharpnessDescription,
+        "Surface details are sufficiently clear for analysis.",
+        "The image may be excessively blurred or lack clear surface detail."
+    );
+
+
+    /* =====================================
+       Overall Quality
+    ===================================== */
+
+    if (quality === "GOOD") {
+
+        qualityStatus.textContent = "GOOD";
+
+        qualityStatusMessage.textContent =
+            "This image is suitable for further analysis.";
+
+        qualityStatusIcon.textContent = "✓";
+
+        qualityAdviceText.textContent =
+            "All preliminary image-quality checks passed. You can continue to crack analysis.";
+
+        startAnalysisButton.disabled = false;
+
+    }
+
+
+    else if (quality === "ACCEPTABLE") {
+
+        qualityOverview.classList.add(
+            "quality-acceptable"
+        );
+
+        qualityStatus.textContent =
+            "ACCEPTABLE";
+
+        qualityStatusMessage.textContent =
+            "The image can be analyzed, but one quality check needs attention.";
+
+        qualityStatusIcon.textContent = "!";
+
+        qualityAdviceText.textContent =
+            "For more reliable crack analysis, consider replacing or recapturing the image. You may still continue.";
+
+        startAnalysisButton.disabled = false;
+
+    }
+
+
+    else {
+
+        qualityOverview.classList.add(
+            "quality-poor"
+        );
+
+        qualityStatus.textContent =
+            "POOR";
+
+        qualityStatusMessage.textContent =
+            "The image does not meet enough recommended quality checks.";
+
+        qualityStatusIcon.textContent = "!";
+
+        qualityAdviceText.textContent =
+            "Replace or recapture the image before AI analysis. Poor image quality may produce unreliable crack-detection results.";
+
+        startAnalysisButton.disabled = true;
+
+    }
+
+
+    /* =====================================
+       Open Quality Screen
+    ===================================== */
+
+    captureScreen.classList.remove(
+        "capture-visible"
+    );
+
+    captureScreen.style.display = "none";
+
+    qualityScreen.style.display = "";
+
+    qualityScreen.classList.add(
+        "quality-visible"
+    );
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+/* ========================================
+   Individual Quality Check
+======================================== */
+
+function updateQualityCheck(
+    element,
+    passed,
+    descriptionElement,
+    passedMessage,
+    failedMessage
+) {
+
+    const icon =
+        element.querySelector(
+            ".quality-check-icon"
+        );
+
+    const state =
+        element.querySelector(
+            ".quality-check-state"
+        );
+
+
+    if (passed) {
+
+        icon.textContent = "✓";
+
+        state.textContent = "Passed";
+
+        descriptionElement.textContent =
+            passedMessage;
+
+    }
+
+    else {
+
+        element.classList.add(
+            "check-failed"
+        );
+
+        icon.textContent = "!";
+
+        state.textContent =
+            "Needs Attention";
+
+        descriptionElement.textContent =
+            failedMessage;
+
+    }
+
+}
+
+
+/* ========================================
+   Reset Quality Check
+======================================== */
+
+function resetQualityCheck(element) {
+
+    element.classList.remove(
+        "check-warning",
+        "check-failed"
+    );
+
+}
+
+
+/* ========================================
+   Brightness Message
+======================================== */
+
+function getBrightnessWarning(brightness) {
+
+    if (brightness < 45) {
+
+        return "The image appears too dark. Improve lighting or recapture the rock surface.";
+
+    }
+
+
+    if (brightness > 210) {
+
+        return "The image appears too bright or overexposed. Reduce glare or recapture the image.";
+
+    }
+
+
+    return "Lighting needs attention.";
+
+}
+/* ========================================
+   Quality Screen → Image Capture
+======================================== */
+
+function returnToImageCapture() {
+
+    qualityScreen.classList.remove(
+        "quality-visible"
+    );
+
+    qualityScreen.style.display = "none";
+
+    captureScreen.style.display = "";
+
+    captureScreen.classList.add(
+        "capture-visible"
+    );
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+backCaptureButton.addEventListener(
+    "click",
+    returnToImageCapture
+);
+
+
+chooseAnotherImageButton.addEventListener(
+    "click",
+    returnToImageCapture
+);
+/* ========================================
+   Close Quality Screen → Dashboard
+======================================== */
+
+qualityCloseButton.addEventListener(
+    "click",
+    function () {
+
+        qualityScreen.classList.remove(
+            "quality-visible"
+        );
+
+        qualityScreen.style.display = "none";
+
+        dashboardScreen.style.display = "";
+
+        dashboardScreen.classList.add(
+            "dashboard-visible"
+        );
+
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
 
     }
 );
