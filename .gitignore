@@ -37,3 +37,16 @@ instance/
 
 # Model / Training Outputs
 runs/
+# ========================================
+# ROCKSHIELD AI - Training Data
+# ========================================
+
+# GeoCrack dataset files
+datasets/geocrack/patched_images/
+datasets/geocrack/patched_images.zip
+
+# GeoCrack split files
+datasets/geocrack/*.tab
+
+# Future generated training data
+datasets/processed/

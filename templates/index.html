@@ -1967,6 +1967,345 @@
     </main>
 
 </section>
+<!-- ========================================
+     AI Analysis Screen
+========================================= -->
+
+<section class="analysis-screen">
+
+    <!-- Header -->
+    <header class="inspection-header">
+
+        <div class="inspection-header-brand">
+
+            <img
+                src="{{ url_for('static', filename='images/rockshield-logo.png') }}"
+                alt="ROCKSHIELD AI logo"
+            >
+
+            <div>
+                <h2>
+                    ROCKSHIELD <span>AI</span>
+                </h2>
+
+                <p>ROCK-SURFACE ANALYSIS</p>
+            </div>
+
+        </div>
+
+        <button
+            class="analysis-close-btn"
+            type="button"
+            aria-label="Close inspection"
+        >
+            ×
+        </button>
+
+    </header>
+
+
+    <main class="analysis-main">
+
+        <!-- Page Heading -->
+
+        <div class="analysis-title-area">
+
+            <p class="inspection-eyebrow">
+                AI-ASSISTED INSPECTION
+            </p>
+
+            <h1>
+                Analyzing Rock Surface
+            </h1>
+
+            <p>
+                ROCKSHIELD is processing the selected image
+                to identify visible crack features and prepare
+                the inspection assessment.
+            </p>
+
+        </div>
+
+
+        <!-- ========================================
+             Progress
+        ========================================= -->
+
+        <div class="inspection-progress">
+
+            <div class="inspection-progress-step completed">
+
+                <div class="progress-step-number">
+                    ✓
+                </div>
+
+                <div>
+                    <strong>Site Details</strong>
+                    <span>Completed</span>
+                </div>
+
+            </div>
+
+
+            <div class="progress-line completed"></div>
+
+
+            <div class="inspection-progress-step completed">
+
+                <div class="progress-step-number">
+                    ✓
+                </div>
+
+                <div>
+                    <strong>Image Capture</strong>
+                    <span>Completed</span>
+                </div>
+
+            </div>
+
+
+            <div class="progress-line completed"></div>
+
+
+            <div class="inspection-progress-step completed">
+
+                <div class="progress-step-number">
+                    ✓
+                </div>
+
+                <div>
+                    <strong>Quality Check</strong>
+                    <span>Passed</span>
+                </div>
+
+            </div>
+
+
+            <div class="progress-line completed"></div>
+
+
+            <div class="inspection-progress-step active">
+
+                <div class="progress-step-number">
+                    4
+                </div>
+
+                <div>
+                    <strong>Analysis</strong>
+                    <span>In progress</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ========================================
+             Analysis Workspace
+        ========================================= -->
+
+        <section class="analysis-card">
+
+
+            <!-- Image Preview -->
+
+            <div class="analysis-image-panel">
+
+                <div class="analysis-image-heading">
+
+                    <div>
+
+                        <p class="form-section-number">
+                            INPUT IMAGE
+                        </p>
+
+                        <h2>
+                            Rock Surface
+                        </h2>
+
+                    </div>
+
+                    <span class="analysis-image-status">
+                        Processing
+                    </span>
+
+                </div>
+
+
+                <div class="analysis-image-wrapper">
+
+                    <img
+                        id="analysisImagePreview"
+                        src=""
+                        alt="Rock surface being analyzed"
+                    >
+
+
+                    <!-- Scanning Overlay -->
+
+                    <div class="analysis-scan-overlay">
+
+                        <div class="analysis-scan-line"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ========================================
+                 Processing Status
+            ========================================= -->
+
+            <div class="analysis-processing-panel">
+
+                <p class="analysis-panel-label">
+                    ANALYSIS STATUS
+                </p>
+
+                <h2 id="analysisStatusTitle">
+                    Preparing Image
+                </h2>
+
+                <p id="analysisStatusMessage">
+                    Preparing the rock-surface image for
+                    crack-detection analysis.
+                </p>
+
+
+                <!-- Progress Bar -->
+
+                <div class="analysis-progress-track">
+
+                    <div
+                        class="analysis-progress-bar"
+                        id="analysisProgressBar"
+                    ></div>
+
+                </div>
+
+
+                <p
+                    class="analysis-progress-value"
+                    id="analysisProgressValue"
+                >
+                    0%
+                </p>
+
+
+                <!-- ========================================
+                     Analysis Stages
+                ========================================= -->
+
+                <div class="analysis-stages">
+
+
+                    <!-- Stage 1 -->
+
+                    <div
+                        class="analysis-stage active"
+                        id="analysisStagePreprocess"
+                    >
+
+                        <div class="analysis-stage-icon">
+                            1
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Image Preprocessing
+                            </strong>
+
+                            <span>
+                                Preparing image data
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Stage 2 -->
+
+                    <div
+                        class="analysis-stage"
+                        id="analysisStageDetection"
+                    >
+
+                        <div class="analysis-stage-icon">
+                            2
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Crack Detection
+                            </strong>
+
+                            <span>
+                                Detecting visible crack features
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Stage 3 -->
+
+                    <div
+                        class="analysis-stage"
+                        id="analysisStageAssessment"
+                    >
+
+                        <div class="analysis-stage-icon">
+                            3
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Feature Assessment
+                            </strong>
+
+                            <span>
+                                Preparing detected features
+                                for assessment
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================================
+             Analysis Notice
+        ========================================= -->
+
+        <div class="inspection-info-note">
+
+            <span>i</span>
+
+            <p>
+                ROCKSHIELD provides AI-assisted visual
+                inspection support. Analysis results should
+                be reviewed alongside field observations and
+                professional engineering judgment.
+            </p>
+
+        </div>
+
+    </main>
+
+</section>
 
 
     <!-- ========================================

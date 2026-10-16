@@ -65,6 +65,7 @@ const continueAnalysisButton =
     document.querySelector(".continue-analysis-btn");
 
 let selectedRockImage = null;
+let analysisImageURL = null;
 const cameraOption =
     document.querySelector(".camera-option");
 
@@ -169,6 +170,42 @@ let capturedImageBlob = null;
         ".welcome-language-btn"
         
     );
+    /* ========================================
+   AI Analysis Screen Elements
+======================================== */
+
+const analysisScreen =
+    document.querySelector(".analysis-screen");
+
+const analysisImagePreview =
+    document.querySelector("#analysisImagePreview");
+
+const analysisCloseButton =
+    document.querySelector(".analysis-close-btn");
+
+const analysisImageStatus =
+    document.querySelector(".analysis-image-status");
+
+const analysisStatusTitle =
+    document.querySelector("#analysisStatusTitle");
+
+const analysisStatusMessage =
+    document.querySelector("#analysisStatusMessage");
+
+const analysisProgressBar =
+    document.querySelector("#analysisProgressBar");
+
+const analysisProgressValue =
+    document.querySelector("#analysisProgressValue");
+
+const analysisStagePreprocess =
+    document.querySelector("#analysisStagePreprocess");
+
+const analysisStageDetection =
+    document.querySelector("#analysisStageDetection");
+
+const analysisStageAssessment =
+    document.querySelector("#analysisStageAssessment");
 
     const continueButton = document.querySelector(".continue-btn");
 
@@ -1355,6 +1392,164 @@ qualityCloseButton.addEventListener(
         );
 
         qualityScreen.style.display = "none";
+
+        dashboardScreen.style.display = "";
+
+        dashboardScreen.classList.add(
+            "dashboard-visible"
+        );
+
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
+);
+/* ========================================
+   Quality Check → AI Analysis
+======================================== */
+
+startAnalysisButton.addEventListener(
+    "click",
+    function () {
+
+        if (!selectedRockImage) {
+
+            alert(
+                "No rock-surface image is available for analysis."
+            );
+
+            return;
+        }
+
+
+        /* Remove previous temporary URL */
+
+        if (analysisImageURL) {
+
+            URL.revokeObjectURL(
+                analysisImageURL
+            );
+
+        }
+
+
+        /* Create preview from real selected image */
+
+        analysisImageURL =
+            URL.createObjectURL(
+                selectedRockImage
+            );
+
+        analysisImagePreview.src =
+            analysisImageURL;
+
+
+        /* Reset Analysis UI */
+
+        analysisScreen.classList.remove(
+            "analysis-complete"
+        );
+
+        analysisImageStatus.classList.remove(
+            "analysis-complete"
+        );
+
+        analysisImageStatus.textContent =
+            "Ready";
+
+        analysisStatusTitle.textContent =
+            "Ready for Crack Analysis";
+
+        analysisStatusMessage.textContent =
+            "The image has passed preliminary quality checks and is ready for the crack-detection model.";
+
+        analysisProgressBar.style.width =
+            "0%";
+
+        analysisProgressValue.textContent =
+            "0%";
+
+
+        /* Reset stages */
+
+        analysisStagePreprocess.classList.remove(
+            "completed"
+        );
+
+        analysisStageDetection.classList.remove(
+            "active",
+            "completed"
+        );
+
+        analysisStageAssessment.classList.remove(
+            "active",
+            "completed"
+        );
+
+        analysisStagePreprocess.classList.add(
+            "active"
+        );
+
+
+        /* Hide Quality Screen */
+
+        qualityScreen.classList.remove(
+            "quality-visible"
+        );
+
+        qualityScreen.style.display =
+            "none";
+
+
+        /* Show Analysis Screen */
+
+        analysisScreen.style.display =
+            "";
+
+        analysisScreen.classList.add(
+            "analysis-visible"
+        );
+
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
+);
+/* ========================================
+   Close Analysis → Dashboard
+======================================== */
+
+analysisCloseButton.addEventListener(
+    "click",
+    function () {
+
+        analysisScreen.classList.remove(
+            "analysis-visible"
+        );
+
+        analysisScreen.style.display =
+            "none";
+
+
+        if (analysisImageURL) {
+
+            URL.revokeObjectURL(
+                analysisImageURL
+            );
+
+            analysisImageURL = null;
+
+        }
+
+
+        analysisImagePreview.src = "";
+
 
         dashboardScreen.style.display = "";
 
