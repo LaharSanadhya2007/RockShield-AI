@@ -50,3 +50,6 @@ datasets/geocrack/*.tab
 
 # Future generated training data
 datasets/processed/
+# Trained AI model files
+models/*.pth
+models/*.pt
