@@ -211,7 +211,16 @@ optimizer = torch.optim.AdamW(
     lr=1e-4,
     weight_decay=1e-4
 )
+# ========================================
+# Learning Rate Scheduler
+# ========================================
 
+scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
+    optimizer,
+    mode="min",
+    factor=0.5,
+    patience=2
+)
 
 print("\nTraining configuration ready.")
 print("Loss: Dice Loss + BCEWithLogitsLoss")
@@ -265,11 +274,24 @@ print("Metrics: IoU + Dice Score")
 # Training Configuration
 # ========================================
 
-EPOCHS = 1
+# ========================================
+# Training Configuration
+# ========================================
+
+EPOCHS = 10
 
 MODEL_OUTPUT_DIR.mkdir(
     parents=True,
     exist_ok=True
+)
+
+best_validation_dice = 0.0
+early_stopping_patience = 4
+epochs_without_improvement = 0
+
+best_model_path = (
+    MODEL_OUTPUT_DIR
+    / "rockshield_crack_best.pth"
 )
 
 
@@ -280,8 +302,18 @@ MODEL_OUTPUT_DIR.mkdir(
 for epoch in range(EPOCHS):
 
     print(
-        f"\nEpoch {epoch + 1}/{EPOCHS}"
+        f"\n{'=' * 50}"
     )
+
+    print(
+        f"Epoch {epoch + 1}/{EPOCHS}"
+    )
+
+    print(
+        f"{'=' * 50}"
+    )
+
+
 
     # ------------------------------------
     # Training
@@ -419,25 +451,109 @@ for epoch in range(EPOCHS):
     )
 
 
+    # ------------------------------------
+    # Learning Rate Scheduler
+    # ------------------------------------
+
+    scheduler.step(average_validation_loss)
+
+
+    # ------------------------------------
+    # Save Best Model + Early Stopping
+    # ------------------------------------
+
+    if average_dice > best_validation_dice:
+
+        best_validation_dice = average_dice
+        epochs_without_improvement = 0
+
+        torch.save(
+            model.state_dict(),
+            best_model_path
+        )
+
+        print(
+            "\nNew best model saved!"
+        )
+
+        print(
+            f"Best Validation Dice: "
+            f"{best_validation_dice:.4f}"
+        )
+
+        print(
+            f"Model path: "
+            f"{best_model_path}"
+        )
+
+    else:
+
+        epochs_without_improvement += 1
+
+        print(
+            f"\nNo Dice improvement for "
+            f"{epochs_without_improvement} epoch(s)."
+        )
+
+
+    # ------------------------------------
+    # Current Learning Rate
+    # ------------------------------------
+
+    current_learning_rate = (
+        optimizer.param_groups[0]["lr"]
+    )
+
+    print(
+        f"Learning Rate: "
+        f"{current_learning_rate:.6f}"
+    )
+
+
+    # ------------------------------------
+    # Early Stopping
+    # ------------------------------------
+
+    if (
+        epochs_without_improvement
+        >= early_stopping_patience
+    ):
+
+        print(
+            "\nEarly stopping triggered."
+        )
+
+        print(
+            f"No validation Dice improvement for "
+            f"{early_stopping_patience} "
+            f"consecutive epochs."
+        )
+
+        break
+
+
 # ========================================
-# Save Test Model
+# Training Complete
 # ========================================
 
-test_model_path = (
-    MODEL_OUTPUT_DIR
-    / "rockshield_crack_test.pth"
-)
-
-torch.save(
-    model.state_dict(),
-    test_model_path
+print(
+    "\n========================================"
 )
 
 print(
-    f"\nTest model saved to:\n"
-    f"{test_model_path}"
+    "ROCKSHIELD AI - Training Complete"
 )
 
 print(
-    "\n1-epoch training test completed."
+    "========================================"
+)
+
+print(
+    f"Best Validation Dice: "
+    f"{best_validation_dice:.4f}"
+)
+
+print(
+    f"Best model saved at:\n"
+    f"{best_model_path}"
 )

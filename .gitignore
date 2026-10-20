@@ -53,3 +53,5 @@ datasets/processed/
 # Trained AI model files
 models/*.pth
 models/*.pt
+# Generated AI prediction visualizations
+outputs/
