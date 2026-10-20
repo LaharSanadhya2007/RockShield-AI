@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, jsonify
 import cv2
 import numpy as np
 
+from ai.crack_detector import predict_cracks
+
 
 app = Flask(__name__)
 
@@ -195,6 +197,106 @@ def check_image_quality():
             "message": "Image quality analysis failed."
         }), 500
 
+
+
+    # ==========================================
+# RockShield AI Crack Analysis API
+# ==========================================
+
+@app.route("/analyze-image", methods=["POST"])
+def analyze_image():
+
+    if "image" not in request.files:
+        return jsonify({
+            "success": False,
+            "message": "No image was received."
+        }), 400
+
+    image_file = request.files["image"]
+
+    if image_file.filename == "":
+        return jsonify({
+            "success": False,
+            "message": "No image was selected."
+        }), 400
+
+    try:
+
+        # Convert uploaded file to NumPy data
+        image_bytes = image_file.read()
+
+        numpy_array = np.frombuffer(
+            image_bytes,
+            np.uint8
+        )
+
+        # Decode with OpenCV
+        image = cv2.imdecode(
+            numpy_array,
+            cv2.IMREAD_COLOR
+        )
+
+        if image is None:
+            return jsonify({
+                "success": False,
+                "message": "The image could not be decoded."
+            }), 400
+
+        # Run the trained segmentation model
+        result = predict_cracks(image)
+
+        mask = result["mask"]
+        probability_map = result["probability_map"]
+
+        # Basic image-derived statistics
+        total_pixels = mask.size
+
+        fracture_pixels = int(
+            mask.sum()
+        )
+
+        fracture_percentage = (
+            fracture_pixels / total_pixels
+        ) * 100
+
+        maximum_probability = float(
+            probability_map.max()
+        )
+
+        return jsonify({
+            "success": True,
+
+            "analysis": {
+                "fracture_pixels": fracture_pixels,
+
+                "fracture_percentage": round(
+                    fracture_percentage,
+                    2
+                ),
+
+                "maximum_probability": round(
+                    maximum_probability,
+                    4
+                ),
+
+                "threshold": result["threshold"]
+            }
+        })
+
+    except Exception as error:
+
+        print(
+            "AI crack analysis error:",
+            error
+        )
+
+        return jsonify({
+            "success": False,
+            "message": "AI crack analysis failed."
+        }), 500
+# ==========================================
+# Run Flask Application
+# ==========================================
 
 if __name__ == "__main__":
     app.run(debug=True)

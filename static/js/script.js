@@ -1413,7 +1413,7 @@ qualityCloseButton.addEventListener(
 
 startAnalysisButton.addEventListener(
     "click",
-    function () {
+    async function () {
 
         if (!selectedRockImage) {
 
@@ -1518,6 +1518,148 @@ startAnalysisButton.addEventListener(
             top: 0,
             behavior: "smooth"
         });
+        /* =====================================
+   Send Image to Real AI Model
+===================================== */
+
+const formData = new FormData();
+
+formData.append(
+    "image",
+    selectedRockImage
+);
+
+try {
+
+    analysisImageStatus.textContent =
+        "Analyzing";
+
+    analysisStatusTitle.textContent =
+        "Detecting Rock Fractures";
+
+    analysisStatusMessage.textContent =
+        "ROCKSHIELD AI is analyzing the rock surface for visible fracture patterns.";
+
+    analysisProgressBar.style.width =
+        "45%";
+
+    analysisProgressValue.textContent =
+        "45%";
+
+
+    const response = await fetch(
+        "/analyze-image",
+        {
+            method: "POST",
+            body: formData
+        }
+    );
+
+
+    const result =
+        await response.json();
+
+
+    if (!response.ok || !result.success) {
+
+        throw new Error(
+            result.message ||
+            "AI crack analysis failed."
+        );
+
+    }
+
+
+    console.log(
+        "ROCKSHIELD AI Analysis Result:",
+        result
+    );
+
+
+    analysisStagePreprocess.classList.remove(
+        "active"
+    );
+
+    analysisStagePreprocess.classList.add(
+        "completed"
+    );
+
+    analysisStageDetection.classList.add(
+        "active"
+    );
+
+
+    analysisProgressBar.style.width =
+        "75%";
+
+    analysisProgressValue.textContent =
+        "75%";
+
+
+    console.log(
+        "Fracture Pixels:",
+        result.analysis.fracture_pixels
+    );
+
+    console.log(
+        "Fracture Percentage:",
+        result.analysis.fracture_percentage
+    );
+
+    console.log(
+        "Maximum Pixel Probability:",
+        result.analysis.maximum_probability
+    );
+
+
+    analysisStageDetection.classList.remove(
+        "active"
+    );
+
+    analysisStageDetection.classList.add(
+        "completed"
+    );
+
+    analysisStageAssessment.classList.add(
+        "active"
+    );
+
+
+    analysisProgressBar.style.width =
+        "100%";
+
+    analysisProgressValue.textContent =
+        "100%";
+
+
+    analysisImageStatus.textContent =
+        "Complete";
+
+    analysisStatusTitle.textContent =
+        "Crack Analysis Complete";
+
+    analysisStatusMessage.textContent =
+        "ROCKSHIELD AI successfully analyzed the rock surface using the trained fracture-segmentation model.";
+
+}
+
+catch (error) {
+
+    console.error(
+        "ROCKSHIELD AI analysis error:",
+        error
+    );
+
+    analysisImageStatus.textContent =
+        "Failed";
+
+    analysisStatusTitle.textContent =
+        "Analysis Could Not Be Completed";
+
+    analysisStatusMessage.textContent =
+        "ROCKSHIELD AI could not analyze this image. Please try again.";
+
+}
 
     }
 );
