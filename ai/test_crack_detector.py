@@ -64,6 +64,7 @@ result = predict_cracks(image)
 
 mask = result["mask"]
 probability_map = result["probability_map"]
+overlay = result["overlay"]
 
 print("\nPrediction successful.")
 print(f"Mask shape: {mask.shape}")
@@ -77,6 +78,34 @@ print(
 print(
     f"Maximum fracture probability: "
     f"{float(probability_map.max()):.4f}"
+)
+# ========================================
+# Save Fracture Overlay
+# ========================================
+
+OUTPUT_DIR = (
+    PROJECT_ROOT
+    / "outputs"
+    / "inference_test"
+)
+
+OUTPUT_DIR.mkdir(
+    parents=True,
+    exist_ok=True
+)
+
+overlay_path = (
+    OUTPUT_DIR
+    / "fracture_overlay.png"
+)
+
+cv2.imwrite(
+    str(overlay_path),
+    overlay
+)
+
+print(
+    f"Overlay saved to: {overlay_path}"
 )
 
 print("\nROCKSHIELD crack detector test passed.")

@@ -1610,6 +1610,19 @@ try {
         "Maximum Pixel Probability:",
         result.analysis.maximum_probability
     );
+ /* =====================================
+   Display AI Fracture Overlay
+===================================== */
+
+if (result.analysis.overlay_image) {
+
+    analysisImagePreview.src =
+        result.analysis.overlay_image;
+
+    analysisImagePreview.alt =
+        "Rock surface with AI-detected fracture overlay";
+
+}
 
 
     analysisStageDetection.classList.remove(
@@ -1630,6 +1643,14 @@ try {
 
     analysisProgressValue.textContent =
         "100%";
+        
+    analysisStageAssessment.classList.remove(
+    "active"
+);
+
+analysisStageAssessment.classList.add(
+    "completed"
+);
 
 
     analysisImageStatus.textContent =

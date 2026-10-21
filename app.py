@@ -1,12 +1,17 @@
 from flask import Flask, render_template, request, jsonify
 import cv2
 import numpy as np
+import base64
 
 from ai.crack_detector import predict_cracks
 
 
 app = Flask(__name__)
 
+
+# ==========================================
+# Home
+# ==========================================
 
 @app.route("/")
 def home():
@@ -27,9 +32,7 @@ def check_image_quality():
             "message": "No image was received."
         }), 400
 
-
     image_file = request.files["image"]
-
 
     # Check whether a file was actually selected
     if image_file.filename == "":
@@ -37,7 +40,6 @@ def check_image_quality():
             "success": False,
             "message": "No image was selected."
         }), 400
-
 
     try:
 
@@ -52,7 +54,6 @@ def check_image_quality():
             np.uint8
         )
 
-
         # ------------------------------------------
         # Decode image using OpenCV
         # ------------------------------------------
@@ -62,20 +63,17 @@ def check_image_quality():
             cv2.IMREAD_COLOR
         )
 
-
         if image is None:
             return jsonify({
                 "success": False,
                 "message": "The image could not be decoded."
             }), 400
 
-
         # ------------------------------------------
         # Image dimensions
         # ------------------------------------------
 
         height, width = image.shape[:2]
-
 
         # ------------------------------------------
         # Convert to grayscale
@@ -86,7 +84,6 @@ def check_image_quality():
             cv2.COLOR_BGR2GRAY
         )
 
-
         # ------------------------------------------
         # Brightness
         # ------------------------------------------
@@ -95,12 +92,8 @@ def check_image_quality():
             np.mean(gray)
         )
 
-
         # ------------------------------------------
         # Blur / Sharpness
-        #
-        # Higher variance generally means
-        # more visible edge/detail information.
         # ------------------------------------------
 
         sharpness = float(
@@ -110,12 +103,8 @@ def check_image_quality():
             ).var()
         )
 
-
         # ------------------------------------------
         # Basic quality checks
-        # These are initial engineering thresholds.
-        # We can tune them later using real
-        # rock-surface images.
         # ------------------------------------------
 
         resolution_ok = (
@@ -131,7 +120,6 @@ def check_image_quality():
             sharpness >= 80
         )
 
-
         # ------------------------------------------
         # Overall Quality
         # ------------------------------------------
@@ -142,7 +130,6 @@ def check_image_quality():
             sharpness_ok
         ])
 
-
         if passed_checks == 3:
             quality = "GOOD"
 
@@ -151,7 +138,6 @@ def check_image_quality():
 
         else:
             quality = "POOR"
-
 
         # ------------------------------------------
         # Send result back to frontend
@@ -184,7 +170,6 @@ def check_image_quality():
 
         })
 
-
     except Exception as error:
 
         print(
@@ -198,14 +183,14 @@ def check_image_quality():
         }), 500
 
 
-
-    # ==========================================
+# ==========================================
 # RockShield AI Crack Analysis API
 # ==========================================
 
 @app.route("/analyze-image", methods=["POST"])
 def analyze_image():
 
+    # Check whether an image was sent
     if "image" not in request.files:
         return jsonify({
             "success": False,
@@ -214,6 +199,7 @@ def analyze_image():
 
     image_file = request.files["image"]
 
+    # Check whether a file was selected
     if image_file.filename == "":
         return jsonify({
             "success": False,
@@ -222,7 +208,10 @@ def analyze_image():
 
     try:
 
-        # Convert uploaded file to NumPy data
+        # ------------------------------------------
+        # Convert uploaded file into NumPy data
+        # ------------------------------------------
+
         image_bytes = image_file.read()
 
         numpy_array = np.frombuffer(
@@ -230,7 +219,10 @@ def analyze_image():
             np.uint8
         )
 
-        # Decode with OpenCV
+        # ------------------------------------------
+        # Decode image using OpenCV
+        # ------------------------------------------
+
         image = cv2.imdecode(
             numpy_array,
             cv2.IMREAD_COLOR
@@ -242,13 +234,20 @@ def analyze_image():
                 "message": "The image could not be decoded."
             }), 400
 
-        # Run the trained segmentation model
+        # ------------------------------------------
+        # Run trained crack segmentation model
+        # ------------------------------------------
+
         result = predict_cracks(image)
 
         mask = result["mask"]
         probability_map = result["probability_map"]
+        overlay = result["overlay"]
 
-        # Basic image-derived statistics
+        # ------------------------------------------
+        # Calculate image-derived statistics
+        # ------------------------------------------
+
         total_pixels = mask.size
 
         fracture_pixels = int(
@@ -263,10 +262,44 @@ def analyze_image():
             probability_map.max()
         )
 
+        # ------------------------------------------
+        # Encode AI overlay as PNG
+        # ------------------------------------------
+
+        encode_success, encoded_overlay = cv2.imencode(
+            ".png",
+            overlay
+        )
+
+        if not encode_success:
+            raise RuntimeError(
+                "Could not encode fracture overlay."
+            )
+
+        # ------------------------------------------
+        # Convert PNG into Base64
+        # ------------------------------------------
+
+        overlay_base64 = base64.b64encode(
+            encoded_overlay
+        ).decode("utf-8")
+
+        # Browser-readable image URL
+        overlay_data_url = (
+            "data:image/png;base64,"
+            + overlay_base64
+        )
+
+        # ------------------------------------------
+        # Return AI analysis to frontend
+        # ------------------------------------------
+
         return jsonify({
+
             "success": True,
 
             "analysis": {
+
                 "fracture_pixels": fracture_pixels,
 
                 "fracture_percentage": round(
@@ -279,8 +312,11 @@ def analyze_image():
                     4
                 ),
 
-                "threshold": result["threshold"]
+                "threshold": result["threshold"],
+
+                "overlay_image": overlay_data_url
             }
+
         })
 
     except Exception as error:
@@ -294,6 +330,8 @@ def analyze_image():
             "success": False,
             "message": "AI crack analysis failed."
         }), 500
+
+
 # ==========================================
 # Run Flask Application
 # ==========================================

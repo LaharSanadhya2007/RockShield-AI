@@ -145,9 +145,41 @@ def predict_cracks(image_bgr):
         (original_width, original_height),
         interpolation=cv2.INTER_NEAREST
     )
+    # ------------------------------------
+    # Create Fracture Overlay
+    # ------------------------------------
+
+    overlay_image = image_bgr.copy()
+
+    # Highlight predicted fracture pixels
+    # in red (BGR format for OpenCV)
+    fracture_color = np.array(
+        [0, 0, 255],
+        dtype=np.uint8
+    )
+
+    # Create a colored fracture layer
+    fracture_layer = np.zeros_like(
+        overlay_image
+    )
+
+    fracture_layer[
+        binary_mask == 1
+    ] = fracture_color
+
+    # Blend fracture markings with
+    # the original rock image
+    overlay_image = cv2.addWeighted(
+        overlay_image,
+        1.0,
+        fracture_layer,
+        0.65,
+        0
+    )
 
     return {
         "mask": binary_mask,
         "probability_map": probability_map,
+        "overlay": overlay_image,
         "threshold": PREDICTION_THRESHOLD
     }
