@@ -1,8 +1,12 @@
 from pathlib import Path
 
 import cv2
+import numpy as np
 
-from crack_detector import predict_cracks
+from crack_detector import (
+    predict_cracks,
+    extract_fracture_features
+)
 
 
 # ========================================
@@ -61,6 +65,27 @@ print(f"Original image shape: {image.shape}")
 # ========================================
 
 result = predict_cracks(image)
+features = extract_fracture_features(
+    result["mask"]
+)
+
+print("\nFracture Features:")
+print(
+    "Fracture Coverage:",
+    features["fracture_coverage_percentage"],
+    "%"
+)
+
+print(
+    "Fracture Regions:",
+    features["fracture_region_count"]
+)
+
+print(
+    "Largest Region:",
+    features["largest_region_percentage"],
+    "%"
+)
 
 mask = result["mask"]
 probability_map = result["probability_map"]
@@ -109,3 +134,17 @@ print(
 )
 
 print("\nROCKSHIELD crack detector test passed.")
+# Test empty fracture mask
+empty_mask = np.zeros((224, 224), dtype=np.uint8)
+
+empty_features = extract_fracture_features(empty_mask)
+
+print("\nEmpty Mask Test:")
+print(empty_features)
+
+assert empty_features["fracture_pixels"] == 0
+assert empty_features["fracture_coverage_percentage"] == 0.0
+assert empty_features["fracture_region_count"] == 0
+assert empty_features["largest_region_percentage"] == 0.0
+
+print("Empty mask test passed.")

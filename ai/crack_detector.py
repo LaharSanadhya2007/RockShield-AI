@@ -183,3 +183,89 @@ def predict_cracks(image_bgr):
         "overlay": overlay_image,
         "threshold": PREDICTION_THRESHOLD
     }
+
+
+# ========================================
+# Fracture Feature Extraction
+# ========================================
+
+def extract_fracture_features(binary_mask):
+
+    if binary_mask is None:
+        raise ValueError(
+            "Binary fracture mask cannot be None."
+        )
+
+    # Ensure mask contains only 0 and 1
+    mask = (
+        binary_mask > 0
+    ).astype(np.uint8)
+
+    total_pixels = mask.size
+
+    fracture_pixels = int(
+        mask.sum()
+    )
+
+    # Percentage of image covered by
+    # predicted fracture regions
+    fracture_coverage = (
+        fracture_pixels / total_pixels
+    ) * 100
+
+    # Find separate connected
+    # fracture regions
+    number_of_labels, labels, stats, _ = (
+        cv2.connectedComponentsWithStats(
+            mask,
+            connectivity=8
+        )
+    )
+
+    # Label 0 is the background
+    component_areas = []
+
+    for label_index in range(
+        1,
+        number_of_labels
+    ):
+
+        area = int(
+            stats[
+                label_index,
+                cv2.CC_STAT_AREA
+            ]
+        )
+
+        component_areas.append(area)
+
+    fracture_region_count = len(
+        component_areas
+    )
+
+    if component_areas:
+        largest_region_pixels = max(
+            component_areas
+        )
+    else:
+        largest_region_pixels = 0
+
+    largest_region_percentage = (
+        largest_region_pixels / total_pixels
+    ) * 100
+
+    return {
+        "fracture_pixels": fracture_pixels,
+        "fracture_coverage_percentage": round(
+            fracture_coverage,
+            2
+        ),
+        "fracture_region_count":
+            fracture_region_count,
+        "largest_region_pixels":
+            largest_region_pixels,
+        "largest_region_percentage": round(
+            largest_region_percentage,
+            2
+        )
+    }
