@@ -269,3 +269,54 @@ def extract_fracture_features(binary_mask):
             2
         )
     }
+
+# ========================================
+# Image-Based Severity Assessment
+# ========================================
+
+def assess_fracture_severity(features):
+
+    if not features:
+        raise ValueError(
+            "Fracture features cannot be empty."
+        )
+
+    fracture_coverage = features[
+        "fracture_coverage_percentage"
+    ]
+
+    largest_region = features[
+        "largest_region_percentage"
+    ]
+
+    fracture_regions = features[
+        "fracture_region_count"
+    ]
+
+    # Initial prototype thresholds.
+    # These are not validated geological limits.
+
+    if (
+        fracture_coverage >= 5.0
+        or largest_region >= 3.0
+    ):
+        severity = "Severe"
+
+    elif (
+        fracture_coverage >= 2.0
+        or largest_region >= 1.0
+        or fracture_regions >= 10
+    ):
+        severity = "Moderate"
+
+    else:
+        severity = "Minor"
+
+    return {
+        "severity": severity,
+        "assessment_type": "Image-based indicator",
+        "disclaimer": (
+            "This is an image-based estimate, "
+            "not a confirmed geological assessment."
+        )
+    }

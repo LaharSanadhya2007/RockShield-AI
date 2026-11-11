@@ -5,7 +5,8 @@ import numpy as np
 
 from crack_detector import (
     predict_cracks,
-    extract_fracture_features
+    extract_fracture_features,
+    assess_fracture_severity
 )
 
 
@@ -148,3 +149,42 @@ assert empty_features["fracture_region_count"] == 0
 assert empty_features["largest_region_percentage"] == 0.0
 
 print("Empty mask test passed.")
+# ========================================
+# Severity Assessment Tests
+# ========================================
+
+test_cases = {
+    "Minor": {
+        "fracture_coverage_percentage": 0.5,
+        "largest_region_percentage": 0.2,
+        "fracture_region_count": 3
+    },
+    "Moderate": {
+        "fracture_coverage_percentage": 2.5,
+        "largest_region_percentage": 1.2,
+        "fracture_region_count": 7
+    },
+    "Severe": {
+        "fracture_coverage_percentage": 6.0,
+        "largest_region_percentage": 3.5,
+        "fracture_region_count": 15
+    }
+}
+
+print("\nSeverity Assessment Tests:")
+
+for expected, features in test_cases.items():
+
+    assessment = assess_fracture_severity(
+        features
+    )
+
+    actual = assessment["severity"]
+
+    print(
+        f"Expected: {expected} | Actual: {actual}"
+    )
+
+    assert actual == expected
+
+print("All severity assessment tests passed.")
