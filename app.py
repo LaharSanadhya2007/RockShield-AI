@@ -1,9 +1,14 @@
+
 from flask import Flask, render_template, request, jsonify
 import cv2
 import numpy as np
 import base64
 
-from ai.crack_detector import predict_cracks
+from ai.crack_detector import (
+    predict_cracks,
+    extract_fracture_features,
+    assess_fracture_severity
+)
 
 
 app = Flask(__name__)
@@ -43,10 +48,7 @@ def check_image_quality():
 
     try:
 
-        # ------------------------------------------
         # Convert uploaded file into NumPy data
-        # ------------------------------------------
-
         image_bytes = image_file.read()
 
         numpy_array = np.frombuffer(
@@ -54,10 +56,7 @@ def check_image_quality():
             np.uint8
         )
 
-        # ------------------------------------------
         # Decode image using OpenCV
-        # ------------------------------------------
-
         image = cv2.imdecode(
             numpy_array,
             cv2.IMREAD_COLOR
@@ -69,33 +68,21 @@ def check_image_quality():
                 "message": "The image could not be decoded."
             }), 400
 
-        # ------------------------------------------
         # Image dimensions
-        # ------------------------------------------
-
         height, width = image.shape[:2]
 
-        # ------------------------------------------
         # Convert to grayscale
-        # ------------------------------------------
-
         gray = cv2.cvtColor(
             image,
             cv2.COLOR_BGR2GRAY
         )
 
-        # ------------------------------------------
         # Brightness
-        # ------------------------------------------
-
         brightness = float(
             np.mean(gray)
         )
 
-        # ------------------------------------------
         # Blur / Sharpness
-        # ------------------------------------------
-
         sharpness = float(
             cv2.Laplacian(
                 gray,
@@ -103,10 +90,7 @@ def check_image_quality():
             ).var()
         )
 
-        # ------------------------------------------
         # Basic quality checks
-        # ------------------------------------------
-
         resolution_ok = (
             width >= 640 and
             height >= 480
@@ -120,10 +104,7 @@ def check_image_quality():
             sharpness >= 80
         )
 
-        # ------------------------------------------
-        # Overall Quality
-        # ------------------------------------------
-
+        # Overall quality
         passed_checks = sum([
             resolution_ok,
             brightness_ok,
@@ -139,10 +120,7 @@ def check_image_quality():
         else:
             quality = "POOR"
 
-        # ------------------------------------------
         # Send result back to frontend
-        # ------------------------------------------
-
         return jsonify({
 
             "success": True,
@@ -208,10 +186,7 @@ def analyze_image():
 
     try:
 
-        # ------------------------------------------
         # Convert uploaded file into NumPy data
-        # ------------------------------------------
-
         image_bytes = image_file.read()
 
         numpy_array = np.frombuffer(
@@ -219,10 +194,7 @@ def analyze_image():
             np.uint8
         )
 
-        # ------------------------------------------
         # Decode image using OpenCV
-        # ------------------------------------------
-
         image = cv2.imdecode(
             numpy_array,
             cv2.IMREAD_COLOR
@@ -234,20 +206,24 @@ def analyze_image():
                 "message": "The image could not be decoded."
             }), 400
 
-        # ------------------------------------------
         # Run trained crack segmentation model
-        # ------------------------------------------
-
         result = predict_cracks(image)
+
+        # Extract fracture features
+        features = extract_fracture_features(
+            result["mask"]
+        )
+
+        # Assess image-based fracture severity
+        severity_assessment = assess_fracture_severity(
+            features
+        )
 
         mask = result["mask"]
         probability_map = result["probability_map"]
         overlay = result["overlay"]
 
-        # ------------------------------------------
         # Calculate image-derived statistics
-        # ------------------------------------------
-
         total_pixels = mask.size
 
         fracture_pixels = int(
@@ -262,10 +238,7 @@ def analyze_image():
             probability_map.max()
         )
 
-        # ------------------------------------------
         # Encode AI overlay as PNG
-        # ------------------------------------------
-
         encode_success, encoded_overlay = cv2.imencode(
             ".png",
             overlay
@@ -276,10 +249,7 @@ def analyze_image():
                 "Could not encode fracture overlay."
             )
 
-        # ------------------------------------------
         # Convert PNG into Base64
-        # ------------------------------------------
-
         overlay_base64 = base64.b64encode(
             encoded_overlay
         ).decode("utf-8")
@@ -290,10 +260,7 @@ def analyze_image():
             + overlay_base64
         )
 
-        # ------------------------------------------
         # Return AI analysis to frontend
-        # ------------------------------------------
-
         return jsonify({
 
             "success": True,
@@ -306,6 +273,16 @@ def analyze_image():
                     fracture_percentage,
                     2
                 ),
+
+                "fracture_coverage_percentage": features[
+                    "fracture_coverage_percentage"
+                ],
+
+                "fracture_region_count": features[
+                    "fracture_region_count"
+                ],
+
+                "severity": severity_assessment["severity"],
 
                 "maximum_probability": round(
                     maximum_probability,

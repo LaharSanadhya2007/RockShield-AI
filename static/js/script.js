@@ -1605,6 +1605,20 @@ try {
         "Fracture Percentage:",
         result.analysis.fracture_percentage
     );
+    console.log(
+    "Fracture Severity:",
+    result.analysis.severity
+);
+
+console.log(
+    "Fracture Coverage:",
+    result.analysis.fracture_coverage_percentage
+);
+
+console.log(
+    "Fracture Regions:",
+    result.analysis.fracture_region_count
+);
 
     console.log(
         "Maximum Pixel Probability:",
