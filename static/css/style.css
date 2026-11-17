@@ -4736,3 +4736,313 @@ body {
         font-size: 28px;
     }
 }
+
+/* ========================================
+   ROCKSHIELD AI - ENHANCED RESULTS SCREEN
+======================================== */
+
+.results-screen {
+    background: #f7f7f2;
+    min-height: 100vh;
+    padding: 55px 0;
+}
+
+.results-screen .analysis-main {
+    max-width: 1340px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+/* Section headings */
+
+.results-section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+}
+
+.results-section-heading h2 {
+    font-size: 27px;
+    color: #202923;
+    margin: 7px 0 0;
+}
+
+.results-section-label {
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+    color: #63766a;
+}
+
+/* Enhanced severity card */
+
+.results-severity-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 32px 36px;
+    margin: 38px 0;
+    background: #ffffff;
+    border: 1px solid #e0e5df;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(30, 45, 35, 0.04);
+}
+
+.results-severity-card h2 {
+    font-size: 38px;
+    margin: 10px 0;
+    color: #263d30;
+}
+
+.severity-description {
+    color: #758078;
+    font-size: 14px;
+}
+
+.risk-indicator {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 18px;
+    background: #edf2eb;
+    border-radius: 30px;
+    color: #42634b;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.risk-indicator-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #799d72;
+}
+
+/* Image analysis section */
+
+.results-image-section,
+.results-metrics-section {
+    margin-top: 48px;
+}
+
+.results-image-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.results-image-card {
+    background: #ffffff;
+    border: 1px solid #e1e5df;
+    border-radius: 18px;
+    padding: 20px;
+    box-shadow: 0 5px 20px rgba(30, 45, 35, 0.04);
+}
+
+.results-image-card h3 {
+    font-size: 16px;
+    color: #35443a;
+    margin: 0 0 16px;
+}
+
+.results-image-container {
+    width: 100%;
+    height: 310px;
+    background: #eef0eb;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.results-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.results-image-caption {
+    color: #78827a;
+    font-size: 13px;
+    margin-top: 13px;
+}
+
+/* Metric cards */
+
+.results-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.results-metric-card {
+    background: #ffffff;
+    border: 1px solid #e1e5df;
+    border-radius: 18px;
+    padding: 26px;
+    box-shadow: 0 5px 20px rgba(30, 45, 35, 0.04);
+    transition: transform 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+.results-metric-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(30, 45, 35, 0.08);
+}
+
+.results-metric-card p {
+    color: #69766e;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.results-metric-card h2 {
+    color: #263d30;
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.results-metric-card span {
+    color: #929b94;
+    font-size: 12px;
+}
+
+/* Inspection guidance */
+
+.results-guidance-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 27px;
+    margin-top: 42px;
+    background: #edf2eb;
+    border: 1px solid #d9e3d6;
+    border-radius: 16px;
+}
+
+.results-guidance-icon {
+    min-width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #dce8d9;
+    color: #42634b;
+    border-radius: 50%;
+    font-weight: 700;
+}
+
+.results-guidance-card h3 {
+    color: #344b39;
+    font-size: 18px;
+    margin: 7px 0;
+}
+
+.results-guidance-card p:last-child {
+    color: #69766e;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+/* Disclaimer */
+
+.results-screen .inspection-info-note {
+    margin-top: 25px;
+}
+
+/* Navigation buttons */
+
+.results-actions {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 32px;
+}
+
+.results-actions button {
+    padding: 14px 23px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.results-dashboard-btn {
+    background: #ffffff;
+    color: #344b39;
+    border: 1px solid #cbd5ca;
+}
+
+.results-dashboard-btn:hover {
+    background: #edf2eb;
+}
+
+.results-new-inspection-btn {
+    background: #344b39;
+    color: #ffffff;
+    border: 1px solid #344b39;
+}
+
+.results-new-inspection-btn:hover {
+    background: #263a2b;
+}
+
+/* Responsive layout */
+
+@media (max-width: 768px) {
+
+    .results-screen {
+        padding: 35px 0;
+    }
+
+    .results-severity-card {
+        padding: 25px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .results-image-grid,
+    .results-metrics-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .results-image-container {
+        height: 250px;
+    }
+
+    .results-section-heading h2 {
+        font-size: 23px;
+    }
+
+    .results-actions {
+        flex-direction: column;
+    }
+
+    .results-actions button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .results-screen .analysis-main {
+        width: 92%;
+    }
+
+    .results-severity-card h2 {
+        font-size: 31px;
+    }
+
+    .results-metric-card h2 {
+        font-size: 28px;
+    }
+
+    .results-image-container {
+        height: 210px;
+    }
+}
