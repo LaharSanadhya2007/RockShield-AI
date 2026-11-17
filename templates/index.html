@@ -2311,10 +2311,12 @@
      AI Fracture Assessment Results
 ========================================= -->
 
+
 <section class="results-screen">
 
     <main class="analysis-main">
 
+        <!-- Report Header -->
         <div class="analysis-title-area">
             <p class="inspection-eyebrow">
                 AI INSPECTION REPORT
@@ -2323,39 +2325,143 @@
             <h1>Fracture Assessment Results</h1>
 
             <p>
-                AI-detected fracture characteristics
-                from the analyzed rock surface.
+                AI-powered analysis of detected fractures
+                and structural characteristics of the rock surface.
             </p>
         </div>
 
-        <!-- Severity -->
+        <!-- Severity and Risk Assessment -->
         <div class="results-severity-card">
-            <p>FRACTURE SEVERITY</p>
-            <h2 id="fractureSeverity">--</h2>
-        </div>
 
-        <!-- Metrics -->
-        <div class="results-metrics-grid">
+            <div>
+                <p class="results-section-label">
+                    FRACTURE SEVERITY
+                </p>
 
-            <div class="results-metric-card">
-                <p>Fracture Coverage</p>
-                <h2 id="fractureCoverage">--</h2>
+                <h2 id="fractureSeverity">--</h2>
+
+                <p class="severity-description">
+                    AI-based assessment of detected fracture patterns.
+                </p>
             </div>
 
-            <div class="results-metric-card">
-                <p>Fracture Regions</p>
-                <h2 id="fractureRegions">--</h2>
-            </div>
-
-            <div class="results-metric-card">
-                <p>Maximum Probability</p>
-                <h2 id="maximumProbability">--</h2>
+            <div class="risk-indicator">
+                <span class="risk-indicator-dot"></span>
+                <span>AI Assessment</span>
             </div>
 
         </div>
 
+        <!-- Rock Image Analysis -->
+        <section class="results-image-section">
+
+            <div class="results-section-heading">
+                <div>
+                    <p class="inspection-eyebrow">
+                        VISUAL ANALYSIS
+                    </p>
+                    <h2>Rock Surface Detection</h2>
+                </div>
+            </div>
+
+            <div class="results-image-grid">
+
+                <div class="results-image-card">
+                    <h3>Analyzed Rock Surface</h3>
+
+                    <div class="results-image-container">
+                        <img
+                            id="resultsOriginalImage"
+                            src=""
+                            alt="Original analyzed rock surface"
+                        >
+                    </div>
+                </div>
+
+                <div class="results-image-card">
+                    <h3>AI Fracture Detection</h3>
+
+                    <div class="results-image-container">
+                        <img
+                            id="resultsOverlayImage"
+                            src=""
+                            alt="AI-detected fracture overlay"
+                        >
+                    </div>
+                </div>
+
+            </div>
+
+            <p class="results-image-caption">
+                The highlighted regions represent fractures
+                identified by the AI detection model.
+            </p>
+
+        </section>
+
+        <!-- Fracture Metrics -->
+        <section class="results-metrics-section">
+
+            <div class="results-section-heading">
+                <div>
+                    <p class="inspection-eyebrow">
+                        MODEL ANALYSIS
+                    </p>
+                    <h2>Fracture Metrics</h2>
+                </div>
+            </div>
+
+            <div class="results-metrics-grid">
+
+                <div class="results-metric-card">
+                    <p>Fracture Coverage</p>
+                    <h2 id="fractureCoverage">--</h2>
+                    <span>Percentage of analyzed surface</span>
+                </div>
+
+                <div class="results-metric-card">
+                    <p>Fracture Regions</p>
+                    <h2 id="fractureRegions">--</h2>
+                    <span>Detected fracture regions</span>
+                </div>
+
+                <div class="results-metric-card">
+                    <p>Maximum Probability</p>
+                    <h2 id="maximumProbability">--</h2>
+                    <span>Highest model prediction probability</span>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Inspection Guidance -->
+        <section class="results-guidance-card">
+
+            <div class="results-guidance-icon">
+                !
+            </div>
+
+            <div>
+                <p class="results-section-label">
+                    INSPECTION GUIDANCE
+                </p>
+
+                <h3>Further Geological Assessment</h3>
+
+                <p>
+                    Review the detected fracture patterns and
+                    consider additional on-site inspection by
+                    a qualified geological professional.
+                </p>
+            </div>
+
+        </section>
+
+        <!-- Disclaimer -->
         <div class="inspection-info-note">
             <span>i</span>
+
             <p>
                 AI-generated visual assessment is a
                 decision-support result and does not
@@ -2363,10 +2469,30 @@
             </p>
         </div>
 
+        <!-- Report Navigation -->
+        <div class="results-actions">
+
+            <button
+                type="button"
+                class="results-dashboard-btn"
+                id="resultsDashboardButton"
+            >
+                Back to Dashboard
+            </button>
+
+            <button
+                type="button"
+                class="results-new-inspection-btn"
+                id="resultsNewInspectionButton"
+            >
+                + New Inspection
+            </button>
+
+        </div>
+
     </main>
 
 </section>
-
 
 
     <!-- ========================================
