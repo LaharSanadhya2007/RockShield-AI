@@ -237,6 +237,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const maximumProbability =
         document.querySelector("#maximumProbability");
+        // Results Screen Image Elements
+
+    const resultsOriginalImage =
+    document.querySelector("#resultsOriginalImage");
+
+    const resultsOverlayImage =
+    document.querySelector("#resultsOverlayImage");
 
 
     const continueButton =
@@ -1373,6 +1380,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Get actual AI analysis data
 
                 const analysisData = result.analysis;
+                // Display Original Rock Image
+
+resultsOriginalImage.src = analysisImageURL;
+
+resultsOriginalImage.alt =
+    "Original rock surface uploaded for AI analysis";
 
 
                 console.log(
@@ -1406,17 +1419,29 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
 
-                // Display AI fracture overlay
+             // Display AI Fracture Overlay
 
-                if (analysisData.overlay_image) {
+if (analysisData.overlay_image) {
 
-                    analysisImagePreview.src =
-                        analysisData.overlay_image;
+    // Analysis Screen
+    analysisImagePreview.src =
+        analysisData.overlay_image;
 
-                    analysisImagePreview.alt =
-                        "Rock surface with AI-detected fracture overlay";
+    analysisImagePreview.alt =
+        "Rock surface with AI-detected fracture overlay";
 
-                }
+    // Results Screen
+    resultsOverlayImage.src =
+        analysisData.overlay_image;
+
+    resultsOverlayImage.alt =
+        "AI-detected fracture regions on rock surface";
+
+} else {
+
+    resultsOverlayImage.removeAttribute("src");
+
+}
 
 
                 // Complete detection stage
