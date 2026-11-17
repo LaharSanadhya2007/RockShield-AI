@@ -4656,3 +4656,83 @@ body {
     }
 
 }
+/* ========================================
+   ROCKSHIELD AI - Fracture Results Screen
+======================================== */
+
+.results-screen {
+    display: none;
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+.results-screen .analysis-main {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.results-screen .analysis-title-area {
+    margin-bottom: 35px;
+}
+
+.results-severity-card {
+    padding: 30px;
+    margin-bottom: 25px;
+    border-radius: 18px;
+    background: var(--card-bg, #ffffff);
+    border: 1px solid var(--border-color, #e5e7eb);
+}
+
+.results-severity-card p,
+.results-metric-card p {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--text-secondary, #777);
+}
+
+.results-severity-card h2 {
+    margin-top: 12px;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--text-primary, #222);
+}
+
+.results-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.results-metric-card {
+    padding: 25px;
+    border-radius: 16px;
+    background: var(--card-bg, #ffffff);
+    border: 1px solid var(--border-color, #e5e7eb);
+}
+
+.results-metric-card h2 {
+    margin-top: 14px;
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--text-primary, #222);
+}
+
+.results-screen .inspection-info-note {
+    margin-top: 25px;
+}
+
+@media (max-width: 700px) {
+    .results-metrics-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .results-screen {
+        padding: 25px 15px;
+    }
+
+    .results-severity-card h2 {
+        font-size: 28px;
+    }
+}
