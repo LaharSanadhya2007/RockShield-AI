@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", function () {
 
     /* ========================================
@@ -9,205 +10,237 @@ document.addEventListener("DOMContentLoaded", function () {
     const dashboardScreen = document.querySelector(".dashboard-screen");
     const inspectionScreen = document.querySelector(".inspection-screen");
 
-const newInspectionButton =
-    document.querySelector(".new-inspection-btn");
+    const newInspectionButton =
+        document.querySelector(".new-inspection-btn");
 
-const backDashboardButton =
-    document.querySelector(".back-dashboard-btn");
+    const backDashboardButton =
+        document.querySelector(".back-dashboard-btn");
 
-const cancelInspectionButton =
-    document.querySelector(".cancel-inspection-btn");
+    const cancelInspectionButton =
+        document.querySelector(".cancel-inspection-btn");
 
-const closeInspectionButton =
-    document.querySelector(".inspection-close-btn");
+    const closeInspectionButton =
+        document.querySelector(".inspection-close-btn");
+
     const siteDetailsForm =
-    document.querySelector("#siteDetailsForm");
+        document.querySelector("#siteDetailsForm");
 
-const captureScreen =
-    document.querySelector(".capture-screen");
+    const captureScreen =
+        document.querySelector(".capture-screen");
 
-const backSiteDetailsButton =
-    document.querySelector(".back-site-details-btn");
+    const backSiteDetailsButton =
+        document.querySelector(".back-site-details-btn");
 
-const captureBackButton =
-    document.querySelector(".capture-back-btn");
+    const captureBackButton =
+        document.querySelector(".capture-back-btn");
 
-const captureCloseButton =
-    document.querySelector(".capture-close-btn");
+    const captureCloseButton =
+        document.querySelector(".capture-close-btn");
+
     const rockImageInput =
-    document.querySelector("#rockImageInput");
+        document.querySelector("#rockImageInput");
 
-const uploadOption =
-    document.querySelector(".upload-option");
+    const uploadOption =
+        document.querySelector(".upload-option");
 
-const imageDropzone =
-    document.querySelector(".image-dropzone");
+    const imageDropzone =
+        document.querySelector(".image-dropzone");
 
-const imagePreviewArea =
-    document.querySelector(".image-preview-area");
+    const imagePreviewArea =
+        document.querySelector(".image-preview-area");
 
-const rockImagePreview =
-    document.querySelector("#rockImagePreview");
+    const rockImagePreview =
+        document.querySelector("#rockImagePreview");
 
-const previewFileName =
-    document.querySelector("#previewFileName");
+    const previewFileName =
+        document.querySelector("#previewFileName");
 
-const previewFileInfo =
-    document.querySelector("#previewFileInfo");
+    const previewFileInfo =
+        document.querySelector("#previewFileInfo");
 
-const replaceImageButton =
-    document.querySelector(".replace-image-btn");
+    const replaceImageButton =
+        document.querySelector(".replace-image-btn");
 
-const removeImageButton =
-    document.querySelector(".remove-image-btn");
+    const removeImageButton =
+        document.querySelector(".remove-image-btn");
 
-const continueAnalysisButton =
-    document.querySelector(".continue-analysis-btn");
+    const continueAnalysisButton =
+        document.querySelector(".continue-analysis-btn");
 
-let selectedRockImage = null;
-let analysisImageURL = null;
-const cameraOption =
-    document.querySelector(".camera-option");
+    let selectedRockImage = null;
+    let analysisImageURL = null;
 
-const cameraWorkspace =
-    document.querySelector(".camera-workspace");
+    const cameraOption =
+        document.querySelector(".camera-option");
 
-const cameraVideo =
-    document.querySelector("#cameraVideo");
+    const cameraWorkspace =
+        document.querySelector(".camera-workspace");
 
-const cameraCanvas =
-    document.querySelector("#cameraCanvas");
+    const cameraVideo =
+        document.querySelector("#cameraVideo");
 
-const capturedPhotoPreview =
-    document.querySelector("#capturedPhotoPreview");
+    const cameraCanvas =
+        document.querySelector("#cameraCanvas");
 
-const cameraStatus =
-    document.querySelector("#cameraStatus");
+    const capturedPhotoPreview =
+        document.querySelector("#capturedPhotoPreview");
 
-const capturePhotoButton =
-    document.querySelector(".capture-photo-btn");
+    const cameraStatus =
+        document.querySelector("#cameraStatus");
 
-const retakePhotoButton =
-    document.querySelector(".retake-photo-btn");
+    const capturePhotoButton =
+        document.querySelector(".capture-photo-btn");
 
-const usePhotoButton =
-    document.querySelector(".use-photo-btn");
+    const retakePhotoButton =
+        document.querySelector(".retake-photo-btn");
 
-const closeCameraButton =
-    document.querySelector(".close-camera-btn");
+    const usePhotoButton =
+        document.querySelector(".use-photo-btn");
 
-const cameraLiveActions =
-    document.querySelector(".camera-live-actions");
+    const closeCameraButton =
+        document.querySelector(".close-camera-btn");
 
-const cameraReviewActions =
-    document.querySelector(".camera-review-actions");
+    const cameraLiveActions =
+        document.querySelector(".camera-live-actions");
+
+    const cameraReviewActions =
+        document.querySelector(".camera-review-actions");
+
+
     /* ========================================
-   Image Quality Screen Elements
-======================================== */
+       Image Quality Screen Elements
+    ======================================== */
 
-const qualityScreen =
-    document.querySelector(".quality-screen");
+    const qualityScreen =
+        document.querySelector(".quality-screen");
 
-const qualityOverview =
-    document.querySelector(".quality-overview");
+    const qualityOverview =
+        document.querySelector(".quality-overview");
 
-const qualityStatus =
-    document.querySelector("#qualityStatus");
+    const qualityStatus =
+        document.querySelector("#qualityStatus");
 
-const qualityStatusMessage =
-    document.querySelector("#qualityStatusMessage");
+    const qualityStatusMessage =
+        document.querySelector("#qualityStatusMessage");
 
-const qualityStatusIcon =
-    document.querySelector(".quality-status-icon");
+    const qualityStatusIcon =
+        document.querySelector(".quality-status-icon");
 
-const resolutionCheck =
-    document.querySelector("#resolutionCheck");
+    const resolutionCheck =
+        document.querySelector("#resolutionCheck");
 
-const brightnessCheck =
-    document.querySelector("#brightnessCheck");
+    const brightnessCheck =
+        document.querySelector("#brightnessCheck");
 
-const sharpnessCheck =
-    document.querySelector("#sharpnessCheck");
+    const sharpnessCheck =
+        document.querySelector("#sharpnessCheck");
 
-const resolutionMetric =
-    document.querySelector("#resolutionMetric");
+    const resolutionMetric =
+        document.querySelector("#resolutionMetric");
 
-const brightnessMetric =
-    document.querySelector("#brightnessMetric");
+    const brightnessMetric =
+        document.querySelector("#brightnessMetric");
 
-const sharpnessMetric =
-    document.querySelector("#sharpnessMetric");
+    const sharpnessMetric =
+        document.querySelector("#sharpnessMetric");
 
-const resolutionDescription =
-    document.querySelector("#resolutionDescription");
+    const resolutionDescription =
+        document.querySelector("#resolutionDescription");
 
-const brightnessDescription =
-    document.querySelector("#brightnessDescription");
+    const brightnessDescription =
+        document.querySelector("#brightnessDescription");
 
-const sharpnessDescription =
-    document.querySelector("#sharpnessDescription");
+    const sharpnessDescription =
+        document.querySelector("#sharpnessDescription");
 
-const qualityAdviceText =
-    document.querySelector("#qualityAdviceText");
+    const qualityAdviceText =
+        document.querySelector("#qualityAdviceText");
 
-const backCaptureButton =
-    document.querySelector(".back-capture-btn");
+    const backCaptureButton =
+        document.querySelector(".back-capture-btn");
 
-const chooseAnotherImageButton =
-    document.querySelector(".choose-another-image-btn");
+    const chooseAnotherImageButton =
+        document.querySelector(".choose-another-image-btn");
 
-const startAnalysisButton =
-    document.querySelector(".start-analysis-btn");
+    const startAnalysisButton =
+        document.querySelector(".start-analysis-btn");
 
-const qualityCloseButton =
-    document.querySelector(".quality-close-btn");
+    const qualityCloseButton =
+        document.querySelector(".quality-close-btn");
 
-let cameraStream = null;
+    let cameraStream = null;
+    let capturedImageBlob = null;
 
-let capturedImageBlob = null;
+
+    /* ========================================
+       Language Selection Elements
+    ======================================== */
 
     const languageButtons = document.querySelectorAll(
         ".welcome-language-btn"
-        
     );
+
+
     /* ========================================
-   AI Analysis Screen Elements
-======================================== */
+       AI Analysis Screen Elements
+    ======================================== */
 
-const analysisScreen =
-    document.querySelector(".analysis-screen");
+    const analysisScreen =
+        document.querySelector(".analysis-screen");
 
-const analysisImagePreview =
-    document.querySelector("#analysisImagePreview");
+    const analysisImagePreview =
+        document.querySelector("#analysisImagePreview");
 
-const analysisCloseButton =
-    document.querySelector(".analysis-close-btn");
+    const analysisCloseButton =
+        document.querySelector(".analysis-close-btn");
 
-const analysisImageStatus =
-    document.querySelector(".analysis-image-status");
+    const analysisImageStatus =
+        document.querySelector(".analysis-image-status");
 
-const analysisStatusTitle =
-    document.querySelector("#analysisStatusTitle");
+    const analysisStatusTitle =
+        document.querySelector("#analysisStatusTitle");
 
-const analysisStatusMessage =
-    document.querySelector("#analysisStatusMessage");
+    const analysisStatusMessage =
+        document.querySelector("#analysisStatusMessage");
 
-const analysisProgressBar =
-    document.querySelector("#analysisProgressBar");
+    const analysisProgressBar =
+        document.querySelector("#analysisProgressBar");
 
-const analysisProgressValue =
-    document.querySelector("#analysisProgressValue");
+    const analysisProgressValue =
+        document.querySelector("#analysisProgressValue");
 
-const analysisStagePreprocess =
-    document.querySelector("#analysisStagePreprocess");
+    const analysisStagePreprocess =
+        document.querySelector("#analysisStagePreprocess");
 
-const analysisStageDetection =
-    document.querySelector("#analysisStageDetection");
+    const analysisStageDetection =
+        document.querySelector("#analysisStageDetection");
 
-const analysisStageAssessment =
-    document.querySelector("#analysisStageAssessment");
+    const analysisStageAssessment =
+        document.querySelector("#analysisStageAssessment");
 
-    const continueButton = document.querySelector(".continue-btn");
+
+    /* ========================================
+       AI Fracture Assessment Results
+    ======================================== */
+
+    const resultsScreen =
+        document.querySelector(".results-screen");
+
+    const fractureSeverity =
+        document.querySelector("#fractureSeverity");
+
+    const fractureCoverage =
+        document.querySelector("#fractureCoverage");
+
+    const fractureRegions =
+        document.querySelector("#fractureRegions");
+
+    const maximumProbability =
+        document.querySelector("#maximumProbability");
+
+
+    const continueButton =
+        document.querySelector(".continue-btn");
 
 
     /* ========================================
@@ -249,521 +282,422 @@ const analysisStageAssessment =
 
 
     /* ========================================
-       Continue
-       Dashboard will be connected next
+       Continue → Dashboard
     ======================================== */
 
-  continueButton.addEventListener("click", function () {
+    continueButton.addEventListener("click", function () {
 
-    const selectedLanguage = document.querySelector(
-        ".welcome-language-btn.selected"
+        const selectedLanguage = document.querySelector(
+            ".welcome-language-btn.selected"
+        );
+
+        let language = "en";
+
+        if (selectedLanguage) {
+            language =
+                selectedLanguage.getAttribute("data-language");
+        }
+
+        console.log("Selected language:", language);
+
+        welcomeScreen.classList.remove("welcome-visible");
+        welcomeScreen.style.display = "none";
+
+        dashboardScreen.classList.add("dashboard-visible");
+
+    });
+
+
+    /* ========================================
+       Dashboard → New Inspection
+    ======================================== */
+
+    newInspectionButton.addEventListener("click", function () {
+
+        dashboardScreen.classList.remove("dashboard-visible");
+        dashboardScreen.style.display = "none";
+
+        inspectionScreen.classList.add("inspection-visible");
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    });
+
+
+    /* ========================================
+       Return to Dashboard
+    ======================================== */
+
+    function returnToDashboard() {
+
+        inspectionScreen.classList.remove("inspection-visible");
+        inspectionScreen.style.display = "none";
+
+        dashboardScreen.style.display = "";
+        dashboardScreen.classList.add("dashboard-visible");
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
+
+
+    backDashboardButton.addEventListener(
+        "click",
+        returnToDashboard
     );
 
-    let language = "en";
-
-    if (selectedLanguage) {
-
-        language =
-            selectedLanguage.getAttribute("data-language");
-
-    }
-
-
-    console.log("Selected language:", language);
-
-
-    /* Hide Welcome */
-
-    welcomeScreen.classList.remove("welcome-visible");
-
-    welcomeScreen.style.display = "none";
-
-
-    /* Show Dashboard */
-
-    dashboardScreen.classList.add("dashboard-visible");
-
-});
-/* ========================================
-   Dashboard → New Inspection
-======================================== */
-
-newInspectionButton.addEventListener("click", function () {
-
-    dashboardScreen.classList.remove("dashboard-visible");
-    dashboardScreen.style.display = "none";
-
-    inspectionScreen.classList.add("inspection-visible");
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-
-});
-
-
-/* ========================================
-   Return to Dashboard
-======================================== */
-
-function returnToDashboard() {
-
-    inspectionScreen.classList.remove("inspection-visible");
-    inspectionScreen.style.display = "none";
-
-    dashboardScreen.style.display = "";
-    dashboardScreen.classList.add("dashboard-visible");
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-
-}
-
-
-backDashboardButton.addEventListener(
-    "click",
-    returnToDashboard
-);
-
-cancelInspectionButton.addEventListener(
-    "click",
-    returnToDashboard
-);
-
-closeInspectionButton.addEventListener(
-    "click",
-    returnToDashboard
-);
-/* ========================================
-   Site Details → Image Capture
-======================================== */
-
-siteDetailsForm.addEventListener("submit", function (event) {
-
-    event.preventDefault();
-
-
-    /* Let browser check required fields */
-
-    if (!siteDetailsForm.checkValidity()) {
-
-        siteDetailsForm.reportValidity();
-
-        return;
-
-    }
-
-
-    /* Hide Site Details */
-
-    inspectionScreen.classList.remove("inspection-visible");
-    inspectionScreen.style.display = "none";
-
-
-    /* Show Image Capture */
-
-    captureScreen.classList.add("capture-visible");
-
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-
-});
-
-
-/* ========================================
-   Image Capture → Site Details
-======================================== */
-
-function returnToSiteDetails() {
-    stopCamera();
-
-    captureScreen.classList.remove("capture-visible");
-    captureScreen.style.display = "none";
-
-    inspectionScreen.style.display = "";
-    inspectionScreen.classList.add("inspection-visible");
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-
-}
-
-
-backSiteDetailsButton.addEventListener(
-    "click",
-    returnToSiteDetails
-);
-
-
-captureBackButton.addEventListener(
-    "click",
-    returnToSiteDetails
-);
-/* ========================================
-   Close Image Capture → Dashboard
-======================================== */
-
-captureCloseButton.addEventListener("click", function () {
-    stopCamera();
-
-    captureScreen.classList.remove("capture-visible");
-    captureScreen.style.display = "none";
-
-    dashboardScreen.style.display = "";
-    dashboardScreen.classList.add("dashboard-visible");
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-
-});
-/* ========================================
-   Rock Image Upload
-======================================== */
-
-const allowedImageTypes = [
-    "image/jpeg",
-    "image/png",
-    "image/webp"
-];
-
-const maximumImageSize = 10 * 1024 * 1024;
-
-
-/* Open File Picker */
-
-function openImagePicker() {
-
-    rockImageInput.click();
-
-}
-
-
-uploadOption.addEventListener(
-    "click",
-    openImagePicker
-);
-
-
-replaceImageButton.addEventListener(
-    "click",
-    openImagePicker
-);
-
-
-/* ========================================
-   File Input
-======================================== */
-
-rockImageInput.addEventListener("change", function () {
-
-    const file = rockImageInput.files[0];
-
-    if (!file) {
-        return;
-    }
-
-    processRockImage(file);
-
-});
-
-
-/* ========================================
-   Validate + Process Image
-======================================== */
-
-function processRockImage(file) {
-
-    /* Check file type */
-
-    if (!allowedImageTypes.includes(file.type)) {
-
-        alert(
-            "Unsupported image format. Please select a JPG, JPEG, PNG or WEBP image."
-        );
-
-        rockImageInput.value = "";
-
-        return;
-    }
-
-
-    /* Check file size */
-
-    if (file.size > maximumImageSize) {
-
-        alert(
-            "Image is too large. Please select an image smaller than 10 MB."
-        );
-
-        rockImageInput.value = "";
-
-        return;
-    }
-
-
-    selectedRockImage = file;
-
-
-    /* Create preview */
-
-    const imageURL = URL.createObjectURL(file);
-
-    rockImagePreview.src = imageURL;
-
-
-    /* File information */
-
-    previewFileName.textContent = file.name;
-
-    previewFileInfo.textContent =
-        formatFileSize(file.size) +
-        " · Ready for quality check";
-
-
-    /* Switch from dropzone to preview */
-
-    imageDropzone.style.display = "none";
-
-    imagePreviewArea.classList.add(
-        "preview-visible"
+    cancelInspectionButton.addEventListener(
+        "click",
+        returnToDashboard
+    );
+
+    closeInspectionButton.addEventListener(
+        "click",
+        returnToDashboard
     );
 
 
-    /* Enable next step */
+    /* ========================================
+       Site Details → Image Capture
+    ======================================== */
 
-    continueAnalysisButton.disabled = false;
-
-}
-
-
-/* ========================================
-   File Size Formatter
-======================================== */
-
-function formatFileSize(bytes) {
-
-    if (bytes < 1024) {
-
-        return bytes + " B";
-
-    }
-
-    if (bytes < 1024 * 1024) {
-
-        return (
-            bytes / 1024
-        ).toFixed(1) + " KB";
-
-    }
-
-    return (
-        bytes / (1024 * 1024)
-    ).toFixed(1) + " MB";
-
-}
-
-
-/* ========================================
-   Remove Selected Image
-======================================== */
-
-removeImageButton.addEventListener(
-    "click",
-    function () {
-
-        selectedRockImage = null;
-
-        rockImageInput.value = "";
-
-        rockImagePreview.src = "";
-
-        previewFileName.textContent = "";
-
-        previewFileInfo.textContent = "";
-
-        imagePreviewArea.classList.remove(
-            "preview-visible"
-        );
-
-        imageDropzone.style.display = "";
-
-        continueAnalysisButton.disabled = true;
-
-    }
-);
-/* ========================================
-   Drag & Drop
-======================================== */
-
-imageDropzone.addEventListener(
-    "dragover",
-    function (event) {
+    siteDetailsForm.addEventListener("submit", function (event) {
 
         event.preventDefault();
 
-        imageDropzone.classList.add(
-            "drag-active"
-        );
+        if (!siteDetailsForm.checkValidity()) {
+            siteDetailsForm.reportValidity();
+            return;
+        }
+
+        inspectionScreen.classList.remove("inspection-visible");
+        inspectionScreen.style.display = "none";
+
+        captureScreen.classList.add("capture-visible");
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    });
+
+
+    /* ========================================
+       Image Capture → Site Details
+    ======================================== */
+
+    function returnToSiteDetails() {
+
+        stopCamera();
+
+        captureScreen.classList.remove("capture-visible");
+        captureScreen.style.display = "none";
+
+        inspectionScreen.style.display = "";
+        inspectionScreen.classList.add("inspection-visible");
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
 
     }
-);
 
 
-imageDropzone.addEventListener(
-    "dragleave",
-    function () {
+    backSiteDetailsButton.addEventListener(
+        "click",
+        returnToSiteDetails
+    );
 
-        imageDropzone.classList.remove(
-            "drag-active"
-        );
+    captureBackButton.addEventListener(
+        "click",
+        returnToSiteDetails
+    );
 
+
+    /* ========================================
+       Close Image Capture → Dashboard
+    ======================================== */
+
+    captureCloseButton.addEventListener("click", function () {
+
+        stopCamera();
+
+        captureScreen.classList.remove("capture-visible");
+        captureScreen.style.display = "none";
+
+        dashboardScreen.style.display = "";
+        dashboardScreen.classList.add("dashboard-visible");
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    });
+
+
+    /* ========================================
+       Rock Image Upload
+    ======================================== */
+
+    const allowedImageTypes = [
+        "image/jpeg",
+        "image/png",
+        "image/webp"
+    ];
+
+    const maximumImageSize = 10 * 1024 * 1024;
+
+
+    function openImagePicker() {
+        rockImageInput.click();
     }
-);
 
 
-imageDropzone.addEventListener(
-    "drop",
-    function (event) {
+    uploadOption.addEventListener(
+        "click",
+        openImagePicker
+    );
 
-        event.preventDefault();
+    replaceImageButton.addEventListener(
+        "click",
+        openImagePicker
+    );
 
-        imageDropzone.classList.remove(
-            "drag-active"
-        );
 
+    /* ========================================
+       File Input
+    ======================================== */
 
-        const file =
-            event.dataTransfer.files[0];
+    rockImageInput.addEventListener("change", function () {
 
+        const file = rockImageInput.files[0];
 
         if (!file) {
             return;
         }
 
+        processRockImage(file);
+
+    });
+
+
+    /* ========================================
+       Validate + Process Image
+    ======================================== */
+
+    function processRockImage(file) {
+
+        if (!allowedImageTypes.includes(file.type)) {
+
+            alert(
+                "Unsupported image format. Please select a JPG, JPEG, PNG or WEBP image."
+            );
+
+            rockImageInput.value = "";
+            return;
+        }
+
+        if (file.size > maximumImageSize) {
+
+            alert(
+                "Image is too large. Please select an image smaller than 10 MB."
+            );
+
+            rockImageInput.value = "";
+            return;
+        }
+
+        selectedRockImage = file;
+
+        const imageURL = URL.createObjectURL(file);
+
+        rockImagePreview.src = imageURL;
+
+        previewFileName.textContent = file.name;
+
+        previewFileInfo.textContent =
+            formatFileSize(file.size) +
+            " · Ready for quality check";
+
+        imageDropzone.style.display = "none";
+
+        imagePreviewArea.classList.add("preview-visible");
+
+        continueAnalysisButton.disabled = false;
+
+    }
+
+
+    /* ========================================
+       File Size Formatter
+    ======================================== */
+
+    function formatFileSize(bytes) {
+
+        if (bytes < 1024) {
+            return bytes + " B";
+        }
+
+        if (bytes < 1024 * 1024) {
+            return (bytes / 1024).toFixed(1) + " KB";
+        }
+
+        return (bytes / (1024 * 1024)).toFixed(1) + " MB";
+
+    }
+
+
+    /* ========================================
+       Remove Selected Image
+    ======================================== */
+
+    removeImageButton.addEventListener("click", function () {
+
+        selectedRockImage = null;
+
+        rockImageInput.value = "";
+        rockImagePreview.src = "";
+
+        previewFileName.textContent = "";
+        previewFileInfo.textContent = "";
+
+        imagePreviewArea.classList.remove("preview-visible");
+
+        imageDropzone.style.display = "";
+
+        continueAnalysisButton.disabled = true;
+
+    });
+
+
+    /* ========================================
+       Drag & Drop
+    ======================================== */
+
+    imageDropzone.addEventListener("dragover", function (event) {
+
+        event.preventDefault();
+
+        imageDropzone.classList.add("drag-active");
+
+    });
+
+
+    imageDropzone.addEventListener("dragleave", function () {
+
+        imageDropzone.classList.remove("drag-active");
+
+    });
+
+
+    imageDropzone.addEventListener("drop", function (event) {
+
+        event.preventDefault();
+
+        imageDropzone.classList.remove("drag-active");
+
+        const file = event.dataTransfer.files[0];
+
+        if (!file) {
+            return;
+        }
 
         processRockImage(file);
 
-    }
-);
-imageDropzone.addEventListener(
-    "click",
-    openImagePicker
-);
-/* ========================================
-   Start Camera
-======================================== */
-
-cameraOption.addEventListener(
-    "click",
-    async function () {
-
-        /* Ask permission only now */
-
-        try {
-
-            cameraStatus.classList.remove(
-                "camera-error"
-            );
-
-            cameraStatus.textContent =
-                "Requesting camera access...";
+    });
 
 
-            cameraStream =
-                await navigator.mediaDevices.getUserMedia({
-                    video: {
-                        facingMode: {
-                            ideal: "environment"
-                        }
-                    },
-                    audio: false
-                });
+    imageDropzone.addEventListener(
+        "click",
+        openImagePicker
+    );
 
 
-            cameraVideo.srcObject = cameraStream;
+    /* ========================================
+       Start Camera
+    ======================================== */
 
+    cameraOption.addEventListener(
+        "click",
+        async function () {
 
-            cameraWorkspace.classList.add(
-                "camera-visible"
-            );
+            try {
 
+                cameraStatus.classList.remove("camera-error");
 
-            imageDropzone.style.display = "none";
+                cameraStatus.textContent =
+                    "Requesting camera access...";
 
-            imagePreviewArea.classList.remove(
-                "preview-visible"
-            );
+                cameraStream =
+                    await navigator.mediaDevices.getUserMedia({
+                        video: {
+                            facingMode: {
+                                ideal: "environment"
+                            }
+                        },
+                        audio: false
+                    });
 
+                cameraVideo.srcObject = cameraStream;
 
-            cameraVideo.style.display = "block";
+                cameraWorkspace.classList.add("camera-visible");
 
-            capturedPhotoPreview.style.display = "none";
+                imageDropzone.style.display = "none";
 
+                imagePreviewArea.classList.remove("preview-visible");
 
-            cameraLiveActions.style.display = "flex";
+                cameraVideo.style.display = "block";
+                capturedPhotoPreview.style.display = "none";
 
-            cameraReviewActions.style.display = "none";
+                cameraLiveActions.style.display = "flex";
+                cameraReviewActions.style.display = "none";
 
+                cameraStatus.textContent =
+                    "Position the rock surface clearly inside the frame.";
 
-            cameraStatus.textContent =
-                "Position the rock surface clearly inside the frame.";
+            }
 
-        }
+            catch (error) {
 
-        catch (error) {
+                console.error(
+                    "Camera access error:",
+                    error
+                );
 
-            console.error(
-                "Camera access error:",
-                error
-            );
+                cameraWorkspace.classList.add("camera-visible");
 
+                cameraStatus.classList.add("camera-error");
 
-            cameraWorkspace.classList.add(
-                "camera-visible"
-            );
+                cameraStatus.textContent =
+                    "Camera access could not be started. Check browser camera permission or upload an image instead.";
 
-
-            cameraStatus.classList.add(
-                "camera-error"
-            );
-
-
-            cameraStatus.textContent =
-                "Camera access could not be started. Check browser camera permission or upload an image instead.";
+            }
 
         }
+    );
 
-    }
-);
-/* ========================================
-   Capture Camera Frame
-======================================== */
 
-capturePhotoButton.addEventListener(
-    "click",
-    function () {
+    /* ========================================
+       Capture Camera Frame
+    ======================================== */
+
+    capturePhotoButton.addEventListener("click", function () {
 
         if (!cameraStream) {
             return;
         }
 
-
-        const width =
-            cameraVideo.videoWidth;
-
-        const height =
-            cameraVideo.videoHeight;
-
+        const width = cameraVideo.videoWidth;
+        const height = cameraVideo.videoHeight;
 
         if (!width || !height) {
 
@@ -773,14 +707,10 @@ capturePhotoButton.addEventListener(
             return;
         }
 
-
         cameraCanvas.width = width;
         cameraCanvas.height = height;
 
-
-        const context =
-            cameraCanvas.getContext("2d");
-
+        const context = cameraCanvas.getContext("2d");
 
         context.drawImage(
             cameraVideo,
@@ -790,7 +720,6 @@ capturePhotoButton.addEventListener(
             height
         );
 
-
         cameraCanvas.toBlob(
             function (blob) {
 
@@ -798,33 +727,18 @@ capturePhotoButton.addEventListener(
                     return;
                 }
 
-
                 capturedImageBlob = blob;
-
 
                 const capturedURL =
                     URL.createObjectURL(blob);
 
+                capturedPhotoPreview.src = capturedURL;
 
-                capturedPhotoPreview.src =
-                    capturedURL;
+                cameraVideo.style.display = "none";
+                capturedPhotoPreview.style.display = "block";
 
-
-                cameraVideo.style.display =
-                    "none";
-
-
-                capturedPhotoPreview.style.display =
-                    "block";
-
-
-                cameraLiveActions.style.display =
-                    "none";
-
-
-                cameraReviewActions.style.display =
-                    "flex";
-
+                cameraLiveActions.style.display = "none";
+                cameraReviewActions.style.display = "flex";
 
                 cameraStatus.textContent =
                     "Review the captured image before using it.";
@@ -834,172 +748,135 @@ capturePhotoButton.addEventListener(
             0.92
         );
 
-    }
-);
-/* ========================================
-   Retake Photo
-======================================== */
+    });
 
-retakePhotoButton.addEventListener(
-    "click",
-    function () {
+
+    /* ========================================
+       Retake Photo
+    ======================================== */
+
+    retakePhotoButton.addEventListener("click", function () {
 
         capturedImageBlob = null;
 
         capturedPhotoPreview.src = "";
+        capturedPhotoPreview.style.display = "none";
 
-        capturedPhotoPreview.style.display =
-            "none";
+        cameraVideo.style.display = "block";
 
-        cameraVideo.style.display =
-            "block";
-
-        cameraReviewActions.style.display =
-            "none";
-
-        cameraLiveActions.style.display =
-            "flex";
+        cameraReviewActions.style.display = "none";
+        cameraLiveActions.style.display = "flex";
 
         cameraStatus.textContent =
             "Position the rock surface clearly inside the frame.";
 
-    }
-);
-/* ========================================
-   Use Captured Photo
-======================================== */
+    });
 
-usePhotoButton.addEventListener(
-    "click",
-    function () {
+
+    /* ========================================
+       Use Captured Photo
+    ======================================== */
+
+    usePhotoButton.addEventListener("click", function () {
 
         if (!capturedImageBlob) {
             return;
         }
 
-
-        const capturedFile =
-            new File(
-                [capturedImageBlob],
-                "rockshield-camera-capture.jpg",
-                {
-                    type: "image/jpeg"
-                }
-            );
-
-
-        processRockImage(
-            capturedFile
+        const capturedFile = new File(
+            [capturedImageBlob],
+            "rockshield-camera-capture.jpg",
+            {
+                type: "image/jpeg"
+            }
         );
 
+        processRockImage(capturedFile);
 
         stopCamera();
 
+        cameraWorkspace.classList.remove("camera-visible");
 
-        cameraWorkspace.classList.remove(
-            "camera-visible"
-        );
+    });
 
-    }
-);
-/* ========================================
-   Stop Camera
-======================================== */
 
-function stopCamera() {
+    /* ========================================
+       Stop Camera
+    ======================================== */
 
-    if (cameraStream) {
+    function stopCamera() {
 
-        cameraStream
-            .getTracks()
-            .forEach(function (track) {
+        if (cameraStream) {
 
-                track.stop();
+            cameraStream
+                .getTracks()
+                .forEach(function (track) {
+                    track.stop();
+                });
 
-            });
+            cameraStream = null;
 
-        cameraStream = null;
+        }
+
+        cameraVideo.srcObject = null;
+        capturedImageBlob = null;
 
     }
 
 
-    cameraVideo.srcObject = null;
+    /* ========================================
+       Close Camera
+    ======================================== */
 
-    capturedImageBlob = null;
-
-}
-
-
-/* Close Camera */
-
-closeCameraButton.addEventListener(
-    "click",
-    function () {
+    closeCameraButton.addEventListener("click", function () {
 
         stopCamera();
 
-        cameraWorkspace.classList.remove(
-            "camera-visible"
-        );
-
+        cameraWorkspace.classList.remove("camera-visible");
 
         if (!selectedRockImage) {
-
             imageDropzone.style.display = "";
-
         }
 
-    }
-);
-/* ========================================
-   Continue to Analysis
-   Send Image for Quality Check
-======================================== */
+    });
 
-continueAnalysisButton.addEventListener(
-    "click",
-    async function () {
 
-        /* Make sure an image exists */
+    /* ========================================
+       Continue to Analysis
+       Send Image for Quality Check
+    ======================================== */
 
-        if (!selectedRockImage) {
+    continueAnalysisButton.addEventListener(
+        "click",
+        async function () {
 
-            alert(
-                "Please capture or upload an image before continuing."
+            if (!selectedRockImage) {
+
+                alert(
+                    "Please capture or upload an image before continuing."
+                );
+
+                return;
+            }
+
+            continueAnalysisButton.disabled = true;
+
+            const originalButtonContent =
+                continueAnalysisButton.innerHTML;
+
+            continueAnalysisButton.textContent =
+                "Checking Image...";
+
+            const formData = new FormData();
+
+            formData.append(
+                "image",
+                selectedRockImage
             );
 
-            return;
-        }
+            try {
 
-
-        /* Prevent multiple clicks */
-
-        continueAnalysisButton.disabled = true;
-
-        const originalButtonContent =
-            continueAnalysisButton.innerHTML;
-
-        continueAnalysisButton.textContent =
-            "Checking Image...";
-
-
-        /* Prepare image for Flask */
-
-        const formData =
-            new FormData();
-
-        formData.append(
-            "image",
-            selectedRockImage
-        );
-
-
-        try {
-
-            /* Send image to backend */
-
-            const response =
-                await fetch(
+                const response = await fetch(
                     "/check-image-quality",
                     {
                         method: "POST",
@@ -1007,739 +884,697 @@ continueAnalysisButton.addEventListener(
                     }
                 );
 
+                const result = await response.json();
 
-            const result =
-                await response.json();
+                if (!response.ok || !result.success) {
 
+                    throw new Error(
+                        result.message ||
+                        "Image quality check failed."
+                    );
 
-            /* Check backend response */
+                }
 
-            if (!response.ok || !result.success) {
+                console.log(
+                    "ROCKSHIELD Image Quality Result:",
+                    result
+                );
 
-                throw new Error(
-                    result.message ||
-                    "Image quality check failed."
+                console.log(
+                    "Overall Quality:",
+                    result.quality
+                );
+
+                console.log(
+                    "Quality Checks:",
+                    result.checks
+                );
+
+                console.log(
+                    "Image Metrics:",
+                    result.metrics
+                );
+
+                displayQualityResult(result);
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Quality check error:",
+                    error
+                );
+
+                alert(
+                    "ROCKSHIELD could not check the image quality. Please try again."
                 );
 
             }
 
+            finally {
 
-            /* For now, inspect result in console */
+                continueAnalysisButton.innerHTML =
+                    originalButtonContent;
 
-            console.log(
-                "ROCKSHIELD Image Quality Result:",
-                result
-            );
+                continueAnalysisButton.disabled = false;
 
-
-            console.log(
-                "Overall Quality:",
-                result.quality
-            );
-
-
-            console.log(
-                "Quality Checks:",
-                result.checks
-            );
-
-
-            console.log(
-                "Image Metrics:",
-                result.metrics
-            );
-
-
-            displayQualityResult(result);
+            }
 
         }
-
-        catch (error) {
-
-            console.error(
-                "Quality check error:",
-                error
-            );
-
-
-            alert(
-                "ROCKSHIELD could not check the image quality. Please try again."
-            );
-
-        }
-
-        finally {
-
-            continueAnalysisButton.innerHTML =
-                originalButtonContent;
-
-            continueAnalysisButton.disabled =
-                false;
-
-        }
-
-    }
-);
-/* ========================================
-   Display Image Quality Result
-======================================== */
-
-function displayQualityResult(result) {
-
-    const quality = result.quality;
-
-    const metrics = result.metrics;
-
-    const checks = result.checks;
-
-
-    /* =====================================
-       Real OpenCV Metrics
-    ===================================== */
-
-    resolutionMetric.textContent =
-        metrics.width +
-        " × " +
-        metrics.height;
-
-    brightnessMetric.textContent =
-        "Brightness: " +
-        Number(metrics.brightness).toFixed(2);
-
-    sharpnessMetric.textContent =
-        "Sharpness score: " +
-        Number(metrics.sharpness).toFixed(2);
-
-
-    /* =====================================
-       Reset Previous States
-    ===================================== */
-
-    qualityOverview.classList.remove(
-        "quality-acceptable",
-        "quality-poor"
-    );
-
-    resetQualityCheck(resolutionCheck);
-    resetQualityCheck(brightnessCheck);
-    resetQualityCheck(sharpnessCheck);
-
-
-    /* =====================================
-       Resolution
-    ===================================== */
-
-    updateQualityCheck(
-        resolutionCheck,
-        checks.resolution,
-        resolutionDescription,
-        "Image resolution is sufficient for analysis.",
-        "Image resolution is below the recommended minimum."
     );
 
 
-    /* =====================================
-       Brightness
-    ===================================== */
+    /* ========================================
+       Display Image Quality Result
+    ======================================== */
 
-    updateQualityCheck(
-        brightnessCheck,
-        checks.brightness,
-        brightnessDescription,
-        "Lighting level is suitable for surface inspection.",
-        getBrightnessWarning(metrics.brightness)
-    );
+    function displayQualityResult(result) {
 
+        const quality = result.quality;
+        const metrics = result.metrics;
+        const checks = result.checks;
 
-    /* =====================================
-       Sharpness
-    ===================================== */
+        // Real OpenCV Metrics
 
-    updateQualityCheck(
-        sharpnessCheck,
-        checks.sharpness,
-        sharpnessDescription,
-        "Surface details are sufficiently clear for analysis.",
-        "The image may be excessively blurred or lack clear surface detail."
-    );
+        resolutionMetric.textContent =
+            metrics.width + " × " + metrics.height;
+
+        brightnessMetric.textContent =
+            "Brightness: " + Number(metrics.brightness).toFixed(2);
+
+        sharpnessMetric.textContent =
+            "Sharpness score: " + Number(metrics.sharpness).toFixed(2);
 
 
-    /* =====================================
-       Overall Quality
-    ===================================== */
+        // Reset Previous States
 
-    if (quality === "GOOD") {
-
-        qualityStatus.textContent = "GOOD";
-
-        qualityStatusMessage.textContent =
-            "This image is suitable for further analysis.";
-
-        qualityStatusIcon.textContent = "✓";
-
-        qualityAdviceText.textContent =
-            "All preliminary image-quality checks passed. You can continue to crack analysis.";
-
-        startAnalysisButton.disabled = false;
-
-    }
-
-
-    else if (quality === "ACCEPTABLE") {
-
-        qualityOverview.classList.add(
-            "quality-acceptable"
-        );
-
-        qualityStatus.textContent =
-            "ACCEPTABLE";
-
-        qualityStatusMessage.textContent =
-            "The image can be analyzed, but one quality check needs attention.";
-
-        qualityStatusIcon.textContent = "!";
-
-        qualityAdviceText.textContent =
-            "For more reliable crack analysis, consider replacing or recapturing the image. You may still continue.";
-
-        startAnalysisButton.disabled = false;
-
-    }
-
-
-    else {
-
-        qualityOverview.classList.add(
+        qualityOverview.classList.remove(
+            "quality-acceptable",
             "quality-poor"
         );
 
-        qualityStatus.textContent =
-            "POOR";
+        resetQualityCheck(resolutionCheck);
+        resetQualityCheck(brightnessCheck);
+        resetQualityCheck(sharpnessCheck);
 
-        qualityStatusMessage.textContent =
-            "The image does not meet enough recommended quality checks.";
 
-        qualityStatusIcon.textContent = "!";
+        // Resolution
 
-        qualityAdviceText.textContent =
-            "Replace or recapture the image before AI analysis. Poor image quality may produce unreliable crack-detection results.";
+        updateQualityCheck(
+            resolutionCheck,
+            checks.resolution,
+            resolutionDescription,
+            "Image resolution is sufficient for analysis.",
+            "Image resolution is below the recommended minimum."
+        );
 
-        startAnalysisButton.disabled = true;
+
+        // Brightness
+
+        updateQualityCheck(
+            brightnessCheck,
+            checks.brightness,
+            brightnessDescription,
+            "Lighting level is suitable for surface inspection.",
+            getBrightnessWarning(metrics.brightness)
+        );
+
+
+        // Sharpness
+
+        updateQualityCheck(
+            sharpnessCheck,
+            checks.sharpness,
+            sharpnessDescription,
+            "Surface details are sufficiently clear for analysis.",
+            "The image may be excessively blurred or lack clear surface detail."
+        );
+
+
+        // Overall Quality
+
+        if (quality === "GOOD") {
+
+            qualityStatus.textContent = "GOOD";
+
+            qualityStatusMessage.textContent =
+                "This image is suitable for further analysis.";
+
+            qualityStatusIcon.textContent = "✓";
+
+            qualityAdviceText.textContent =
+                "All preliminary image-quality checks passed. You can continue to crack analysis.";
+
+            startAnalysisButton.disabled = false;
+
+        }
+
+        else if (quality === "ACCEPTABLE") {
+
+            qualityOverview.classList.add("quality-acceptable");
+
+            qualityStatus.textContent = "ACCEPTABLE";
+
+            qualityStatusMessage.textContent =
+                "The image can be analyzed, but one quality check needs attention.";
+
+            qualityStatusIcon.textContent = "!";
+
+            qualityAdviceText.textContent =
+                "For more reliable crack analysis, consider replacing or recapturing the image. You may still continue.";
+
+            startAnalysisButton.disabled = false;
+
+        }
+
+        else {
+
+            qualityOverview.classList.add("quality-poor");
+
+            qualityStatus.textContent = "POOR";
+
+            qualityStatusMessage.textContent =
+                "The image does not meet enough recommended quality checks.";
+
+            qualityStatusIcon.textContent = "!";
+
+            qualityAdviceText.textContent =
+                "Replace or recapture the image before AI analysis. Poor image quality may produce unreliable crack-detection results.";
+
+            startAnalysisButton.disabled = true;
+
+        }
+
+
+        // Open Quality Screen
+
+        captureScreen.classList.remove("capture-visible");
+        captureScreen.style.display = "none";
+
+        qualityScreen.style.display = "";
+
+        qualityScreen.classList.add("quality-visible");
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
 
     }
 
 
-    /* =====================================
-       Open Quality Screen
-    ===================================== */
+    /* ========================================
+       Individual Quality Check
+    ======================================== */
 
-    captureScreen.classList.remove(
-        "capture-visible"
-    );
+    function updateQualityCheck(
+        element,
+        passed,
+        descriptionElement,
+        passedMessage,
+        failedMessage
+    ) {
 
-    captureScreen.style.display = "none";
+        const icon =
+            element.querySelector(".quality-check-icon");
 
-    qualityScreen.style.display = "";
+        const state =
+            element.querySelector(".quality-check-state");
 
-    qualityScreen.classList.add(
-        "quality-visible"
-    );
+        if (passed) {
 
+            icon.textContent = "✓";
+            state.textContent = "Passed";
 
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+            descriptionElement.textContent =
+                passedMessage;
 
-}
-/* ========================================
-   Individual Quality Check
-======================================== */
+        }
 
-function updateQualityCheck(
-    element,
-    passed,
-    descriptionElement,
-    passedMessage,
-    failedMessage
-) {
+        else {
 
-    const icon =
-        element.querySelector(
-            ".quality-check-icon"
-        );
+            element.classList.add("check-failed");
 
-    const state =
-        element.querySelector(
-            ".quality-check-state"
-        );
+            icon.textContent = "!";
+            state.textContent = "Needs Attention";
 
+            descriptionElement.textContent =
+                failedMessage;
 
-    if (passed) {
-
-        icon.textContent = "✓";
-
-        state.textContent = "Passed";
-
-        descriptionElement.textContent =
-            passedMessage;
+        }
 
     }
 
-    else {
 
-        element.classList.add(
+    /* ========================================
+       Reset Quality Check
+    ======================================== */
+
+    function resetQualityCheck(element) {
+
+        element.classList.remove(
+            "check-warning",
             "check-failed"
         );
 
-        icon.textContent = "!";
-
-        state.textContent =
-            "Needs Attention";
-
-        descriptionElement.textContent =
-            failedMessage;
-
     }
 
-}
 
+    /* ========================================
+       Brightness Message
+    ======================================== */
 
-/* ========================================
-   Reset Quality Check
-======================================== */
+    function getBrightnessWarning(brightness) {
 
-function resetQualityCheck(element) {
+        if (brightness < 45) {
 
-    element.classList.remove(
-        "check-warning",
-        "check-failed"
-    );
+            return "The image appears too dark. Improve lighting or recapture the rock surface.";
 
-}
+        }
 
+        if (brightness > 210) {
 
-/* ========================================
-   Brightness Message
-======================================== */
+            return "The image appears too bright or overexposed. Reduce glare or recapture the image.";
 
-function getBrightnessWarning(brightness) {
+        }
 
-    if (brightness < 45) {
-
-        return "The image appears too dark. Improve lighting or recapture the rock surface.";
+        return "Lighting needs attention.";
 
     }
 
 
-    if (brightness > 210) {
+    /* ========================================
+       Quality Screen → Image Capture
+    ======================================== */
 
-        return "The image appears too bright or overexposed. Reduce glare or recapture the image.";
+    function returnToImageCapture() {
+
+        qualityScreen.classList.remove("quality-visible");
+        qualityScreen.style.display = "none";
+
+        captureScreen.style.display = "";
+        captureScreen.classList.add("capture-visible");
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
 
     }
 
 
-    return "Lighting needs attention.";
-
-}
-/* ========================================
-   Quality Screen → Image Capture
-======================================== */
-
-function returnToImageCapture() {
-
-    qualityScreen.classList.remove(
-        "quality-visible"
+    backCaptureButton.addEventListener(
+        "click",
+        returnToImageCapture
     );
 
-    qualityScreen.style.display = "none";
-
-    captureScreen.style.display = "";
-
-    captureScreen.classList.add(
-        "capture-visible"
+    chooseAnotherImageButton.addEventListener(
+        "click",
+        returnToImageCapture
     );
 
 
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+    /* ========================================
+       Close Quality Screen → Dashboard
+    ======================================== */
 
-}
+    qualityCloseButton.addEventListener("click", function () {
 
-
-backCaptureButton.addEventListener(
-    "click",
-    returnToImageCapture
-);
-
-
-chooseAnotherImageButton.addEventListener(
-    "click",
-    returnToImageCapture
-);
-/* ========================================
-   Close Quality Screen → Dashboard
-======================================== */
-
-qualityCloseButton.addEventListener(
-    "click",
-    function () {
-
-        qualityScreen.classList.remove(
-            "quality-visible"
-        );
-
+        qualityScreen.classList.remove("quality-visible");
         qualityScreen.style.display = "none";
 
         dashboardScreen.style.display = "";
-
-        dashboardScreen.classList.add(
-            "dashboard-visible"
-        );
-
+        dashboardScreen.classList.add("dashboard-visible");
 
         window.scrollTo({
             top: 0,
             behavior: "smooth"
         });
 
-    }
-);
-/* ========================================
-   Quality Check → AI Analysis
-======================================== */
+    });
 
-startAnalysisButton.addEventListener(
-    "click",
-    async function () {
 
-        if (!selectedRockImage) {
+    /* ========================================
+       Quality Check → AI Analysis
+    ======================================== */
 
-            alert(
-                "No rock-surface image is available for analysis."
+    startAnalysisButton.addEventListener(
+        "click",
+        async function () {
+
+            if (!selectedRockImage) {
+
+                alert(
+                    "No rock-surface image is available for analysis."
+                );
+
+                return;
+            }
+
+            // Remove previous temporary URL
+
+            if (analysisImageURL) {
+
+                URL.revokeObjectURL(analysisImageURL);
+
+            }
+
+            // Create preview from selected image
+
+            analysisImageURL =
+                URL.createObjectURL(selectedRockImage);
+
+            analysisImagePreview.src = analysisImageURL;
+
+
+            // Reset Results Screen
+
+            resultsScreen.style.display = "none";
+
+
+            // Reset Analysis UI
+
+            analysisScreen.classList.remove("analysis-complete");
+
+            analysisImageStatus.classList.remove("analysis-complete");
+
+            analysisImageStatus.textContent = "Ready";
+
+            analysisStatusTitle.textContent =
+                "Ready for Crack Analysis";
+
+            analysisStatusMessage.textContent =
+                "The image has passed preliminary quality checks and is ready for the crack-detection model.";
+
+            analysisProgressBar.style.width = "0%";
+            analysisProgressValue.textContent = "0%";
+
+
+            // Reset stages
+
+            analysisStagePreprocess.classList.remove("completed");
+
+            analysisStageDetection.classList.remove(
+                "active",
+                "completed"
             );
 
-            return;
-        }
-
-
-        /* Remove previous temporary URL */
-
-        if (analysisImageURL) {
-
-            URL.revokeObjectURL(
-                analysisImageURL
+            analysisStageAssessment.classList.remove(
+                "active",
+                "completed"
             );
 
-        }
+            analysisStagePreprocess.classList.add("active");
 
 
-        /* Create preview from real selected image */
+            // Hide Quality Screen
 
-        analysisImageURL =
-            URL.createObjectURL(
+            qualityScreen.classList.remove("quality-visible");
+            qualityScreen.style.display = "none";
+
+
+            // Show Analysis Screen
+
+            analysisScreen.style.display = "";
+            analysisScreen.classList.add("analysis-visible");
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+
+            // Prepare image for AI model
+
+            const formData = new FormData();
+
+            formData.append(
+                "image",
                 selectedRockImage
             );
 
-        analysisImagePreview.src =
-            analysisImageURL;
+
+            try {
+
+                analysisImageStatus.textContent = "Analyzing";
+
+                analysisStatusTitle.textContent =
+                    "Detecting Rock Fractures";
+
+                analysisStatusMessage.textContent =
+                    "ROCKSHIELD AI is analyzing the rock surface for visible fracture patterns.";
+
+                analysisProgressBar.style.width = "45%";
+                analysisProgressValue.textContent = "45%";
 
 
-        /* Reset Analysis UI */
+                // Send image to Flask backend
 
-        analysisScreen.classList.remove(
-            "analysis-complete"
-        );
+                const response = await fetch(
+                    "/analyze-image",
+                    {
+                        method: "POST",
+                        body: formData
+                    }
+                );
 
-        analysisImageStatus.classList.remove(
-            "analysis-complete"
-        );
-
-        analysisImageStatus.textContent =
-            "Ready";
-
-        analysisStatusTitle.textContent =
-            "Ready for Crack Analysis";
-
-        analysisStatusMessage.textContent =
-            "The image has passed preliminary quality checks and is ready for the crack-detection model.";
-
-        analysisProgressBar.style.width =
-            "0%";
-
-        analysisProgressValue.textContent =
-            "0%";
+                const result = await response.json();
 
 
-        /* Reset stages */
+                if (!response.ok || !result.success || !result.analysis) {
 
-        analysisStagePreprocess.classList.remove(
-            "completed"
-        );
+                    throw new Error(
+                        result.message ||
+                        "AI crack analysis failed."
+                    );
 
-        analysisStageDetection.classList.remove(
-            "active",
-            "completed"
-        );
-
-        analysisStageAssessment.classList.remove(
-            "active",
-            "completed"
-        );
-
-        analysisStagePreprocess.classList.add(
-            "active"
-        );
+                }
 
 
-        /* Hide Quality Screen */
-
-        qualityScreen.classList.remove(
-            "quality-visible"
-        );
-
-        qualityScreen.style.display =
-            "none";
+                console.log(
+                    "ROCKSHIELD AI Analysis Result:",
+                    result
+                );
 
 
-        /* Show Analysis Screen */
+                // Update preprocessing stage
 
-        analysisScreen.style.display =
-            "";
+                analysisStagePreprocess.classList.remove("active");
 
-        analysisScreen.classList.add(
-            "analysis-visible"
-        );
+                analysisStagePreprocess.classList.add("completed");
 
+                analysisStageDetection.classList.add("active");
 
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-        /* =====================================
-   Send Image to Real AI Model
-===================================== */
-
-const formData = new FormData();
-
-formData.append(
-    "image",
-    selectedRockImage
-);
-
-try {
-
-    analysisImageStatus.textContent =
-        "Analyzing";
-
-    analysisStatusTitle.textContent =
-        "Detecting Rock Fractures";
-
-    analysisStatusMessage.textContent =
-        "ROCKSHIELD AI is analyzing the rock surface for visible fracture patterns.";
-
-    analysisProgressBar.style.width =
-        "45%";
-
-    analysisProgressValue.textContent =
-        "45%";
+                analysisProgressBar.style.width = "75%";
+                analysisProgressValue.textContent = "75%";
 
 
-    const response = await fetch(
-        "/analyze-image",
-        {
-            method: "POST",
-            body: formData
+                // Get actual AI analysis data
+
+                const analysisData = result.analysis;
+
+
+                console.log(
+                    "Fracture Pixels:",
+                    analysisData.fracture_pixels
+                );
+
+                console.log(
+                    "Fracture Percentage:",
+                    analysisData.fracture_percentage
+                );
+
+                console.log(
+                    "Fracture Severity:",
+                    analysisData.severity
+                );
+
+                console.log(
+                    "Fracture Coverage:",
+                    analysisData.fracture_coverage_percentage
+                );
+
+                console.log(
+                    "Fracture Regions:",
+                    analysisData.fracture_region_count
+                );
+
+                console.log(
+                    "Maximum Pixel Probability:",
+                    analysisData.maximum_probability
+                );
+
+
+                // Display AI fracture overlay
+
+                if (analysisData.overlay_image) {
+
+                    analysisImagePreview.src =
+                        analysisData.overlay_image;
+
+                    analysisImagePreview.alt =
+                        "Rock surface with AI-detected fracture overlay";
+
+                }
+
+
+                // Complete detection stage
+
+                analysisStageDetection.classList.remove("active");
+
+                analysisStageDetection.classList.add("completed");
+
+                analysisStageAssessment.classList.add("active");
+
+
+                // Complete assessment stage
+
+                analysisProgressBar.style.width = "100%";
+
+                analysisProgressValue.textContent = "100%";
+
+                analysisStageAssessment.classList.remove("active");
+
+                analysisStageAssessment.classList.add("completed");
+
+
+                // Update analysis status
+
+                analysisImageStatus.textContent = "Complete";
+
+                analysisStatusTitle.textContent =
+                    "Crack Analysis Complete";
+
+                analysisStatusMessage.textContent =
+                    "ROCKSHIELD AI successfully analyzed the rock surface using the trained fracture-segmentation model.";
+
+
+                /* ========================================
+                   Display AI Fracture Assessment Results
+                ======================================== */
+
+                // Severity
+
+                fractureSeverity.textContent =
+                    analysisData.severity ?? "Unavailable";
+
+
+                // Fracture Coverage
+
+                const coverageValue =
+                    analysisData.fracture_coverage_percentage;
+
+                const coverage = Number(coverageValue);
+
+                fractureCoverage.textContent =
+                    coverageValue !== null &&
+                    coverageValue !== undefined &&
+                    Number.isFinite(coverage)
+                        ? `${coverage.toFixed(2)}%`
+                        : "--";
+
+
+                // Fracture Regions
+
+                fractureRegions.textContent =
+                    analysisData.fracture_region_count ?? "--";
+
+
+                // Maximum Probability
+
+                const probabilityValue =
+                    analysisData.maximum_probability;
+
+                const probability = Number(probabilityValue);
+
+                maximumProbability.textContent =
+                    probabilityValue !== null &&
+                    probabilityValue !== undefined &&
+                    Number.isFinite(probability)
+                        ? `${(probability <= 1 ? probability * 100 : probability).toFixed(2)}%`
+                        : "--";
+
+
+                console.log(
+                    "Final Fracture Assessment:",
+                    {
+                        severity: analysisData.severity,
+                        coverage: analysisData.fracture_coverage_percentage,
+                        regions: analysisData.fracture_region_count,
+                        maximumProbability: analysisData.maximum_probability
+                    }
+                );
+
+
+                /* ========================================
+                   Switch to Results Screen
+                ======================================== */
+
+                analysisScreen.classList.remove("analysis-visible");
+
+                analysisScreen.style.display = "none";
+
+                resultsScreen.style.display = "block";
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "ROCKSHIELD AI analysis error:",
+                    error
+                );
+
+                analysisImageStatus.textContent = "Failed";
+
+                analysisStatusTitle.textContent =
+                    "Analysis Could Not Be Completed";
+
+                analysisStatusMessage.textContent =
+                    "ROCKSHIELD AI could not analyze this image. Please try again.";
+
+            }
+
         }
     );
 
 
-    const result =
-        await response.json();
+    /* ========================================
+       Close Analysis → Dashboard
+    ======================================== */
 
+    analysisCloseButton.addEventListener("click", function () {
 
-    if (!response.ok || !result.success) {
+        analysisScreen.classList.remove("analysis-visible");
 
-        throw new Error(
-            result.message ||
-            "AI crack analysis failed."
-        );
-
-    }
-
-
-    console.log(
-        "ROCKSHIELD AI Analysis Result:",
-        result
-    );
-
-
-    analysisStagePreprocess.classList.remove(
-        "active"
-    );
-
-    analysisStagePreprocess.classList.add(
-        "completed"
-    );
-
-    analysisStageDetection.classList.add(
-        "active"
-    );
-
-
-    analysisProgressBar.style.width =
-        "75%";
-
-    analysisProgressValue.textContent =
-        "75%";
-
-
-    console.log(
-        "Fracture Pixels:",
-        result.analysis.fracture_pixels
-    );
-
-    console.log(
-        "Fracture Percentage:",
-        result.analysis.fracture_percentage
-    );
-    console.log(
-    "Fracture Severity:",
-    result.analysis.severity
-);
-
-console.log(
-    "Fracture Coverage:",
-    result.analysis.fracture_coverage_percentage
-);
-
-console.log(
-    "Fracture Regions:",
-    result.analysis.fracture_region_count
-);
-
-    console.log(
-        "Maximum Pixel Probability:",
-        result.analysis.maximum_probability
-    );
- /* =====================================
-   Display AI Fracture Overlay
-===================================== */
-
-if (result.analysis.overlay_image) {
-
-    analysisImagePreview.src =
-        result.analysis.overlay_image;
-
-    analysisImagePreview.alt =
-        "Rock surface with AI-detected fracture overlay";
-
-}
-
-
-    analysisStageDetection.classList.remove(
-        "active"
-    );
-
-    analysisStageDetection.classList.add(
-        "completed"
-    );
-
-    analysisStageAssessment.classList.add(
-        "active"
-    );
-
-
-    analysisProgressBar.style.width =
-        "100%";
-
-    analysisProgressValue.textContent =
-        "100%";
-        
-    analysisStageAssessment.classList.remove(
-    "active"
-);
-
-analysisStageAssessment.classList.add(
-    "completed"
-);
-
-
-    analysisImageStatus.textContent =
-        "Complete";
-
-    analysisStatusTitle.textContent =
-        "Crack Analysis Complete";
-
-    analysisStatusMessage.textContent =
-        "ROCKSHIELD AI successfully analyzed the rock surface using the trained fracture-segmentation model.";
-
-}
-
-catch (error) {
-
-    console.error(
-        "ROCKSHIELD AI analysis error:",
-        error
-    );
-
-    analysisImageStatus.textContent =
-        "Failed";
-
-    analysisStatusTitle.textContent =
-        "Analysis Could Not Be Completed";
-
-    analysisStatusMessage.textContent =
-        "ROCKSHIELD AI could not analyze this image. Please try again.";
-
-}
-
-    }
-);
-/* ========================================
-   Close Analysis → Dashboard
-======================================== */
-
-analysisCloseButton.addEventListener(
-    "click",
-    function () {
-
-        analysisScreen.classList.remove(
-            "analysis-visible"
-        );
-
-        analysisScreen.style.display =
-            "none";
+        analysisScreen.style.display = "none";
 
 
         if (analysisImageURL) {
 
-            URL.revokeObjectURL(
-                analysisImageURL
-            );
+            URL.revokeObjectURL(analysisImageURL);
 
             analysisImageURL = null;
 
         }
 
-
         analysisImagePreview.src = "";
-
 
         dashboardScreen.style.display = "";
 
-        dashboardScreen.classList.add(
-            "dashboard-visible"
-        );
-
+        dashboardScreen.classList.add("dashboard-visible");
 
         window.scrollTo({
             top: 0,
             behavior: "smooth"
         });
 
-    }
-);
+    });
+
 });
