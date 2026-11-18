@@ -245,6 +245,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const resultsOverlayImage =
     document.querySelector("#resultsOverlayImage");
 
+    const resultsDashboardButton =
+    document.querySelector("#resultsDashboardButton");
+
+    const resultsNewInspectionButton =
+    document.querySelector("#resultsNewInspectionButton");
+
 
     const continueButton =
         document.querySelector(".continue-btn");
@@ -368,7 +374,39 @@ document.addEventListener("DOMContentLoaded", function () {
         "click",
         returnToDashboard
     );
+/* ========================================
+   Results Screen Navigation
+======================================== */
 
+// Results → Dashboard
+resultsDashboardButton.addEventListener("click", function () {
+
+    returnToDashboard();
+
+});
+
+// Results → New Inspection
+// Results → New Inspection
+resultsNewInspectionButton.addEventListener("click", function () {
+
+    // Hide Results Screen
+    resultsScreen.classList.remove("results-visible");
+    resultsScreen.style.display = "none";
+
+    // Hide Dashboard
+    dashboardScreen.classList.remove("dashboard-visible");
+    dashboardScreen.style.display = "none";
+
+    // Show Inspection Screen
+    inspectionScreen.style.display = "";
+    inspectionScreen.classList.add("inspection-visible");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+});
 
     /* ========================================
        Site Details → Image Capture
