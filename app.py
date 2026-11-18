@@ -1,8 +1,11 @@
 
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, send_file
 import cv2
 import numpy as np
 import base64
+import json
+
+from ai.report_generator import generate_inspection_report
 
 from ai.crack_detector import (
     predict_cracks,
@@ -13,6 +16,12 @@ from ai.crack_detector import (
 
 app = Flask(__name__)
 
+# ==========================================
+# Upload and Form Data Limits
+# ==========================================
+
+app.config["MAX_CONTENT_LENGTH"] = 30 * 1024 * 1024
+app.config["MAX_FORM_MEMORY_SIZE"] = 20 * 1024 * 1024
 
 # ==========================================
 # Home
@@ -309,6 +318,100 @@ def analyze_image():
         }), 500
 
 
+# ==========================================
+# ROCKSHIELD AI PDF Inspection Report API
+# ==========================================
+
+@app.route("/generate-report", methods=["POST"])
+def generate_report():
+
+    try:
+
+        # Check original image
+        if "original_image" not in request.files:
+            return jsonify({
+                "success": False,
+                "message": "Original image is missing."
+            }), 400
+
+        original_file = request.files["original_image"]
+
+        if original_file.filename == "":
+            return jsonify({
+                "success": False,
+                "message": "No original image was selected."
+            }), 400
+
+        # Read and encode original image
+        original_bytes = original_file.read()
+
+        if not original_bytes:
+            return jsonify({
+                "success": False,
+                "message": "Original image is empty."
+            }), 400
+
+        original_image = base64.b64encode(
+            original_bytes
+        ).decode("utf-8")
+
+        # Get AI analysis data
+        analysis = json.loads(
+            request.form.get("analysis", "{}")
+        )
+
+        if not analysis:
+            return jsonify({
+                "success": False,
+                "message": "AI analysis data is missing."
+            }), 400
+
+        # Get AI overlay
+        overlay_image = request.form.get(
+            "overlay_image",
+            ""
+        )
+
+        if not overlay_image:
+            return jsonify({
+                "success": False,
+                "message": "AI fracture overlay is missing."
+            }), 400
+
+        # Get site details
+        site_details = json.loads(
+            request.form.get("site_details", "{}")
+        )
+
+        # Generate PDF
+        pdf_buffer = generate_inspection_report(
+            analysis=analysis,
+            original_image=original_image,
+            overlay_image=overlay_image,
+            site_details=site_details
+        )
+
+        pdf_buffer.seek(0)
+
+        # Send PDF to browser
+        return send_file(
+            pdf_buffer,
+            mimetype="application/pdf",
+            as_attachment=True,
+            download_name="ROCKSHIELD_Inspection_Report.pdf"
+        )
+
+    except Exception as error:
+
+        print(
+            "PDF report generation error:",
+            error
+        )
+
+        return jsonify({
+            "success": False,
+            "message": "Could not generate the inspection report."
+        }), 500
 # ==========================================
 # Run Flask Application
 # ==========================================

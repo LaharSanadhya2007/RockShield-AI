@@ -5046,3 +5046,20 @@ body {
         height: 210px;
     }
 }
+/* Download Inspection Report Button */
+.download-report-btn {
+    background: #174B3A;
+    color: #ffffff;
+    border: 1px solid #174B3A;
+    padding: 13px 20px;
+    border-radius: 10px;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.download-report-btn:hover {
+    background: #10382C;
+    transform: translateY(-1px);
+}

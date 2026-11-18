@@ -69,6 +69,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let selectedRockImage = null;
     let analysisImageURL = null;
+    let latestAnalysisData = null;
+    let latestOverlayImage = null;
 
     const cameraOption =
         document.querySelector(".camera-option");
@@ -251,6 +253,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const resultsNewInspectionButton =
     document.querySelector("#resultsNewInspectionButton");
 
+    const downloadReportButton =
+    document.querySelector("#downloadReportButton");
 
     const continueButton =
         document.querySelector(".continue-btn");
@@ -405,6 +409,111 @@ resultsNewInspectionButton.addEventListener("click", function () {
         top: 0,
         behavior: "smooth"
     });
+
+});
+/* ========================================
+   Download PDF Inspection Report
+======================================== */
+
+downloadReportButton.addEventListener("click", async function () {
+
+    // Check whether analysis is available
+    if (!latestAnalysisData || !selectedRockImage) {
+
+        alert("Please complete AI analysis before downloading the report.");
+
+        return;
+    }
+
+    const originalButtonText = downloadReportButton.textContent;
+
+    downloadReportButton.disabled = true;
+    downloadReportButton.textContent = "Generating PDF...";
+
+    const formData = new FormData();
+
+    formData.append("original_image", selectedRockImage);
+
+    formData.append(
+        "analysis",
+        JSON.stringify(latestAnalysisData)
+    );
+
+    formData.append(
+        "overlay_image",
+        latestOverlayImage || ""
+    );
+
+    // Collect inspection details
+    const siteDetails = {
+        site_name: document.querySelector("#inspectionName")?.value || "",
+        location: document.querySelector("#siteLocation")?.value || "",
+        inspector: document.querySelector("#inspectorName")?.value || ""
+    };
+
+    formData.append(
+        "site_details",
+        JSON.stringify(siteDetails)
+    );
+
+    try {
+
+        const response = await fetch("/generate-report", {
+            method: "POST",
+            body: formData
+        });
+
+        if (!response.ok) {
+
+            let errorMessage = "PDF generation failed.";
+
+            try {
+                const errorData = await response.json();
+                errorMessage = errorData.message || errorMessage;
+            } catch (error) {
+                console.error("Could not read server error:", error);
+            }
+
+            throw new Error(errorMessage);
+        }
+
+        const pdfBlob = await response.blob();
+
+        const downloadURL = URL.createObjectURL(pdfBlob);
+
+        const downloadLink = document.createElement("a");
+
+        downloadLink.href = downloadURL;
+
+        downloadLink.download = "ROCKSHIELD_Inspection_Report.pdf";
+
+        document.body.appendChild(downloadLink);
+
+        downloadLink.click();
+
+        downloadLink.remove();
+
+        URL.revokeObjectURL(downloadURL);
+
+        console.log("ROCKSHIELD PDF report downloaded successfully.");
+
+    }
+
+    catch (error) {
+
+        console.error("PDF download error:", error);
+
+        alert(error.message || "Could not download the inspection report.");
+
+    }
+
+    finally {
+
+        downloadReportButton.disabled = false;
+
+        downloadReportButton.textContent = originalButtonText;
+
+    }
 
 });
 
@@ -1418,6 +1527,8 @@ resultsNewInspectionButton.addEventListener("click", function () {
                 // Get actual AI analysis data
 
                 const analysisData = result.analysis;
+                latestAnalysisData = analysisData;
+                latestOverlayImage = analysisData.overlay_image;
                 // Display Original Rock Image
 
 resultsOriginalImage.src = analysisImageURL;
