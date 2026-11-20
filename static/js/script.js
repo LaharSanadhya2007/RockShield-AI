@@ -178,10 +178,11 @@ document.addEventListener("DOMContentLoaded", function () {
        Language Selection Elements
     ======================================== */
 
-    const languageButtons = document.querySelectorAll(
-        ".welcome-language-btn"
-    );
+  const languageButtons = document.querySelectorAll(
+    ".welcome-language-btn, .dashboard-language-btn"
+);
 
+let currentLanguage = "en";
 
     /* ========================================
        AI Analysis Screen Elements
@@ -279,24 +280,104 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 2600);
 
 
-    /* ========================================
-       Language Selection
-    ======================================== */
+   
+/* ========================================
+   Language Selection + Translations
+======================================== */
 
-    languageButtons.forEach(function (button) {
+const translations = {
+    en: {
+        help: "Help",
+        newInspection: "New Inspection",
+        language: "Language",
+        english: "English",
+        hindi: "Hindi",
+        welcome: "Welcome to ROCKSHIELD AI",
+        continue: "Continue",
+        siteDetails: "Site Details",
+        inspectionName: "Inspection Name",
+        siteLocation: "Site Location",
+        inspectorName: "Inspector Name",
+        captureImage: "Capture Rock Image",
+        uploadImage: "Upload Image",
+        camera: "Use Camera",
+        qualityCheck: "Image Quality Check",
+        startAnalysis: "Start AI Analysis",
+        analysis: "AI Crack Analysis",
+        results: "Inspection Results",
+        downloadReport: "Download PDF Report",
+        dashboard: "Dashboard"
+    },
 
-        button.addEventListener("click", function () {
+    hi: {
+        help: "सहायता",
+        newInspection: "नया निरीक्षण",
+        language: "भाषा",
+        english: "अंग्रेज़ी",
+        hindi: "हिन्दी",
+        welcome: "ROCKSHIELD AI में आपका स्वागत है",
+        continue: "आगे बढ़ें",
+        siteDetails: "स्थल का विवरण",
+        inspectionName: "निरीक्षण का नाम",
+        siteLocation: "स्थल का स्थान",
+        inspectorName: "निरीक्षक का नाम",
+        captureImage: "चट्टान की तस्वीर लें",
+        uploadImage: "तस्वीर अपलोड करें",
+        camera: "कैमरे का उपयोग करें",
+        qualityCheck: "तस्वीर की गुणवत्ता जाँच",
+        startAnalysis: "AI विश्लेषण शुरू करें",
+        analysis: "AI दरार विश्लेषण",
+        results: "निरीक्षण के परिणाम",
+        downloadReport: "PDF रिपोर्ट डाउनलोड करें",
+        dashboard: "डैशबोर्ड"
+    }
+};
 
-            languageButtons.forEach(function (btn) {
-                btn.classList.remove("selected");
-            });
+function applyTranslations() {
 
-            button.classList.add("selected");
+    const selectedTranslations =
+        translations[currentLanguage];
 
-        });
+    document.querySelectorAll("[data-i18n]").forEach(function (element) {
+
+        const key = element.getAttribute("data-i18n");
+
+        if (selectedTranslations[key]) {
+            element.textContent = selectedTranslations[key];
+        }
 
     });
 
+    document.documentElement.lang = currentLanguage;
+
+}
+
+languageButtons.forEach(function (button) {
+
+    button.addEventListener("click", function () {
+
+        currentLanguage =
+            button.getAttribute("data-language") || "en";
+
+        languageButtons.forEach(function (btn) {
+            btn.classList.toggle(
+                "selected",
+                btn.getAttribute("data-language") === currentLanguage
+            );
+
+            btn.classList.toggle(
+                "active",
+                btn.getAttribute("data-language") === currentLanguage
+            );
+        });
+
+        console.log("Selected language:", currentLanguage);
+        applyTranslations();
+
+    });
+
+});
+applyTranslations();
 
     /* ========================================
        Continue → Dashboard
